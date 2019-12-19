@@ -1,0 +1,227 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "v1",
+        "title": "AP Metadata Services",
+        "description": "Add value to your news content with APu2019s industry-leading metadata -- accurate, comprehensive, richly detailed data, designed specifically for use by news publishers. AP Metadata Services is a new set of APIs that gives you direct access to the same metadata system that supports APu2019s award-winning, global news operation.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpscv.ap.org\/"
+    ],
+    "paths": {
+        "api\/cm\/": {
+            "get": {
+                "summary": "Change Log",
+                "description": "Returns a list of changes to the AP vocabulary terms according to the specified criteria.",
+                "operationId": "GetApiCm",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "authority",
+                        "in": "query",
+                        "description": "authority"
+                    },
+                    {
+                        "name": "enddate",
+                        "in": "query",
+                        "description": "This parameter can be used in conjunction with the startdate parameter to  specify a date range. The date must be in the format yyyy-mm-dd. If  enddate is included in the request, startdate must also be specified."
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "Specifies the output format: comma-separated values (CSV) or XML. If no  format is specified as the format parameter value or in the Accept header,  XML is returned."
+                    },
+                    {
+                        "name": "lastversion",
+                        "in": "query",
+                        "description": "Returns all change logs since (but not including) the specified version  number, in the format {AuthorityVersion}.{Revision}."
+                    },
+                    {
+                        "name": "startdate",
+                        "in": "query",
+                        "description": "eturns all change logs since (and including) the specified date. The date  must be in the format yyyy-mm-dd. This parameter can be used in  conjunction with the enddate parameter to specify a date range."
+                    },
+                    {
+                        "name": "version",
+                        "in": "query",
+                        "description": "Returns the change log for the specified version number, in the format  {AuthorityVersion}.{Revision} where {AuthorityVersion} is the authority  version found in the AP Tagging Service output for each applied term. "
+                    }
+                ]
+            }
+        },
+        "c\/{class}.{format}": {
+            "get": {
+                "summary": "Ontology Definition",
+                "description": "Returns the AP ontology definition for the specified AP property or class and the specified format.",
+                "operationId": "GetCClassFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "class",
+                        "in": "path",
+                        "description": "The name of an AP property or class"
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    }
+                ]
+            }
+        },
+        "d\/DeprecatedCompany.{format}": {
+            "get": {
+                "summary": "DeprecatedCompany",
+                "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
+                "operationId": "GetDDeprecatedcompanyFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    }
+                ]
+            }
+        },
+        "d\/DeprecatedTerm.{format}": {
+            "get": {
+                "summary": "Deprecated Terms",
+                "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
+                "operationId": "GetDDeprecatedtermFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    }
+                ]
+            }
+        },
+        "d\/{authority}.{format}": {
+            "get": {
+                "summary": "Taxonomy Information",
+                "description": "Returns the taxonomy information for the specified authority and the specified format.",
+                "operationId": "GetDAuthorityFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "authority",
+                        "in": "path",
+                        "description": "The name of a classification authority (not case-sensitive)."
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    }
+                ]
+            }
+        },
+        "d\/{authority}\/{GUID}.{format}": {
+            "get": {
+                "summary": "Authority",
+                "description": "Returns a document for the specified authority and format with the AP vocabulary data for the  specified term GUID and the subset of the vocabulary located below the specified term.",
+                "operationId": "GetDAuthorityGuFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "authority",
+                        "in": "path",
+                        "description": "The name of a classification authority (not case-sensitive)."
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    },
+                    {
+                        "name": "GUID",
+                        "in": "path",
+                        "description": "The GUID of an AP term below which the returned taxonomy data  subset is located in the AP taxonomy hierarchy. The GUID is not case-sensitive"
+                    }
+                ]
+            }
+        },
+        "id\/{GUID}.{format}": {
+            "get": {
+                "summary": "Taxonomy Information",
+                "description": "Returns the taxonomy information for the specified GUID of an AP term and the specified format.",
+                "operationId": "GetGuFormat",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "format",
+                        "in": "path",
+                        "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned."
+                    },
+                    {
+                        "name": "GUID",
+                        "in": "path",
+                        "description": "The GUID of an AP term below which the returned taxonomy data  subset is located in the AP taxonomy hierarchy. The GUID is not case-sensitive"
+                    }
+                ]
+            }
+        },
+        "Tags\/": {
+            "post": {
+                "summary": "Tags",
+                "description": "Returns the set of AP standardized vocabulary terms that apply to the submitted news content. The  output can be limited to one or more authorities specified in the request; for example, you can choose  to apply only AP Organization, AP Subject and AP Geography tags to the submitted content, but not  AP Person or AP Company.",
+                "operationId": "PostTags",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "story",
+                        "in": "body",
+                        "description": "URL-encoded content  submitted for tagging."
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}
