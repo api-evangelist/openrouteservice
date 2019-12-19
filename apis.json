@@ -1,0 +1,94 @@
+{
+    "name": "OpenRouteService",
+    "description": "OpenStreetMap is the free wiki world map.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/882-openrouteservice.jpg",
+    "tags": [
+        "directions",
+        "general data",
+        "have api",
+        "locations",
+        "maps",
+        "relative data",
+        "routes",
+        "service api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "AP Metadata Services",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/882-openrouteservice.jpg",
+            "humanURL": "http:\/\/ap.org",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/ap-metadata-services.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-metadata-services-openapi.json"
+                }
+            ]
+        },
+        {
+            "name": "AP Content API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/882-openrouteservice.jpg",
+            "humanURL": "http:\/\/ap.org",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/ap-content-api.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-content-api-openapi.json"
+                }
+            ]
+        },
+        {
+            "name": "AP Breaking News API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/882-openrouteservice.jpg",
+            "humanURL": "http:\/\/ap.org",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/ap-breaking-news-api.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-breaking-news-api-openapi.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "http:\/\/wiki.openstreetmap.org\/wiki\/OpenRouteService#ORS_.22API.22"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/openstreetmap-3"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developer.ap.org\/"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/ap.org"
+        }
+    ]
+}
