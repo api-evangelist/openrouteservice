@@ -1,0 +1,387 @@
+{
+    "id": "6037999700f78fa8611b8f37aba633a4",
+    "name": "AP Metadata Services",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "fa4f2ae4fb7b468ec1a005384d1bb699",
+            "name": "Change Log",
+            "url": "httpscv.ap.org\/api\/cm\/",
+            "description": "Returns a list of changes to the AP vocabulary terms according to the specified criteria.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "authority",
+                    "description": "authority",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "enddate",
+                    "description": "This parameter can be used in conjunction with the startdate parameter to  specify a date range. The date must be in the format yyyy-mm-dd. If  enddate is included in the request, startdate must also be specified.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "Specifies the output format: comma-separated values (CSV) or XML. If no  format is specified as the format parameter value or in the Accept header,  XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "lastversion",
+                    "description": "Returns all change logs since (but not including) the specified version  number, in the format {AuthorityVersion}.{Revision}.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "startdate",
+                    "description": "eturns all change logs since (and including) the specified date. The date  must be in the format yyyy-mm-dd. This parameter can be used in  conjunction with the enddate parameter to specify a date range.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "version",
+                    "description": "Returns the change log for the specified version number, in the format  {AuthorityVersion}.{Revision} where {AuthorityVersion} is the authority  version found in the AP Tagging Service output for each applied term. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "d1847fa5ef94fc8d3643b1f395d547b4",
+            "name": "Ontology Definition",
+            "url": "httpscv.ap.org\/c\/{class}.{format}",
+            "description": "Returns the AP ontology definition for the specified AP property or class and the specified format.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "class",
+                    "description": "The name of an AP property or class",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "33e42423dd2bd544701b86fa7991668f",
+            "name": "DeprecatedCompany",
+            "url": "httpscv.ap.org\/d\/DeprecatedCompany.{format}",
+            "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "6b1280468e78b6b1e03716d31ca680f8",
+            "name": "Deprecated Terms",
+            "url": "httpscv.ap.org\/d\/DeprecatedTerm.{format}",
+            "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "ef726eab07e45f53e0233d8002c9e6a1",
+            "name": "Taxonomy Information",
+            "url": "httpscv.ap.org\/d\/{authority}.{format}",
+            "description": "Returns the taxonomy information for the specified authority and the specified format.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "authority",
+                    "description": "The name of a classification authority (not case-sensitive).",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "f7e333c4f3a9d6ef576b34a5de89d6e0",
+            "name": "Authority",
+            "url": "httpscv.ap.org\/d\/{authority}\/{GUID}.{format}",
+            "description": "Returns a document for the specified authority and format with the AP vocabulary data for the  specified term GUID and the subset of the vocabulary located below the specified term.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "authority",
+                    "description": "The name of a classification authority (not case-sensitive).",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "GUID",
+                    "description": "The GUID of an AP term below which the returned taxonomy data  subset is located in the AP taxonomy hierarchy. The GUID is not case-sensitive",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "7f8bbb514d9611c944cf4397aff1885f",
+            "name": "Taxonomy Information",
+            "url": "httpscv.ap.org\/id\/{GUID}.{format}",
+            "description": "Returns the taxonomy information for the specified GUID of an AP term and the specified format.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned AP ontology data. If no format  is specified as the format parameter value or in the Accept  header, RDF\/XML is returned.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "GUID",
+                    "description": "The GUID of an AP term below which the returned taxonomy data  subset is located in the AP taxonomy hierarchy. The GUID is not case-sensitive",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        },
+        {
+            "id": "b2a0d897105d4a5cbd2ab04e0fab6176",
+            "name": "Tags",
+            "url": "httpscv.ap.org\/Tags\/",
+            "description": "Returns the set of AP standardized vocabulary terms that apply to the submitted news content. The  output can be limited to one or more authorities specified in the request; for example, you can choose  to apply only AP Organization, AP Subject and AP Geography tags to the submitted content, but not  AP Person or AP Company.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "story",
+                    "description": "URL-encoded content  submitted for tagging.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "rawModeData": ""
+        }
+    ]
+}
