@@ -1,0 +1,103 @@
+{
+    "id": "0cc84ad110538c3f1164565fc994f59c",
+    "name": "AP Breaking News API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "9ad028986b1845003ac95e271a0af070",
+            "name": "Categories",
+            "url": "httpsdeveloperapi.ap.orgv2\/categories.svc\/",
+            "description": "Returns a list of available AP Breaking News categories, including category IDs.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0cc84ad110538c3f1164565fc994f59c",
+            "rawModeData": ""
+        },
+        {
+            "id": "207c08a3c1bc4440a8328eb2363a65d8",
+            "name": "Category News",
+            "url": "httpsdeveloperapi.ap.orgv2\/categories.svc\/{categoryID}\/",
+            "description": "Returns the latest content for a specific category. Depending on the specified parameters, returns  either the full story for each headline and\/or the headlines linked to web pages with the full stories.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "categoryID",
+                    "description": "The ID of the AP Breaking News category. Use the Category List method to  get the list of available categories and their IDs.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "contentOption",
+                    "description": "Specifies whether to return full story content in the response. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "count",
+                    "description": "The number of content items to be returned. Ten items are returned by  default. The maximum allowed value is 25.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "mediaOption",
+                    "description": "Includes related photos in the response. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "0cc84ad110538c3f1164565fc994f59c",
+            "rawModeData": ""
+        }
+    ]
+}
