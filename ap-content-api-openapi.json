@@ -1,0 +1,182 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "v2",
+        "title": "AP Content API",
+        "description": "AP Content API allows you to search and download AP Images content using your own editorial tools, without having to visit the AP Images website.",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.ap.orgv2\/"
+    ],
+    "paths": {
+        "item\/{id}\/": {
+            "get": {
+                "summary": "Get Item",
+                "description": "Get items.",
+                "operationId": "GetItem",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "format",
+                        "in": "query",
+                        "description": "The format of the returned content item data. "
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The GUID of a content item (not case-sensitive)."
+                    }
+                ]
+            }
+        },
+        "item\/{mediaType}\/{id}\/{rendition}": {
+            "get": {
+                "summary": "Get Item Mediatype Rendition",
+                "description": "Pulls item media",
+                "operationId": "GetItemMediatypeRendition",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "filename",
+                        "in": "query",
+                        "description": "The filename for the downloaded content item rendition, in the format "
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "The GUID of a content item (not case-sensitive)."
+                    },
+                    {
+                        "name": "mediaType",
+                        "in": "query",
+                        "description": "The content media type. The default for AP Images  (including all GraphicsBank content) is photo."
+                    },
+                    {
+                        "name": "rendition",
+                        "in": "query",
+                        "description": "The content item rendition."
+                    }
+                ]
+            }
+        },
+        "search\/{mediaType}": {
+            "get": {
+                "summary": "Get Search Mediatype",
+                "description": "Search news",
+                "operationId": "GetSearchMediatype",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "apiKey",
+                        "in": "query",
+                        "description": "API Key"
+                    },
+                    {
+                        "name": "arrivalDate",
+                        "in": "query",
+                        "description": "The date when the content item was released, in the format  YYYY-MM-DD, YYYY-MM, YYYY or YYYY-MM-DDTHH:mmZ where the value must be in Coordinated Universal Time  (UTC). B"
+                    },
+                    {
+                        "name": "contentSet",
+                        "in": "query",
+                        "description": "The AP Images content set to be searched."
+                    },
+                    {
+                        "name": "count",
+                        "in": "query",
+                        "description": "The number of search results per page. The default is 25 results with a  maximum of 100 per page"
+                    },
+                    {
+                        "name": "creationDate",
+                        "in": "query",
+                        "description": "The date when the content item was created, in the format  YYYY-MM-DD, YYYY-MM, YYYY or YYYY-MM-DDTHH:mmZ where the value must be in Coordinated Universal Time  (UTC)."
+                    },
+                    {
+                        "name": "event",
+                        "in": "query",
+                        "description": "One or more words from the title of a specific event."
+                    },
+                    {
+                        "name": "imageId",
+                        "in": "query",
+                        "description": "One or more image ID numbers assigned to content items. "
+                    },
+                    {
+                        "name": "locations",
+                        "in": "query",
+                        "description": "A geographic location in the AP Geography vocabulary. "
+                    },
+                    {
+                        "name": "mediaType",
+                        "in": "path",
+                        "description": "The content media type (photo, graphic, video)"
+                    },
+                    {
+                        "name": "metadataLevel",
+                        "in": "query",
+                        "description": "The level of metadata to be included in search results."
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The page number within the set of search results. The default is 1."
+                    },
+                    {
+                        "name": "person",
+                        "in": "query",
+                        "description": "The name of a person who is featured in the content item. "
+                    },
+                    {
+                        "name": "photographer",
+                        "in": "query",
+                        "description": "The photographers first and\/or last name."
+                    },
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "The search query"
+                    },
+                    {
+                        "name": "showParametrics",
+                        "in": "query",
+                        "description": "By default, query facets that allow you to refine the original  search are returned for each content item at the entry level only."
+                    },
+                    {
+                        "name": "sortby",
+                        "in": "query",
+                        "description": "Specifies how to sort the search results. "
+                    },
+                    {
+                        "name": "source",
+                        "in": "query",
+                        "description": "One or more content creators."
+                    },
+                    {
+                        "name": "subject",
+                        "in": "query",
+                        "description": "Subject category in the AP Subject vocabulary."
+                    },
+                    {
+                        "name": "transref",
+                        "in": "query",
+                        "description": "Transmission reference number."
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": []
+    }
+}
