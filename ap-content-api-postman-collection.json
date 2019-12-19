@@ -1,0 +1,274 @@
+{
+    "id": "b74ec110709bb588ea5e569683bdb4b6",
+    "name": "AP Content API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "48ea8e53e9cd6cd66ed30491319ae1c9",
+            "name": "Get Item",
+            "url": "httpsapi.ap.orgv2\/item\/{id}\/",
+            "description": "Get items.",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "format",
+                    "description": "The format of the returned content item data. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "The GUID of a content item (not case-sensitive).",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "rawModeData": ""
+        },
+        {
+            "id": "f5558dd80a4b391448d0cdc5a6e0d4f1",
+            "name": "Get Item Mediatype Rendition",
+            "url": "httpsapi.ap.orgv2\/item\/{mediaType}\/{id}\/{rendition}",
+            "description": "Pulls item media",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "filename",
+                    "description": "The filename for the downloaded content item rendition, in the format ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "id",
+                    "description": "The GUID of a content item (not case-sensitive).",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "mediaType",
+                    "description": "The content media type. The default for AP Images  (including all GraphicsBank content) is photo.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "rendition",
+                    "description": "The content item rendition.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "rawModeData": ""
+        },
+        {
+            "id": "cae5d6bfcbafb0eccc08fe35e6ad72b9",
+            "name": "Get Search Mediatype",
+            "url": "httpsapi.ap.orgv2\/search\/{mediaType}",
+            "description": "Search news",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "apiKey",
+                    "description": "API Key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "arrivalDate",
+                    "description": "The date when the content item was released, in the format  YYYY-MM-DD, YYYY-MM, YYYY or YYYY-MM-DDTHH:mmZ where the value must be in Coordinated Universal Time  (UTC). B",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "contentSet",
+                    "description": "The AP Images content set to be searched.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "count",
+                    "description": "The number of search results per page. The default is 25 results with a  maximum of 100 per page",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "creationDate",
+                    "description": "The date when the content item was created, in the format  YYYY-MM-DD, YYYY-MM, YYYY or YYYY-MM-DDTHH:mmZ where the value must be in Coordinated Universal Time  (UTC).",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "event",
+                    "description": "One or more words from the title of a specific event.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "imageId",
+                    "description": "One or more image ID numbers assigned to content items. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "locations",
+                    "description": "A geographic location in the AP Geography vocabulary. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "mediaType",
+                    "description": "The content media type (photo, graphic, video)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "metadataLevel",
+                    "description": "The level of metadata to be included in search results.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "page",
+                    "description": "The page number within the set of search results. The default is 1.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "person",
+                    "description": "The name of a person who is featured in the content item. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "photographer",
+                    "description": "The photographers first and\/or last name.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "q",
+                    "description": "The search query",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "showParametrics",
+                    "description": "By default, query facets that allow you to refine the original  search are returned for each content item at the entry level only.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sortby",
+                    "description": "Specifies how to sort the search results. ",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "source",
+                    "description": "One or more content creators.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "subject",
+                    "description": "Subject category in the AP Subject vocabulary.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "transref",
+                    "description": "Transmission reference number.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "rawModeData": ""
+        }
+    ]
+}
