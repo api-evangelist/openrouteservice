@@ -1,5 +1,5 @@
 {
-    "id": "b74ec110709bb588ea5e569683bdb4b6",
+    "id": "cb23924bf6493452b6a26fc46622f9ac",
     "name": "AP Content API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "48ea8e53e9cd6cd66ed30491319ae1c9",
+            "id": "43b8796b342b1a3f96de94a52c980b1a",
             "name": "Get Item",
             "url": "httpsapi.ap.orgv2\/item\/{id}\/",
             "description": "Get items.",
@@ -51,11 +51,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "collectionId": "cb23924bf6493452b6a26fc46622f9ac",
             "rawModeData": ""
         },
         {
-            "id": "f5558dd80a4b391448d0cdc5a6e0d4f1",
+            "id": "d18bdc186080ba45d2903dc02bff3b9d",
             "name": "Get Item Mediatype Rendition",
             "url": "httpsapi.ap.orgv2\/item\/{mediaType}\/{id}\/{rendition}",
             "description": "Pulls item media",
@@ -110,11 +110,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "collectionId": "cb23924bf6493452b6a26fc46622f9ac",
             "rawModeData": ""
         },
         {
-            "id": "cae5d6bfcbafb0eccc08fe35e6ad72b9",
+            "id": "5e5edd95e66b45869d07ddb8163ba02b",
             "name": "Get Search Mediatype",
             "url": "httpsapi.ap.orgv2\/search\/{mediaType}",
             "description": "Search news",
@@ -267,7 +267,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "b74ec110709bb588ea5e569683bdb4b6",
+            "collectionId": "cb23924bf6493452b6a26fc46622f9ac",
             "rawModeData": ""
         }
     ]
