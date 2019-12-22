@@ -12,8 +12,8 @@
         "routes",
         "service api"
     ],
-    "created": "2019-12-19",
-    "modified": "2019-12-19",
+    "created": "2019-12-21",
+    "modified": "2019-12-21",
     "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/apis.json",
     "specificationVersion": "0.14",
     "apis": [
@@ -31,7 +31,11 @@
                 },
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-metadata-services-openapi.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-metadata-services-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-metadata-services-postman-collection.json"
                 }
             ]
         },
@@ -49,7 +53,11 @@
                 },
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-content-api-openapi.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-content-api-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-content-api-postman-collection.json"
                 }
             ]
         },
@@ -67,13 +75,21 @@
                 },
                 {
                     "type": "x-openapi",
-                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/ap-breaking-news-api-openapi.json"
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-breaking-news-api-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/openrouteservice\/master\/ap-breaking-news-api-postman-collection.json"
                 }
             ]
         }
     ],
     "include": [],
     "x-common": [
+        {
+            "type": "APIs.json",
+            "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/apis.json"
+        },
         {
             "type": "Website",
             "url": "http:\/\/wiki.openstreetmap.org\/wiki\/OpenRouteService#ORS_.22API.22"
