@@ -1,5 +1,5 @@
 {
-    "id": "0cc84ad110538c3f1164565fc994f59c",
+    "id": "7f08da4d548c43020faa322f6a7c9294",
     "name": "AP Breaking News API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "9ad028986b1845003ac95e271a0af070",
+            "id": "f61c70855c30a77063187635444787ae",
             "name": "Categories",
             "url": "httpsdeveloperapi.ap.orgv2\/categories.svc\/",
             "description": "Returns a list of available AP Breaking News categories, including category IDs.",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0cc84ad110538c3f1164565fc994f59c",
+            "collectionId": "7f08da4d548c43020faa322f6a7c9294",
             "rawModeData": ""
         },
         {
-            "id": "207c08a3c1bc4440a8328eb2363a65d8",
+            "id": "13cbc3bcf1cefffd3d3ead97e2044412",
             "name": "Category News",
             "url": "httpsdeveloperapi.ap.orgv2\/categories.svc\/{categoryID}\/",
             "description": "Returns the latest content for a specific category. Depending on the specified parameters, returns  either the full story for each headline and\/or the headlines linked to web pages with the full stories.",
@@ -96,7 +96,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "0cc84ad110538c3f1164565fc994f59c",
+            "collectionId": "7f08da4d548c43020faa322f6a7c9294",
             "rawModeData": ""
         }
     ]
