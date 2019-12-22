@@ -1,5 +1,5 @@
 {
-    "id": "6037999700f78fa8611b8f37aba633a4",
+    "id": "b3ad727f244104bb3c37326f9e7419ac",
     "name": "AP Metadata Services",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "fa4f2ae4fb7b468ec1a005384d1bb699",
+            "id": "ed6f6f47f542e3f7ad4ecbe396dfc91f",
             "name": "Change Log",
             "url": "httpscv.ap.org\/api\/cm\/",
             "description": "Returns a list of changes to the AP vocabulary terms according to the specified criteria.",
@@ -79,11 +79,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "d1847fa5ef94fc8d3643b1f395d547b4",
+            "id": "0238c468f29694d64ccd3907e93785d5",
             "name": "Ontology Definition",
             "url": "httpscv.ap.org\/c\/{class}.{format}",
             "description": "Returns the AP ontology definition for the specified AP property or class and the specified format.",
@@ -124,11 +124,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "33e42423dd2bd544701b86fa7991668f",
+            "id": "cc23ff87e383b026e5ea13b8f96ba036",
             "name": "DeprecatedCompany",
             "url": "httpscv.ap.org\/d\/DeprecatedCompany.{format}",
             "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
@@ -162,11 +162,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "6b1280468e78b6b1e03716d31ca680f8",
+            "id": "3c964aca876c2b3e2c786b21b23e713b",
             "name": "Deprecated Terms",
             "url": "httpscv.ap.org\/d\/DeprecatedTerm.{format}",
             "description": "Returns a list of deprecated AP vocabulary terms in the specified format for the AP Company authority  or for the other four AP authorities.",
@@ -200,11 +200,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "ef726eab07e45f53e0233d8002c9e6a1",
+            "id": "c86742c253c1f719e43757948038decd",
             "name": "Taxonomy Information",
             "url": "httpscv.ap.org\/d\/{authority}.{format}",
             "description": "Returns the taxonomy information for the specified authority and the specified format.",
@@ -245,11 +245,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "f7e333c4f3a9d6ef576b34a5de89d6e0",
+            "id": "969508c3e0ef3abdb3c1802ceab2597a",
             "name": "Authority",
             "url": "httpscv.ap.org\/d\/{authority}\/{GUID}.{format}",
             "description": "Returns a document for the specified authority and format with the AP vocabulary data for the  specified term GUID and the subset of the vocabulary located below the specified term.",
@@ -297,11 +297,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "7f8bbb514d9611c944cf4397aff1885f",
+            "id": "cc4492ad5ba6e6648c3b7992a05d9024",
             "name": "Taxonomy Information",
             "url": "httpscv.ap.org\/id\/{GUID}.{format}",
             "description": "Returns the taxonomy information for the specified GUID of an AP term and the specified format.",
@@ -342,11 +342,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         },
         {
-            "id": "b2a0d897105d4a5cbd2ab04e0fab6176",
+            "id": "1f28e05f6e5ed3fddbca5dcccd11a8f2",
             "name": "Tags",
             "url": "httpscv.ap.org\/Tags\/",
             "description": "Returns the set of AP standardized vocabulary terms that apply to the submitted news content. The  output can be limited to one or more authorities specified in the request; for example, you can choose  to apply only AP Organization, AP Subject and AP Geography tags to the submitted content, but not  AP Person or AP Company.",
@@ -380,7 +380,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "6037999700f78fa8611b8f37aba633a4",
+            "collectionId": "b3ad727f244104bb3c37326f9e7419ac",
             "rawModeData": ""
         }
     ]
