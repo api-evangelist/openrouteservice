@@ -1,0 +1,196 @@
+name: OpenRouteService Rate Limits
+description: OpenRouteService enforces rate limits at both daily and per-minute granularity
+  depending on the plan tier. The free plan allows more than 8,000 total API requests
+  per day. The standard plan applies per-endpoint daily and per-minute limits. Self-hosted
+  instances have no enforced limits. Limits are applied per API key.
+url: https://openrouteservice.org/restrictions/
+created: '2026-06-13'
+modified: '2026-06-13'
+enforcement:
+  mechanism: API key
+  headers:
+    - name: Authorization
+      description: Bearer token or API key passed as Authorization header or api_key
+        query parameter
+  errorCodes:
+    - code: 403
+      description: Forbidden — API key missing or invalid
+    - code: 429
+      description: Too Many Requests — rate limit or daily quota exceeded
+rateLimits:
+  - endpoint: Directions V2
+    path: /v2/directions/{profile}
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 10000
+      perMinute: 60
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Isochrones V2
+    path: /v2/isochrones/{profile}
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 2500
+      perMinute: 40
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Matrix V2
+    path: /v2/matrix/{profile}
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 2500
+      perMinute: 60
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Snap V2
+    path: /v2/snap/{profile}
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 10000
+      perMinute: 150
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Export V2
+    path: /v2/export/{profile}
+    free:
+      daily: null
+      perMinute: null
+      notes: Not available on free plan
+    standard:
+      daily: 500
+      perMinute: 10
+      bboxLimit: 10 km2
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+      bboxLimit: 50 km2
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Elevation
+    path: /elevation/point
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 10000
+      perMinute: 60
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Geocoding
+    path: /geocode/search
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 15000
+      perMinute: 150
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: Optimization
+    path: /optimization
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 2500
+      perMinute: 60
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+  - endpoint: POIs
+    path: /pois
+    free:
+      daily: 8000
+      perMinute: null
+    standard:
+      daily: 2500
+      perMinute: 90
+    collaborative:
+      daily: elevated
+      perMinute: elevated
+    selfHosted:
+      daily: unlimited
+      perMinute: unlimited
+
+apiRestrictions:
+  directions:
+    maxDistance: 6000 km
+    maxDistanceWheelchair: 300 km
+    maxDistanceWithAvoidAreas: 150 km
+    maxDistanceAlternativeRoundTrip: 100 km
+    maxAlternativeRoutes: 3
+    maxAvoidPolygonArea: 200 km2
+    maxWaypoints: 50
+  isochrones:
+    maxLocations: 5
+    maxIntervals: 10
+    maxRangeDistance: 120 km
+    maxRangeTimeFoot: 20 hours
+    maxRangeTimeCycling: 5 hours
+    maxRangeTimeDriving: 1 hour
+  matrix:
+    maxLocationsStandard: 3500
+    maxLocationsDynamicArguments: 25
+  snap:
+    maxLocations: 5000
+  elevation:
+    maxVertices: 2000
+  poi:
+    maxArea: 50 km2
+    maxLinestringLength: 500 km
+    maxSearchRadius: 2 km
+  optimization:
+    maxRoutes: 50
+    maxVehicles: 3
+
+notes:
+  - Rate limits are enforced per API key
+  - Daily quotas reset at midnight UTC
+  - The Collaborative Plan requires eligibility review and upgrade request via the
+    HeiGIT account dashboard
+  - Self-hosted instances have no enforced rate limits
+  - Exceeding limits returns HTTP 429 responses

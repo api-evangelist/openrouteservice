@@ -1,0 +1,139 @@
+name: OpenRouteService FinOps
+description: Financial operations guidance for OpenRouteService API usage, covering
+  cost optimization strategies, plan selection, budget management, and best practices
+  for controlling geospatial API spend across routing, geocoding, isochrones, matrix,
+  elevation, optimization, POI, and snapping services.
+url: https://openrouteservice.org/plans/
+created: '2026-06-13'
+modified: '2026-06-13'
+costModel:
+  type: subscription
+  freetier: true
+  freeTierDetails: More than 8,000 API requests per day across all endpoints at no
+    cost. Requires free account registration at account.heigit.org. Ideal for development,
+    testing, and low-volume production use.
+  pricingUrl: https://openrouteservice.org/plans/
+  pricingTransparency: moderate
+  notes:
+    - Standard and Collaborative plan pricing is not publicly listed; contact HeiGIT
+      for quotes
+    - Self-hosting eliminates all API costs but incurs infrastructure and operational
+      overhead
+    - OpenRouteService is maintained by HeiGIT (Heidelberg Institute for Geoinformation
+      Technology), a non-profit; pricing reflects sustainability goals
+
+costDrivers:
+  - name: Request Volume
+    description: Total number of API calls across all endpoints. The free plan covers
+      more than 8,000 requests/day. Exceeding free tier quotas requires a Standard
+      or Collaborative plan.
+    impact: high
+
+  - name: Endpoint Type
+    description: Different endpoints have different quota allocations on the Standard
+      plan. Geocoding (15,000/day) and Directions/Snap (10,000/day) have higher limits,
+      while Isochrones, Matrix, POIs, and Optimization are more restricted (2,500/day).
+    impact: medium
+
+  - name: Request Complexity
+    description: Large matrix requests (up to 3,500 locations), multi-waypoint directions
+      (up to 50 waypoints), and complex optimization problems consume more server
+      resources. Design requests to use the minimum needed inputs.
+    impact: medium
+
+  - name: Self-Hosting Infrastructure
+    description: Self-hosting removes API quotas but introduces infrastructure costs
+      for compute, storage, and OSM data management. Suitable for high-volume production
+      workloads where API costs would exceed hosting costs.
+    impact: high
+
+optimizationStrategies:
+  - name: Batch Matrix Requests
+    description: Combine multiple origin-destination pairs into a single matrix request
+      (up to 3,500 locations standard, 25 dynamic) rather than making individual
+      directions calls. This reduces total request count dramatically for logistics
+      use cases.
+    saving: high
+
+  - name: Cache Geocoding Results
+    description: Geocoded addresses rarely change. Cache geocoding responses locally
+      by address string to avoid redundant API calls. A simple key-value store (address
+      -> coordinates) can eliminate most repeated geocoding costs.
+    saving: high
+
+  - name: Cache Routing Responses
+    description: Routes between static origin-destination pairs (e.g., depot to fixed
+      delivery points) do not change frequently. Cache route responses with a TTL
+      of 24 hours or until OSM data updates are expected.
+    saving: medium
+
+  - name: Stay Within Free Tier
+    description: The free tier (8,000 req/day) is generous for development and low-volume
+      applications. Monitor daily usage via the HeiGIT account dashboard to stay
+      under limits and avoid the need for a paid plan.
+    saving: high
+
+  - name: Self-Host for High Volume
+    description: For applications exceeding Standard plan quotas or requiring unlimited
+      Export endpoint access, self-hosting via Docker is the most cost-effective option.
+      OpenRouteService is open source (LGPL-3.0) and Docker images are publicly available.
+    saving: very high
+
+  - name: Apply for Collaborative Plan
+    description: Non-profit, humanitarian, academic, and governmental users can apply
+      for the Collaborative Plan, which provides elevated quotas at no cost. This
+      avoids Standard plan fees for eligible organizations.
+    saving: high
+
+  - name: Reduce Isochrone Complexity
+    description: Isochrones with many intervals or large ranges are computationally
+      expensive. Reduce the number of intervals and limit range values to the minimum
+      required. The Standard plan limits isochrones to 2,500/day and 40/minute.
+    saving: medium
+
+  - name: Use Snapping for Pre-Processing
+    description: Snap coordinates to the road network once and store results rather
+      than snapping on every request. This reduces Snap API usage and improves directions
+      quality by using pre-validated coordinates.
+    saving: low
+
+monitoring:
+  - name: HeiGIT Account Dashboard
+    description: Monitor daily quota consumption, remaining requests, and plan status
+      via the HeiGIT account portal at account.heigit.org.
+    url: https://account.heigit.org
+
+  - name: API Key Usage Tracking
+    description: Each API key tracks usage independently. Use separate API keys for
+      different projects or environments (dev, staging, production) to attribute costs
+      accurately.
+
+  - name: HTTP 429 Monitoring
+    description: Monitor application logs for HTTP 429 responses, which indicate
+      quota exhaustion. Implement exponential backoff and alerting on 429 rate to
+      detect when upgrades or optimization are needed.
+
+budgetGuidance:
+  - threshold: development
+    recommendation: Use the free tier (8,000 req/day). Register at account.heigit.org
+      for an API key. Suitable for prototyping, testing, and small personal projects.
+
+  - threshold: small-production
+    recommendation: Evaluate if the free tier covers your needs. The 8,000 req/day
+      free limit is sufficient for many small production applications. Monitor usage
+      in the dashboard.
+
+  - threshold: medium-production
+    recommendation: Upgrade to Standard Plan for higher per-endpoint quotas. Implement
+      caching and batching strategies to maximize efficiency within plan limits. Contact
+      HeiGIT for Standard Plan pricing.
+
+  - threshold: high-volume
+    recommendation: Consider self-hosting via Docker. OpenRouteService is open source
+      and provides unlimited access when self-hosted. Compare infrastructure costs
+      against API subscription costs for your volume.
+
+  - threshold: humanitarian-academic
+    recommendation: Apply for the Collaborative Plan via the HeiGIT account dashboard.
+      Eligible organizations receive elevated quotas at no cost, including larger
+      Export bounding box limits (50 km2 vs 10 km2).

@@ -1,0 +1,157 @@
+name: OpenRouteService Plans and Pricing
+description: OpenRouteService offers a tiered access model ranging from a free public
+  API plan for developers and small projects, a standard paid plan for production
+  applications, a collaborative plan for humanitarian and academic use, and an unlimited
+  self-hosted option for organizations needing full control and no quotas.
+url: https://openrouteservice.org/plans/
+created: '2026-06-13'
+modified: '2026-06-13'
+plans:
+  - name: Free Plan
+    description: Free access to the OpenRouteService public API for developers, hobbyists,
+      and small projects. Includes more than 8,000 API requests per day and 20,000
+      tile requests per day. API key required via account registration at account.heigit.org.
+    price: 0
+    currency: USD
+    billing: none
+    rateLimits:
+      - name: Daily Requests
+        description: Total API requests per day across all endpoints
+        limit: 8000
+        period: day
+      - name: Daily Tile Requests
+        description: MapSurfer tile requests per day
+        limit: 20000
+        period: day
+    features:
+      - All spatial API endpoints (Directions, Isochrones, Matrix, Geocoding, Elevation,
+        POIs, Optimization, Snapping)
+      - API key via free account registration
+      - Access to API Playground for interactive testing
+      - Community forum support at ask.openrouteservice.org
+    url: https://openrouteservice.org/plans/
+
+  - name: Standard Plan
+    description: Production-grade access to OpenRouteService with higher daily quotas
+      and per-minute rate limits suitable for commercial applications and services.
+      Requires a paid subscription via HeiGIT account.
+    price: null
+    currency: USD
+    billing: monthly
+    rateLimits:
+      - name: Directions Daily
+        description: Directions V2 requests per day
+        limit: 10000
+        period: day
+      - name: Directions Per Minute
+        description: Directions V2 requests per minute
+        limit: 60
+        period: minute
+      - name: Export Daily
+        description: Export V2 requests per day
+        limit: 500
+        period: day
+      - name: Export Per Minute
+        description: Export V2 requests per minute
+        limit: 10
+        period: minute
+      - name: Isochrones Daily
+        description: Isochrones V2 requests per day
+        limit: 2500
+        period: day
+      - name: Isochrones Per Minute
+        description: Isochrones V2 requests per minute
+        limit: 40
+        period: minute
+      - name: Matrix Daily
+        description: Matrix V2 requests per day
+        limit: 2500
+        period: day
+      - name: Matrix Per Minute
+        description: Matrix V2 requests per minute
+        limit: 60
+        period: minute
+      - name: Snap Daily
+        description: Snap V2 requests per day
+        limit: 10000
+        period: day
+      - name: Snap Per Minute
+        description: Snap V2 requests per minute
+        limit: 150
+        period: minute
+      - name: Elevation Daily
+        description: Elevation requests per day
+        limit: 10000
+        period: day
+      - name: Elevation Per Minute
+        description: Elevation requests per minute
+        limit: 60
+        period: minute
+      - name: Geocoding Daily
+        description: Geocoding requests per day
+        limit: 15000
+        period: day
+      - name: Geocoding Per Minute
+        description: Geocoding requests per minute
+        limit: 150
+        period: minute
+      - name: Optimization Daily
+        description: Optimization requests per day
+        limit: 2500
+        period: day
+      - name: Optimization Per Minute
+        description: Optimization requests per minute
+        limit: 60
+        period: minute
+      - name: POIs Daily
+        description: POI requests per day
+        limit: 2500
+        period: day
+      - name: POIs Per Minute
+        description: POI requests per minute
+        limit: 90
+        period: minute
+    features:
+      - All Standard Plan endpoints with higher quotas
+      - Export V2 endpoint access (10 km2 bbox maximum)
+      - Commercial use permitted
+    url: https://openrouteservice.org/plans/
+
+  - name: Collaborative Plan
+    description: Elevated access plan for humanitarian organizations, academic institutions,
+      governmental bodies, and not-for-profit entities. Eligible organizations can
+      request an upgrade through the HeiGIT account dashboard. Includes higher quotas
+      and a larger Export V2 bounding box limit of 50 km2.
+    price: 0
+    currency: USD
+    billing: none
+    rateLimits: []
+    features:
+      - Elevated API quotas beyond Standard Plan
+      - Export V2 with 50 km2 bounding box (vs 10 km2 on Standard)
+      - Requires eligibility: humanitarian, academic, governmental, or not-for-profit
+      - Upgrade request via HeiGIT account dashboard
+    url: https://openrouteservice.org/plans/
+
+  - name: Self-Hosted Plan
+    description: Unlimited access by running your own OpenRouteService instance on
+      your own infrastructure via Docker, JAR, or WAR deployment. All services are
+      available without quota restrictions, including technical endpoints like Health
+      and Status that are not available on the public API. The software is open source
+      under the LGPL-3.0 license.
+    price: 0
+    currency: USD
+    billing: none
+    rateLimits:
+      - name: All Services
+        description: Unlimited requests for all services on self-hosted instances
+        limit: unlimited
+        period: unlimited
+    features:
+      - Unlimited requests across all endpoints
+      - All technical endpoints available (Health, Status, Export)
+      - Full control over data and infrastructure
+      - Docker, JAR, and WAR deployment options
+      - Open source LGPL-3.0 license
+      - Self-managed OSM data updates
+    url: https://giscience.github.io/openrouteservice/installation/
