@@ -1,0 +1,2 @@
+GET /geocode/search?text=Heidelberg,+Germany&boundary.country=DE&size=5&focus.point.lon=8.681495&focus.point.lat=49.41461
+Authorization: YOUR_API_KEY

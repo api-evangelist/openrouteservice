@@ -1,0 +1,254 @@
+vocabulary:
+  - term: profile
+    definition: >-
+      The transport mode used for routing. Determines road network access, speed limits,
+      and routing preferences. Supported profiles include driving-car, driving-hgv,
+      cycling-regular, cycling-road, cycling-mountain, cycling-electric, foot-walking,
+      foot-hiking, and wheelchair.
+    related:
+      - routing
+      - transport mode
+      - waypoints
+
+  - term: directions
+    definition: >-
+      Turn-by-turn routing instructions between two or more waypoints. Includes geometry,
+      distance, duration, and step-by-step maneuver instructions for a specified transport
+      profile. Can be returned in JSON, GeoJSON, or GPX format.
+    related:
+      - waypoints
+      - profile
+      - geometry
+
+  - term: isochrone
+    definition: >-
+      A polygon representing the area reachable from a given location within a specified
+      time or distance. Isochrones are computed using the road network and a routing profile,
+      enabling reachability and catchment area analysis.
+    related:
+      - reachability
+      - range
+      - catchment area
+
+  - term: matrix
+    definition: >-
+      A table of travel durations and/or distances between a set of origins and destinations.
+      Enables efficient computation of many-to-many travel times without computing individual
+      routes, used for logistics optimization and fleet management.
+    related:
+      - origins
+      - destinations
+      - duration
+      - distance
+
+  - term: geocoding
+    definition: >-
+      The process of converting a human-readable address or place name into geographic
+      coordinates (forward geocoding) or converting coordinates to an address (reverse
+      geocoding). OpenRouteService uses the Pelias geocoding engine with OpenStreetMap data.
+    related:
+      - address
+      - coordinates
+      - Pelias
+      - reverse geocoding
+
+  - term: reverse geocoding
+    definition: >-
+      The process of converting geographic coordinates (latitude/longitude) to a
+      human-readable address. Returns the nearest address or place name for a given
+      coordinate pair using the Pelias geocoding engine.
+    related:
+      - geocoding
+      - coordinates
+      - address
+
+  - term: autocomplete
+    definition: >-
+      A low-latency geocoding endpoint that returns address suggestions as the user types
+      partial text. Optimized for typeahead search interfaces with Pelias partial matching.
+    related:
+      - geocoding
+      - search
+      - typeahead
+
+  - term: elevation
+    definition: >-
+      Altitude data above sea level for a given geographic point or line geometry, derived
+      from SRTM (Shuttle Radar Topography Mission) data. Used to enrich routes and locations
+      with height information.
+    related:
+      - SRTM
+      - altitude
+      - terrain
+      - geometry
+
+  - term: optimization
+    definition: >-
+      Vehicle Route Optimization solves Vehicle Routing Problems (VRP) using the VROOM
+      optimization engine. Computes optimal routes for one or more vehicles to visit a set
+      of jobs or perform shipments, considering time windows, vehicle capacities, and skills.
+    related:
+      - VROOM
+      - VRP
+      - fleet management
+      - logistics
+
+  - term: POI
+    definition: >-
+      Point of Interest - a specific location that someone may find useful or interesting.
+      OpenRouteService serves POI data derived from OpenStreetMap, categorized by type
+      (restaurants, hotels, hospitals, etc.) and searchable by geometry and category.
+    related:
+      - OpenStreetMap
+      - category
+      - location
+
+  - term: snapping
+    definition: >-
+      The process of aligning arbitrary geographic coordinates to the nearest node in the
+      road network graph. Used for map matching and correcting GPS coordinates that may
+      fall off the road network.
+    related:
+      - road network
+      - map matching
+      - GPS correction
+
+  - term: waypoints
+    definition: >-
+      Geographic coordinates defining the start, intermediate stops, and end of a route.
+      Specified as [longitude, latitude] pairs. Directions supports up to 50 waypoints
+      per request.
+    related:
+      - coordinates
+      - route
+      - directions
+
+  - term: avoid_features
+    definition: >-
+      Route avoidance filter specifying road features to exclude from route computation.
+      Supported values include highways, tollways, ferries, fords, and steps.
+    related:
+      - routing preferences
+      - directions
+      - profile
+
+  - term: avoid_polygons
+    definition: >-
+      GeoJSON Polygon or MultiPolygon geometry defining areas to avoid during route
+      computation. The routing engine will find paths that do not enter the specified
+      polygons.
+    related:
+      - routing preferences
+      - directions
+      - GeoJSON
+
+  - term: extra_info
+    definition: >-
+      Additional segment-level information returned alongside route geometry. Types include
+      steepness, suitability, surface type, way category, way type, tollways, trail
+      difficulty, OSM IDs, road access restrictions, country info, green routes, and noise.
+    related:
+      - directions
+      - segments
+      - route attributes
+
+  - term: GeoJSON
+    definition: >-
+      An open geospatial data format based on JSON for encoding geographic data structures
+      including points, lines, polygons, and feature collections with properties.
+      OpenRouteService supports GeoJSON for input geometries and can return responses
+      as GeoJSON FeatureCollections.
+    related:
+      - geometry
+      - coordinates
+      - FeatureCollection
+
+  - term: encoded polyline
+    definition: >-
+      A compressed string format for storing geographic coordinate sequences, using
+      Google's Polyline Encoding Algorithm. Used by ORS for compact route geometry
+      representation in JSON responses.
+    related:
+      - geometry
+      - route
+      - coordinates
+
+  - term: VROOM
+    definition: >-
+      Vehicle Routing Open-source Optimization Machine - the open-source optimization
+      engine used by OpenRouteService for vehicle route optimization (VRP). Supports
+      time windows, capacity constraints, multiple depots, mixed fleets, and shipments.
+    related:
+      - optimization
+      - VRP
+      - fleet management
+
+  - term: Pelias
+    definition: >-
+      An open-source, modular geocoder designed to work with multiple data sources.
+      Used by OpenRouteService for all geocoding operations, supporting OpenStreetMap,
+      OpenAddresses, Geonames, and Who's on First data sources.
+    related:
+      - geocoding
+      - address search
+      - OpenStreetMap
+
+  - term: SRTM
+    definition: >-
+      Shuttle Radar Topography Mission - NASA's near-global dataset of Earth's terrain
+      elevation data collected in 2000. OpenRouteService uses SRTM data to provide
+      elevation information for points and route geometries.
+    related:
+      - elevation
+      - terrain
+      - altitude
+
+  - term: OpenStreetMap
+    definition: >-
+      A collaborative, open-source mapping project that produces freely available
+      geographic data. OpenRouteService is built on OpenStreetMap data for all road
+      network routing, POI data, and geographic features.
+    related:
+      - routing
+      - POI
+      - geographic data
+
+  - term: time window
+    definition: >-
+      A time constraint specifying when a job can be serviced or when a vehicle can
+      operate, expressed as [start_time, end_time] in seconds from Unix epoch. Used in
+      vehicle route optimization to model real-world scheduling constraints.
+    related:
+      - optimization
+      - scheduling
+      - VROOM
+
+  - term: range
+    definition: >-
+      For isochrones, the maximum travel time (in seconds) or distance (in meters/km/mi)
+      used to compute the reachable area from a given location. Multiple range values
+      produce concentric isochrone polygons.
+    related:
+      - isochrones
+      - reachability
+      - time
+
+  - term: bearing
+    definition: >-
+      A compass direction (0-359 degrees clockwise from true north) used to filter
+      which road segments a waypoint can snap to during routing. Specified as a
+      [bearing, deviation] pair in the directions request.
+    related:
+      - directions
+      - waypoints
+      - navigation
+
+  - term: snapped_distance
+    definition: >-
+      The distance in meters between the original input coordinate and the nearest
+      road network node to which it was snapped. Indicates the precision of road
+      network alignment.
+    related:
+      - snapping
+      - road network
+      - coordinates

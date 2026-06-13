@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/openrouteservice/main/json-schema/openrouteservice-directions-request.json",
+  "title": "OpenRouteService Directions Request",
+  "description": "Request body schema for the OpenRouteService Directions API endpoint",
+  "type": "object",
+  "required": ["coordinates"],
+  "properties": {
+    "coordinates": {
+      "type": "array",
+      "description": "Waypoints as [longitude, latitude] pairs. Minimum 2, maximum 50.",
+      "minItems": 2,
+      "maxItems": 50,
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "examples": [
+        [[8.681495, 49.41461], [8.687872, 49.420318]]
+      ]
+    },
+    "preference": {
+      "type": "string",
+      "description": "Routing preference",
+      "enum": ["fastest", "shortest", "recommended"],
+      "default": "recommended"
+    },
+    "units": {
+      "type": "string",
+      "description": "Distance units for the response",
+      "enum": ["m", "km", "mi"],
+      "default": "m"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language for turn-by-turn instructions (IETF BCP 47)",
+      "default": "en",
+      "examples": ["en", "de", "fr", "es"]
+    },
+    "geometry": {
+      "type": "boolean",
+      "description": "Include route geometry in the response",
+      "default": true
+    },
+    "geometry_simplify": {
+      "type": "boolean",
+      "description": "Simplify geometry for reduced response size",
+      "default": false
+    },
+    "instructions": {
+      "type": "boolean",
+      "description": "Include turn-by-turn instructions",
+      "default": true
+    },
+    "instructions_format": {
+      "type": "string",
+      "description": "Format for turn-by-turn instructions",
+      "enum": ["html", "text"],
+      "default": "text"
+    },
+    "roundabout_exits": {
+      "type": "boolean",
+      "description": "Include roundabout exit instructions",
+      "default": false
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Additional route-level attributes to include",
+      "items": {
+        "type": "string",
+        "enum": ["avgspeed", "detourfactor", "percentage"]
+      }
+    },
+    "extra_info": {
+      "type": "array",
+      "description": "Segment-level extra information to include",
+      "items": {
+        "type": "string",
+        "enum": [
+          "steepness",
+          "suitability",
+          "surface",
+          "waycategory",
+          "waytype",
+          "tollways",
+          "traildifficulty",
+          "osmid",
+          "roadaccessrestrictions",
+          "countryinfo",
+          "green",
+          "noise"
+        ]
+      }
+    },
+    "elevation": {
+      "type": "boolean",
+      "description": "Include elevation values for route coordinates",
+      "default": false
+    },
+    "continue_straight": {
+      "type": "boolean",
+      "description": "Force straight routes at waypoints (not available for driving profiles)"
+    },
+    "avoid_features": {
+      "type": "array",
+      "description": "Road features to avoid",
+      "items": {
+        "type": "string",
+        "enum": ["highways", "tollways", "ferries", "fords", "steps"]
+      }
+    },
+    "avoid_borders": {
+      "type": "string",
+      "description": "Border crossing restrictions",
+      "enum": ["all", "controlled", "none"]
+    },
+    "avoid_countries": {
+      "type": "array",
+      "description": "ISO 3166-1 alpha-3 country codes to avoid",
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 3
+      }
+    },
+    "avoid_polygons": {
+      "type": "object",
+      "description": "GeoJSON Polygon or MultiPolygon defining areas to avoid"
+    },
+    "maximum_speed": {
+      "type": "number",
+      "description": "Maximum speed in km/h (HGV profiles only)"
+    },
+    "bearings": {
+      "type": "array",
+      "description": "Bearing constraints for waypoint snapping as [bearing, deviation] pairs",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "radiuses": {
+      "type": "array",
+      "description": "Search radii in meters for snapping waypoints to the road network",
+      "items": {
+        "type": "number"
+      }
+    },
+    "alternative_routes": {
+      "type": "object",
+      "description": "Configuration for computing alternative routes",
+      "properties": {
+        "target_count": {
+          "type": "integer",
+          "description": "Number of alternative routes to compute",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "weight_factor": {
+          "type": "number",
+          "description": "Factor by which alternatives can exceed the optimal route length",
+          "minimum": 1
+        },
+        "share_factor": {
+          "type": "number",
+          "description": "Minimum fraction of unique segments for alternatives",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "options": {
+      "type": "object",
+      "description": "Profile-specific routing options",
+      "properties": {
+        "avoid_borders": {
+          "type": "string",
+          "enum": ["all", "controlled", "none"]
+        },
+        "avoid_countries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "avoid_features": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "profile_params": {
+          "type": "object",
+          "properties": {
+            "weightings": {
+              "type": "object",
+              "properties": {
+                "green": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "quiet": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "steepness_difficulty": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 3
+                }
+              }
+            },
+            "restrictions": {
+              "type": "object",
+              "properties": {
+                "length": {"type": "number"},
+                "width": {"type": "number"},
+                "height": {"type": "number"},
+                "axleload": {"type": "number"},
+                "weight": {"type": "number"},
+                "hazmat": {"type": "boolean"},
+                "maximum_incline": {"type": "integer"},
+                "maximum_slope": {"type": "integer"}
+              }
+            }
+          }
+        },
+        "avoid_polygons": {
+          "type": "object"
+        },
+        "round_trip": {
+          "type": "object",
+          "description": "Configuration for round trip routing",
+          "properties": {
+            "length": {
+              "type": "number",
+              "description": "Target length of the round trip in meters"
+            },
+            "points": {
+              "type": "integer",
+              "description": "Number of points to generate for the round trip"
+            },
+            "seed": {
+              "type": "integer",
+              "description": "Random seed for round trip generation"
+            }
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "description": "Arbitrary identifier echoed back in the response"
+    }
+  }
+}

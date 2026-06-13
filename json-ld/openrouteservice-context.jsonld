@@ -1,0 +1,313 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ors": "https://openrouteservice.org/vocab#",
+    "schema": "https://schema.org/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "geojson": "https://purl.org/geojson/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+
+    "id": "@id",
+    "type": "@type",
+
+    "DirectionsRequest": "ors:DirectionsRequest",
+    "IsochronesRequest": "ors:IsochronesRequest",
+    "MatrixRequest": "ors:MatrixRequest",
+    "SnappingRequest": "ors:SnappingRequest",
+    "OptimizationRequest": "ors:OptimizationRequest",
+    "POIRequest": "ors:POIRequest",
+
+    "coordinates": {
+      "@id": "ors:coordinates",
+      "@container": "@list"
+    },
+    "waypoints": {
+      "@id": "ors:waypoints",
+      "@container": "@list"
+    },
+    "locations": {
+      "@id": "ors:locations",
+      "@container": "@list"
+    },
+
+    "profile": {
+      "@id": "ors:profile",
+      "@type": "xsd:string"
+    },
+    "preference": {
+      "@id": "ors:preference",
+      "@type": "xsd:string"
+    },
+    "units": {
+      "@id": "ors:units",
+      "@type": "xsd:string"
+    },
+    "language": {
+      "@id": "ors:language",
+      "@type": "xsd:string"
+    },
+    "geometry": {
+      "@id": "ors:geometry"
+    },
+    "elevation": {
+      "@id": "ors:elevation",
+      "@type": "xsd:boolean"
+    },
+    "instructions": {
+      "@id": "ors:instructions",
+      "@type": "xsd:boolean"
+    },
+    "avoid_features": {
+      "@id": "ors:avoidFeatures",
+      "@container": "@set"
+    },
+    "avoid_borders": {
+      "@id": "ors:avoidBorders",
+      "@type": "xsd:string"
+    },
+    "avoid_countries": {
+      "@id": "ors:avoidCountries",
+      "@container": "@set"
+    },
+    "avoid_polygons": {
+      "@id": "ors:avoidPolygons"
+    },
+    "extra_info": {
+      "@id": "ors:extraInfo",
+      "@container": "@set"
+    },
+    "alternative_routes": {
+      "@id": "ors:alternativeRoutes"
+    },
+    "maximum_speed": {
+      "@id": "ors:maximumSpeed",
+      "@type": "xsd:double"
+    },
+
+    "range": {
+      "@id": "ors:range",
+      "@container": "@list"
+    },
+    "range_type": {
+      "@id": "ors:rangeType",
+      "@type": "xsd:string"
+    },
+    "interval": {
+      "@id": "ors:interval",
+      "@type": "xsd:double"
+    },
+    "smoothing": {
+      "@id": "ors:smoothing",
+      "@type": "xsd:double"
+    },
+    "intersections": {
+      "@id": "ors:intersections",
+      "@type": "xsd:boolean"
+    },
+    "area_units": {
+      "@id": "ors:areaUnits",
+      "@type": "xsd:string"
+    },
+
+    "sources": {
+      "@id": "ors:sources",
+      "@container": "@list"
+    },
+    "destinations": {
+      "@id": "ors:destinations",
+      "@container": "@list"
+    },
+    "metrics": {
+      "@id": "ors:metrics",
+      "@container": "@set"
+    },
+    "resolve_locations": {
+      "@id": "ors:resolveLocations",
+      "@type": "xsd:boolean"
+    },
+    "durations": {
+      "@id": "ors:durations",
+      "@container": "@list"
+    },
+    "distances": {
+      "@id": "ors:distances",
+      "@container": "@list"
+    },
+
+    "text": {
+      "@id": "schema:name"
+    },
+    "label": {
+      "@id": "schema:name"
+    },
+    "confidence": {
+      "@id": "ors:confidence",
+      "@type": "xsd:double"
+    },
+    "layer": {
+      "@id": "ors:geocodingLayer",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "schema:addressCountry"
+    },
+    "region": {
+      "@id": "schema:addressRegion"
+    },
+    "locality": {
+      "@id": "schema:addressLocality"
+    },
+    "postalcode": {
+      "@id": "schema:postalCode"
+    },
+
+    "dataset": {
+      "@id": "ors:elevationDataset",
+      "@type": "xsd:string"
+    },
+    "format_in": {
+      "@id": "ors:formatIn",
+      "@type": "xsd:string"
+    },
+    "format_out": {
+      "@id": "ors:formatOut",
+      "@type": "xsd:string"
+    },
+
+    "vehicles": {
+      "@id": "ors:vehicles",
+      "@container": "@list"
+    },
+    "jobs": {
+      "@id": "ors:jobs",
+      "@container": "@list"
+    },
+    "shipments": {
+      "@id": "ors:shipments",
+      "@container": "@list"
+    },
+    "capacity": {
+      "@id": "ors:vehicleCapacity",
+      "@container": "@list"
+    },
+    "skills": {
+      "@id": "ors:requiredSkills",
+      "@container": "@set"
+    },
+    "time_window": {
+      "@id": "ors:timeWindow",
+      "@container": "@list"
+    },
+    "time_windows": {
+      "@id": "ors:timeWindows",
+      "@container": "@list"
+    },
+    "service": {
+      "@id": "ors:serviceTime",
+      "@type": "xsd:integer"
+    },
+    "amount": {
+      "@id": "ors:resourceAmount"
+    },
+
+    "maximum_search_radius": {
+      "@id": "ors:maximumSearchRadius",
+      "@type": "xsd:double"
+    },
+    "snapped_distance": {
+      "@id": "ors:snappedDistance",
+      "@type": "xsd:double"
+    },
+    "return_metadata": {
+      "@id": "ors:returnMetadata",
+      "@type": "xsd:boolean"
+    },
+
+    "request": {
+      "@id": "ors:poiRequestType",
+      "@type": "xsd:string"
+    },
+    "limit": {
+      "@id": "ors:resultLimit",
+      "@type": "xsd:integer"
+    },
+    "sortby": {
+      "@id": "ors:sortBy",
+      "@type": "xsd:string"
+    },
+    "filters": {
+      "@id": "ors:poiFilters"
+    },
+
+    "distance": {
+      "@id": "schema:distance",
+      "@type": "xsd:double"
+    },
+    "duration": {
+      "@id": "ors:travelDuration",
+      "@type": "xsd:double"
+    },
+    "ascent": {
+      "@id": "ors:ascent",
+      "@type": "xsd:double"
+    },
+    "descent": {
+      "@id": "ors:descent",
+      "@type": "xsd:double"
+    },
+    "avgspeed": {
+      "@id": "ors:averageSpeed",
+      "@type": "xsd:double"
+    },
+
+    "attribution": {
+      "@id": "schema:creditText"
+    },
+    "version": {
+      "@id": "schema:version"
+    },
+    "timestamp": {
+      "@id": "schema:dateModified"
+    },
+    "osm_id": {
+      "@id": "ors:osmId"
+    },
+    "osm_type": {
+      "@id": "ors:osmType"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "status": {
+      "@id": "ors:serviceStatus",
+      "@type": "xsd:string"
+    },
+
+    "bbox": {
+      "@id": "geojson:bbox",
+      "@container": "@list"
+    },
+    "features": {
+      "@id": "geojson:features",
+      "@container": "@set"
+    },
+    "properties": {
+      "@id": "geojson:properties"
+    },
+    "FeatureCollection": "geojson:FeatureCollection",
+    "Feature": "geojson:Feature",
+    "Point": "geojson:Point",
+    "LineString": "geojson:LineString",
+    "Polygon": "geojson:Polygon",
+
+    "lng": {
+      "@id": "geo:long",
+      "@type": "xsd:double"
+    },
+    "lat": {
+      "@id": "geo:lat",
+      "@type": "xsd:double"
+    }
+  }
+}

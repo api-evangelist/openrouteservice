@@ -1,0 +1,10 @@
+{
+  "locations": [
+    [8.681495, 49.41461]
+  ],
+  "range": [300, 600, 900],
+  "range_type": "time",
+  "attributes": ["area", "reachfactor"],
+  "area_units": "km",
+  "smoothing": 0.25
+}

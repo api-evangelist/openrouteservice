@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/openrouteservice/main/json-schema/openrouteservice-isochrones-request.json",
+  "title": "OpenRouteService Isochrones Request",
+  "description": "Request body schema for the OpenRouteService Isochrones API endpoint",
+  "type": "object",
+  "required": ["locations", "range"],
+  "properties": {
+    "locations": {
+      "type": "array",
+      "description": "Center coordinates for isochrone computation as [longitude, latitude] pairs. Maximum 5.",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "examples": [
+        [[8.681495, 49.41461]]
+      ]
+    },
+    "range": {
+      "type": "array",
+      "description": "Maximum travel range values. For time-based: seconds. For distance-based: meters. Maximum 10 values.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "number",
+        "minimum": 0
+      },
+      "examples": [
+        [300, 600, 900]
+      ]
+    },
+    "range_type": {
+      "type": "string",
+      "description": "Type of range measurement",
+      "enum": ["time", "distance"],
+      "default": "time"
+    },
+    "interval": {
+      "type": "number",
+      "description": "Interval for creating concentric isochrone rings within the maximum range",
+      "minimum": 0
+    },
+    "units": {
+      "type": "string",
+      "description": "Units for distance-based range values",
+      "enum": ["m", "km", "mi"],
+      "default": "m"
+    },
+    "area_units": {
+      "type": "string",
+      "description": "Units for area computation in the response",
+      "enum": ["m", "km", "mi"],
+      "default": "m"
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Additional attributes to compute and include in the response",
+      "items": {
+        "type": "string",
+        "enum": ["area", "reachfactor", "total_pop"]
+      }
+    },
+    "intersections": {
+      "type": "boolean",
+      "description": "Compute and return intersections between isochrone polygons",
+      "default": false
+    },
+    "smoothing": {
+      "type": "number",
+      "description": "Smoothing factor for isochrone polygon edges (0 = no smoothing, 1 = maximum smoothing)",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "avoid_features": {
+      "type": "array",
+      "description": "Road features to avoid when computing reachability",
+      "items": {
+        "type": "string",
+        "enum": ["highways", "tollways", "ferries", "fords"]
+      }
+    },
+    "avoid_borders": {
+      "type": "string",
+      "description": "Border crossing restrictions for reachability",
+      "enum": ["all", "controlled", "none"]
+    },
+    "avoid_polygons": {
+      "type": "object",
+      "description": "GeoJSON Polygon or MultiPolygon defining areas to avoid"
+    },
+    "id": {
+      "type": "string",
+      "description": "Arbitrary identifier echoed back in the response"
+    }
+  }
+}

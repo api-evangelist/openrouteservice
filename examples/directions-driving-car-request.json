@@ -1,0 +1,16 @@
+{
+  "coordinates": [
+    [8.681495, 49.41461],
+    [8.686507, 49.41943],
+    [8.687872, 49.420318]
+  ],
+  "preference": "recommended",
+  "units": "km",
+  "language": "en",
+  "geometry": true,
+  "instructions": true,
+  "instructions_format": "text",
+  "elevation": false,
+  "attributes": ["avgspeed"],
+  "extra_info": ["surface", "waytype"]
+}

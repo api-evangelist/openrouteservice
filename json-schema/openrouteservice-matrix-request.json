@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/openrouteservice/main/json-schema/openrouteservice-matrix-request.json",
+  "title": "OpenRouteService Matrix Request",
+  "description": "Request body schema for the OpenRouteService Matrix API endpoint",
+  "type": "object",
+  "required": ["locations"],
+  "properties": {
+    "locations": {
+      "type": "array",
+      "description": "Coordinates as [longitude, latitude] pairs. Used as both sources and destinations unless specified. Maximum 3,500 in standard plan.",
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "number"
+        },
+        "minItems": 2,
+        "maxItems": 2
+      },
+      "examples": [
+        [
+          [8.681495, 49.41461],
+          [8.686507, 49.41943],
+          [8.687872, 49.420318]
+        ]
+      ]
+    },
+    "sources": {
+      "type": "array",
+      "description": "Indices into locations array to use as origins. If omitted, all locations are used as sources.",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "destinations": {
+      "type": "array",
+      "description": "Indices into locations array to use as destinations. If omitted, all locations are used as destinations.",
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "description": "Metrics to compute for the matrix",
+      "items": {
+        "type": "string",
+        "enum": ["duration", "distance"]
+      },
+      "default": ["duration"],
+      "minItems": 1
+    },
+    "resolve_locations": {
+      "type": "boolean",
+      "description": "Return nearest road network location information for each coordinate",
+      "default": false
+    },
+    "units": {
+      "type": "string",
+      "description": "Distance units (only used when distance metric is requested)",
+      "enum": ["m", "km", "mi"],
+      "default": "m"
+    },
+    "id": {
+      "type": "string",
+      "description": "Arbitrary identifier echoed back in the response"
+    }
+  }
+}

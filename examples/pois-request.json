@@ -1,0 +1,21 @@
+{
+  "request": "pois",
+  "geometry": {
+    "bbox": [
+      [8.6581, 49.4034],
+      [8.7027, 49.4390]
+    ],
+    "geojson": {
+      "type": "Point",
+      "coordinates": [8.681495, 49.41461]
+    },
+    "buffer": 500
+  },
+  "limit": 20,
+  "sortby": "distance",
+  "filters": {
+    "category_group_ids": {
+      "sustenance": [560, 561, 562]
+    }
+  }
+}
