@@ -5,7 +5,7 @@ description: OpenRouteService is a free, open-source geospatial API platform bui
   isochrones for reachability analysis, time-distance matrices, geocoding, elevation
   data, points of interest, and vehicle route optimization for logistics and humanitarian
   use cases.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/openrouteservice/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -30,7 +30,7 @@ apis:
     description: Provides turn-by-turn routing directions for multiple transport profiles
       including driving, cycling, walking, hiking, and wheelchair, supporting up to
       50 waypoints with avoid areas, alternative routes, and distance/time optimization.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -48,7 +48,7 @@ apis:
     description: Calculates areas of reachability from given locations within specified
       time or distance ranges, supporting up to 5 locations and 10 intervals, for
       travel modes including driving, cycling, and walking.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -64,7 +64,7 @@ apis:
     description: Computes one-to-many, many-to-one, and many-to-many time and distance
       matrices for logistics optimization, supporting up to 3,500 locations per standard
       request for route planning and fleet management.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -80,7 +80,7 @@ apis:
     description: Resolves addresses to geographic coordinates and vice versa using
       the Pelias geocoding engine, supporting forward geocoding, reverse geocoding,
       and autocomplete for address normalization and location search.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -96,7 +96,7 @@ apis:
     description: Returns elevation data for point or line geometries using SRTM data,
       supporting up to 2,000 vertices for enriching routes and locations with altitude
       information.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -112,7 +112,7 @@ apis:
     description: Solves vehicle routing problems using the VROOM engine, optimizing
       routes for fleets of up to 3 vehicles and 50 routes, supporting time windows,
       capacity constraints, and multi-depot scenarios for logistics planning.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -128,7 +128,7 @@ apis:
     description: Returns points of interest in the area surrounding a given geometry,
       supporting search within a 2 km radius for areas up to 50 km2, filtered by
       category and keyword using OpenStreetMap POI data.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
@@ -144,7 +144,7 @@ apis:
     description: Snaps arbitrary coordinates to the nearest road network nodes, supporting
       up to 5,000 locations per request, useful for map matching and correcting GPS
       coordinates to the road network.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://openrouteservice.org
     baseURL: https://api.openrouteservice.org
     tags:
