@@ -172,9 +172,9 @@ common:
     url: https://ask.openrouteservice.org/c/announcements/
   - type: X
     url: https://twitter.com/ors_news
-  - type: Forum
+  - type: Forums
     url: https://ask.openrouteservice.org
-  - type: Changelog
+  - type: ChangeLog
     url: https://github.com/GIScience/openrouteservice/blob/main/CHANGELOG.md
   - type: OpenAPI
     url: https://openrouteservice.org/wp-json/ors
