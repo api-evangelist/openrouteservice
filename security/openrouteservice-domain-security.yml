@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: openrouteservice.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 29 19:46:29 2026 GMT
+  hsts: false
+- host: api.openrouteservice.org
+  https: true
+  tls_version: TLSv1.2
+  cert_expires: Sep  9 19:17:01 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+domains:
+- domain: openrouteservice.org
+  dnssec: false
+  caa: []
+  spf: false
+  dmarc: false
