@@ -156,6 +156,8 @@ apis:
       - type: Documentation
         url: https://giscience.github.io/openrouteservice/api-reference/endpoints/snapping/
 common:
+  - type: AgenticAccess
+    url: agentic-access/openrouteservice-agentic-access.yml
   - type: DomainSecurity
     url: security/openrouteservice-domain-security.yml
   - type: Authentication
