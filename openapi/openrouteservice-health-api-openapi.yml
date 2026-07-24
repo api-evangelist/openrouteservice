@@ -1,0 +1,107 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Health API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Health
+  description: Service health and status endpoints
+paths:
+  /v2/health:
+    get:
+      tags:
+      - Health
+      summary: Health Check
+      description: Returns the health status of the OpenRouteService API
+      operationId: getHealth
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '503':
+          description: Service unavailable
+  /v2/status:
+    get:
+      tags:
+      - Health
+      summary: Status Check
+      description: Returns the current status and configuration of the OpenRouteService API including loaded profiles
+      operationId: getStatus
+      security: []
+      responses:
+        '200':
+          description: Service status information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '503':
+          description: Service unavailable
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status
+          enum:
+          - ready
+          - not ready
+    StatusResponse:
+      type: object
+      properties:
+        attribution:
+          type: string
+        engine:
+          $ref: '#/components/schemas/EngineInfo'
+        profiles:
+          type: object
+          description: Map of loaded routing profiles and their configuration
+          additionalProperties:
+            type: object
+            properties:
+              storages:
+                type: object
+              limits:
+                type: object
+              encoder_name:
+                type: string
+        services:
+          type: array
+          description: List of available services
+          items:
+            type: string
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

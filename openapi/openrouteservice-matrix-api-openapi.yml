@@ -1,0 +1,263 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Matrix API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Matrix
+  description: Obtain one-to-many, many-to-one and many-to-many matrices for time and distance
+paths:
+  /v2/matrix/{profile}:
+    post:
+      tags:
+      - Matrix
+      summary: Matrix Service
+      description: Computes one-to-many, many-to-one or many-to-many time/distance matrices for all pairs of the supplied coordinates. The maximum number of locations depends on the subscription plan (up to 3,500 for standard).
+      operationId: getMatrix
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatrixRequest'
+      responses:
+        '200':
+          description: Successfully computed matrix
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONMatrixResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    JSONMatrixResponse:
+      type: object
+      properties:
+        durations:
+          type: array
+          description: 2D array of travel durations in seconds
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+        distances:
+          type: array
+          description: 2D array of travel distances in meters
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatrixLocation'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatrixLocation'
+        metadata:
+          $ref: '#/components/schemas/MatrixResponseInfo'
+    MatrixRequest:
+      type: object
+      required:
+      - locations
+      properties:
+        locations:
+          type: array
+          description: Array of coordinates as [longitude, latitude] pairs for matrix computation. Used as both sources and destinations unless specified separately.
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+            minItems: 2
+            maxItems: 2
+          example:
+          - - 8.681495
+            - 49.41461
+          - - 8.686507
+            - 49.41943
+          - - 8.687872
+            - 49.420318
+        sources:
+          type: array
+          description: Indices into locations array to use as sources (origins)
+          items:
+            type: integer
+        destinations:
+          type: array
+          description: Indices into locations array to use as destinations
+          items:
+            type: integer
+        metrics:
+          type: array
+          description: Metrics to compute for the matrix
+          items:
+            type: string
+            enum:
+            - duration
+            - distance
+          default:
+          - duration
+        resolve_locations:
+          type: boolean
+          description: Return nearest road network location for each coordinate
+          default: false
+        units:
+          type: string
+          description: Distance units (only applicable when distance metric requested)
+          enum:
+          - m
+          - km
+          - mi
+          default: m
+        id:
+          type: string
+          description: Arbitrary identifier for tracking requests
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    MatrixLocation:
+      type: object
+      properties:
+        location:
+          type: array
+          items:
+            type: number
+          description: Snapped coordinate [longitude, latitude]
+        name:
+          type: string
+          description: Name of nearest road
+        snapped_distance:
+          type: number
+          format: double
+          description: Distance from original to snapped location in meters
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    MatrixResponseInfo:
+      type: object
+      properties:
+        attribution:
+          type: string
+        service:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        id:
+          type: string
+        engine:
+          $ref: '#/components/schemas/EngineInfo'
+        query:
+          type: object
+        osm_file_md5_hash:
+          type: string
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - route or resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

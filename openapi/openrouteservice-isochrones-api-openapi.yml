@@ -1,0 +1,295 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Isochrones API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Isochrones
+  description: Obtain areas of reachability from given locations
+paths:
+  /v2/isochrones/{profile}:
+    post:
+      tags:
+      - Isochrones
+      summary: Isochrones Service
+      description: The Isochrone Service supports time and distance analyses for one single or multiple locations. You may also specify the travel mode and a maximum range value. This service responses with polygon or point geometries, depending on your request.
+      operationId: getIsochrones
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IsochronesRequest'
+      responses:
+        '200':
+          description: Successfully computed isochrones
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/GeoJSONIsochronesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    IsochronesRequest:
+      type: object
+      required:
+      - locations
+      - range
+      properties:
+        locations:
+          type: array
+          description: Array of center coordinates for isochrone computation as [longitude, latitude] pairs. Maximum 5 locations per request.
+          maxItems: 5
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+            minItems: 2
+            maxItems: 2
+          example:
+          - - 8.681495
+            - 49.41461
+        range:
+          type: array
+          description: Array of maximum travel range values. For time-based isochrones in seconds, for distance-based in meters. Maximum 10 values.
+          maxItems: 10
+          items:
+            type: number
+            format: double
+          example:
+          - 300
+          - 600
+        range_type:
+          type: string
+          description: The type of range to compute isochrones for
+          enum:
+          - time
+          - distance
+          default: time
+        interval:
+          type: number
+          description: Interval for isochrone polygon rings. Creates concentric polygons at each interval within the maximum range.
+          format: double
+        units:
+          type: string
+          description: Units for range values when range_type is distance
+          enum:
+          - m
+          - km
+          - mi
+          default: m
+        area_units:
+          type: string
+          description: Units for area computation in the response
+          enum:
+          - m
+          - km
+          - mi
+          default: m
+        attributes:
+          type: array
+          description: Additional attributes to include in the response
+          items:
+            type: string
+            enum:
+            - area
+            - reachfactor
+            - total_pop
+        intersections:
+          type: boolean
+          description: Compute intersections between isochrones
+          default: false
+        smoothing:
+          type: number
+          description: Smoothing factor for isochrone polygons (0-1)
+          format: double
+          minimum: 0
+          maximum: 1
+        avoid_features:
+          type: array
+          items:
+            type: string
+            enum:
+            - highways
+            - tollways
+            - ferries
+            - fords
+        avoid_borders:
+          type: string
+          enum:
+          - all
+          - controlled
+          - none
+        avoid_polygons:
+          type: object
+          description: GeoJSON Polygon or MultiPolygon to avoid
+        id:
+          type: string
+          description: Arbitrary identifier for tracking requests
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    GeoJSONIsochronesResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Polygon
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: array
+                        items:
+                          type: number
+              properties:
+                type: object
+                properties:
+                  group_index:
+                    type: integer
+                  value:
+                    type: number
+                  center:
+                    type: array
+                    items:
+                      type: number
+                  area:
+                    type: number
+                  reachfactor:
+                    type: number
+                  total_pop:
+                    type: integer
+        bbox:
+          type: array
+          items:
+            type: number
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - route or resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

@@ -1,0 +1,638 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Directions
+  description: Get routing directions for different modes of transport
+paths:
+  /v2/directions/{profile}:
+    get:
+      tags:
+      - Directions
+      summary: Get basic route (GET)
+      description: Get a basic route between two points with the profile provided. Returned response is in GeoJSON format. Accepts start and end coordinates as query parameters.
+      operationId: getDirectionsGet
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      - name: start
+        in: query
+        description: Start coordinate of the route as longitude,latitude
+        required: true
+        schema:
+          type: string
+          example: 8.681495,49.41461
+      - name: end
+        in: query
+        description: Destination coordinate of the route as longitude,latitude
+        required: true
+        schema:
+          type: string
+          example: 8.687872,49.420318
+      responses:
+        '200':
+          description: Successfully computed route in GeoJSON format
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/GeoJSONRouteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Directions
+      summary: Get directions (POST JSON)
+      description: Returns a route between two or more locations for a selected profile and its settings as JSON. The response contains the route geometry and additional information like distance, duration, and turn-by-turn instructions.
+      operationId: getDirectionsPost
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectionsRequest'
+      responses:
+        '200':
+          description: Successfully computed route
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JSONRouteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /v2/directions/{profile}/geojson:
+    post:
+      tags:
+      - Directions
+      summary: Get directions as GeoJSON (POST)
+      description: Returns a route between two or more locations for a selected profile and its settings as GeoJSON. The response is a FeatureCollection with route geometry.
+      operationId: getDirectionsGeoJson
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectionsRequest'
+      responses:
+        '200':
+          description: Successfully computed route in GeoJSON format
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/GeoJSONRouteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /v2/directions/{profile}/gpx:
+    post:
+      tags:
+      - Directions
+      summary: Get directions as GPX (POST)
+      description: Returns a route between two or more locations for a selected profile and its settings as GPX format for GPS device compatibility.
+      operationId: getDirectionsGpx
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DirectionsRequest'
+      responses:
+        '200':
+          description: Successfully computed route in GPX format
+          content:
+            application/gpx+xml:
+              schema:
+                type: string
+                format: xml
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
+  schemas:
+    JSONStepManeuver:
+      type: object
+      properties:
+        location:
+          type: array
+          items:
+            type: number
+          description: Coordinate [longitude, latitude] of the maneuver
+        bearing_before:
+          type: integer
+          description: Bearing before the maneuver (0-359)
+        bearing_after:
+          type: integer
+          description: Bearing after the maneuver (0-359)
+    DirectionsRequest:
+      type: object
+      required:
+      - coordinates
+      properties:
+        coordinates:
+          type: array
+          description: The waypoints to use for the route as an array of [longitude, latitude] pairs. Minimum 2, maximum 50 waypoints.
+          minItems: 2
+          maxItems: 50
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+            minItems: 2
+            maxItems: 2
+          example:
+          - - 8.681495
+            - 49.41461
+          - - 8.686507
+            - 49.41943
+          - - 8.687872
+            - 49.420318
+        profile:
+          type: string
+          description: Override the profile for this request (alternative to path parameter)
+          enum:
+          - driving-car
+          - driving-hgv
+          - cycling-regular
+          - cycling-road
+          - cycling-mountain
+          - cycling-electric
+          - foot-walking
+          - foot-hiking
+          - wheelchair
+        preference:
+          type: string
+          description: Specifies the routing preference
+          enum:
+          - fastest
+          - shortest
+          - recommended
+          default: recommended
+        units:
+          type: string
+          description: Units for distances
+          enum:
+          - m
+          - km
+          - mi
+          default: m
+        language:
+          type: string
+          description: Language for turn-by-turn instructions (IETF BCP 47 language tag)
+          example: en
+          default: en
+        geometry:
+          type: boolean
+          description: Return route geometry
+          default: true
+        geometry_simplify:
+          type: boolean
+          description: Simplify the geometry for smaller response size
+          default: false
+        instructions:
+          type: boolean
+          description: Return turn-by-turn instructions
+          default: true
+        instructions_format:
+          type: string
+          description: Format for turn-by-turn instructions
+          enum:
+          - html
+          - text
+          default: text
+        roundabout_exits:
+          type: boolean
+          description: Include roundabout exit information in instructions
+          default: false
+        attributes:
+          type: array
+          description: Additional route attributes to include in the response
+          items:
+            type: string
+            enum:
+            - avgspeed
+            - detourfactor
+            - percentage
+        extra_info:
+          type: array
+          description: Extra information to include for route segments
+          items:
+            type: string
+            enum:
+            - steepness
+            - suitability
+            - surface
+            - waycategory
+            - waytype
+            - tollways
+            - traildifficulty
+            - osmid
+            - roadaccessrestrictions
+            - countryinfo
+            - green
+            - noise
+        elevation:
+          type: boolean
+          description: Include elevation values for route points
+          default: false
+        continue_straight:
+          type: boolean
+          description: Force straight routes at waypoints, restricting u-turns
+        avoid_features:
+          type: array
+          description: Features to avoid during routing
+          items:
+            type: string
+            enum:
+            - highways
+            - tollways
+            - ferries
+            - fords
+            - steps
+        avoid_borders:
+          type: string
+          description: Border crossing restriction
+          enum:
+          - all
+          - controlled
+          - none
+        avoid_countries:
+          type: array
+          description: List of ISO 3166-1 alpha-3 country codes to avoid
+          items:
+            type: string
+        avoid_polygons:
+          description: GeoJSON Polygon or MultiPolygon geometry to avoid
+          type: object
+        maximum_speed:
+          type: number
+          description: Maximum speed for the route in km/h (HGV profiles only)
+          format: double
+        alternative_routes:
+          type: object
+          description: Configuration for alternative route computation
+          properties:
+            target_count:
+              type: integer
+              description: Number of alternative routes to compute (max 3)
+              maximum: 3
+            weight_factor:
+              type: number
+              description: Factor by which alternative routes can be longer than the optimal route
+              format: double
+            share_factor:
+              type: number
+              description: Minimum share factor for alternative route similarity
+              format: double
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    JSONSegment:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+          description: Segment distance in meters
+        duration:
+          type: number
+          format: double
+          description: Segment duration in seconds
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONStep'
+        ascent:
+          type: number
+          format: double
+        descent:
+          type: number
+          format: double
+        avgspeed:
+          type: number
+          format: double
+          description: Average speed in km/h
+        detourfactor:
+          type: number
+          format: double
+        percentage:
+          type: number
+          format: double
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    JSONIndividualRouteResponse:
+      type: object
+      properties:
+        summary:
+          $ref: '#/components/schemas/JSONSummary'
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONSegment'
+        bbox:
+          type: array
+          items:
+            type: number
+        geometry:
+          type: string
+          description: Encoded polyline geometry (when format is not geojson)
+        way_points:
+          type: array
+          items:
+            type: integer
+          description: Indices of waypoints in the geometry
+        extras:
+          type: object
+          description: Extra information keyed by type
+          additionalProperties:
+            $ref: '#/components/schemas/JSONExtra'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONWarning'
+    JSONWarning:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Warning code
+        message:
+          type: string
+          description: Warning message
+    JSONStep:
+      type: object
+      properties:
+        instruction:
+          type: string
+          description: Turn-by-turn instruction text
+        name:
+          type: string
+          description: Road name for this step
+        distance:
+          type: number
+          format: double
+          description: Step distance in meters
+        duration:
+          type: number
+          format: double
+          description: Step duration in seconds
+        type:
+          type: integer
+          description: Instruction type code
+        exit_number:
+          type: integer
+          description: Roundabout exit number
+        exit_bearings:
+          type: array
+          items:
+            type: integer
+        way_points:
+          type: array
+          items:
+            type: integer
+          description: Indices in geometry for this step
+        maneuver:
+          $ref: '#/components/schemas/JSONStepManeuver'
+    GeoJSONRouteResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+              properties:
+                type: object
+        bbox:
+          type: array
+          items:
+            type: number
+        metadata:
+          $ref: '#/components/schemas/RouteResponseInfo'
+    JSONExtra:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+          description: Extra info values as [start, end, value] tuples
+        summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONExtraSummary'
+    JSONExtraSummary:
+      type: object
+      properties:
+        value:
+          type: number
+          description: The extra info value
+        distance:
+          type: number
+          format: double
+          description: Distance with this value in meters
+        amount:
+          type: number
+          format: double
+          description: Percentage of route with this value
+    JSONRouteResponse:
+      type: object
+      properties:
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONIndividualRouteResponse'
+        metadata:
+          $ref: '#/components/schemas/RouteResponseInfo'
+        bbox:
+          type: array
+          items:
+            type: number
+          description: Bounding box of the route [minLon, minLat, maxLon, maxLat]
+    RouteResponseInfo:
+      type: object
+      properties:
+        attribution:
+          type: string
+          description: Data attribution text
+        service:
+          type: string
+          description: Service name
+        timestamp:
+          type: integer
+          format: int64
+          description: Request timestamp in milliseconds
+        id:
+          type: string
+          description: Request identifier
+        engine:
+          $ref: '#/components/schemas/EngineInfo'
+        query:
+          type: object
+          description: Echo of the request parameters
+        osm_file_md5_hash:
+          type: string
+          description: MD5 hash of the OSM data file used
+    JSONSummary:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+          description: Total route distance in meters
+        duration:
+          type: number
+          format: double
+          description: Total route duration in seconds
+        ascent:
+          type: number
+          format: double
+          description: Total ascent in meters
+        descent:
+          type: number
+          format: double
+          description: Total descent in meters
+  responses:
+    NotFound:
+      description: Not found - route or resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

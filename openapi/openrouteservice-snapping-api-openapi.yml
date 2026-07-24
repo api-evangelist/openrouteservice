@@ -1,0 +1,202 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Snapping API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Snapping
+  description: Snap coordinates to the nearest road network nodes
+paths:
+  /v2/snap/{profile}:
+    post:
+      tags:
+      - Snapping
+      summary: Snap Coordinates to Road Network
+      description: Snaps arbitrary coordinates to the nearest road network nodes. Supports up to 5,000 locations per request, useful for map matching and correcting GPS coordinates to the road network.
+      operationId: snapCoordinates
+      parameters:
+      - $ref: '#/components/parameters/profile'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SnappingRequest'
+      responses:
+        '200':
+          description: Snapped coordinates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnappingResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    SnappingResponse:
+      type: object
+      properties:
+        locations:
+          type: array
+          description: Snapped locations with road network coordinates
+          items:
+            type: object
+            properties:
+              location:
+                type: array
+                items:
+                  type: number
+                description: Snapped coordinate [longitude, latitude]
+              name:
+                type: string
+                description: Road name at snapped location
+              snapped_distance:
+                type: number
+                format: double
+                description: Distance from original to snapped location in meters
+        metadata:
+          type: object
+          properties:
+            attribution:
+              type: string
+            service:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    SnappingRequest:
+      type: object
+      required:
+      - locations
+      properties:
+        locations:
+          type: array
+          description: Array of coordinates as [longitude, latitude] pairs to snap to the road network. Maximum 5,000 locations per request.
+          maxItems: 5000
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+            minItems: 2
+            maxItems: 2
+          example:
+          - - 8.681495
+            - 49.41461
+          - - 8.686507
+            - 49.41943
+        maximum_search_radius:
+          type: number
+          description: Maximum search radius in meters to find a road network node
+          format: double
+          default: 350
+        return_metadata:
+          type: boolean
+          description: Include metadata about snapping results
+          default: false
+        id:
+          type: string
+          description: Arbitrary identifier for tracking requests
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

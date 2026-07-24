@@ -1,0 +1,280 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Elevation API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Elevation
+  description: Return elevation data for point or line geometries
+paths:
+  /elevation/point:
+    get:
+      tags:
+      - Elevation
+      summary: Get elevation for a point
+      description: Returns the elevation value for a single geographic point using SRTM elevation data.
+      operationId: getElevationPoint
+      parameters:
+      - name: geometry
+        in: query
+        description: Coordinate as longitude,latitude
+        required: true
+        schema:
+          type: string
+          example: 8.681495,49.41461
+      - name: format_in
+        in: query
+        description: Input geometry format (point)
+        required: false
+        schema:
+          type: string
+          enum:
+          - point
+          default: point
+      - name: format_out
+        in: query
+        description: Output format (point or geojson)
+        required: false
+        schema:
+          type: string
+          enum:
+          - point
+          - geojson
+          default: geojson
+      - name: dataset
+        in: query
+        description: Elevation dataset to use
+        required: false
+        schema:
+          type: string
+          enum:
+          - srtm
+          default: srtm
+      responses:
+        '200':
+          description: Elevation data for the point
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElevationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Elevation
+      summary: Get elevation for a point (POST)
+      description: Returns the elevation value for a single geographic point using SRTM elevation data. POST variant for larger payloads.
+      operationId: postElevationPoint
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElevationPointRequest'
+      responses:
+        '200':
+          description: Elevation data for the point
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElevationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /elevation/line:
+    post:
+      tags:
+      - Elevation
+      summary: Get elevation for a line geometry
+      description: Returns elevation values for a series of points along a line geometry using SRTM data. Supports up to 2,000 vertices per request.
+      operationId: getElevationLine
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ElevationLineRequest'
+      responses:
+        '200':
+          description: Elevation data for the line geometry
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ElevationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    ElevationPointRequest:
+      type: object
+      required:
+      - geometry
+      properties:
+        format_in:
+          type: string
+          enum:
+          - point
+          default: point
+        format_out:
+          type: string
+          enum:
+          - point
+          - geojson
+          default: geojson
+        dataset:
+          type: string
+          enum:
+          - srtm
+          default: srtm
+        geometry:
+          type: array
+          description: Coordinate as [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+          example:
+          - 8.681495
+          - 49.41461
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    ElevationLineRequest:
+      type: object
+      required:
+      - geometry
+      properties:
+        format_in:
+          type: string
+          description: Input geometry format
+          enum:
+          - polyline
+          - polyline5
+          - polyline6
+          - encodedpolyline
+          - geojson
+          default: geojson
+        format_out:
+          type: string
+          description: Output format
+          enum:
+          - polyline
+          - polyline5
+          - polyline6
+          - encodedpolyline
+          - geojson
+          default: geojson
+        dataset:
+          type: string
+          enum:
+          - srtm
+          default: srtm
+        geometry:
+          description: Line geometry as GeoJSON LineString or encoded polyline
+          oneOf:
+          - type: object
+            description: GeoJSON LineString
+          - type: string
+            description: Encoded polyline string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    ElevationResponse:
+      type: object
+      properties:
+        type:
+          type: string
+        geometry:
+          type: object
+        properties:
+          type: object
+          properties:
+            dataset:
+              type: string
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

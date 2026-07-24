@@ -1,0 +1,249 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions POI API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: POI
+  description: Return points of interest using OpenStreetMap data
+paths:
+  /pois:
+    post:
+      tags:
+      - POI
+      summary: Points of Interest
+      description: Returns points of interest in the area surrounding a given geometry. Supports search within a 2 km radius for areas up to 50 km2, filtered by category and keyword using OpenStreetMap POI data.
+      operationId: getPOIs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/POIRequest'
+      responses:
+        '200':
+          description: Points of interest as GeoJSON FeatureCollection
+          content:
+            application/geo+json:
+              schema:
+                $ref: '#/components/schemas/POIResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    POIResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Point
+                  coordinates:
+                    type: array
+                    items:
+                      type: number
+              properties:
+                type: object
+                properties:
+                  osm_id:
+                    type: integer
+                  osm_type:
+                    type: integer
+                  distance:
+                    type: number
+                  category_ids:
+                    type: object
+                  category_group_ids:
+                    type: object
+        information:
+          type: object
+          properties:
+            attribution:
+              type: string
+            version:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    POIRequest:
+      type: object
+      required:
+      - request
+      - geometry
+      properties:
+        request:
+          type: string
+          description: Type of POI request
+          enum:
+          - pois
+          - list
+          - stats
+        geometry:
+          type: object
+          description: Search area geometry
+          properties:
+            bbox:
+              type: array
+              description: Bounding box [[minLon, minLat], [maxLon, maxLat]]
+              items:
+                type: array
+                items:
+                  type: number
+              minItems: 2
+              maxItems: 2
+            geojson:
+              type: object
+              description: GeoJSON geometry to search within
+            buffer:
+              type: number
+              description: Buffer distance around geometry in meters
+              format: double
+        filters:
+          type: object
+          description: Filters for POI categories and keywords
+          properties:
+            category_group_ids:
+              type: object
+              description: Category group IDs to filter by
+              additionalProperties:
+                type: array
+                items:
+                  type: integer
+            category_ids:
+              type: object
+              description: Specific category IDs to filter by
+              additionalProperties:
+                type: array
+                items:
+                  type: integer
+            name:
+              type: array
+              description: POI name keywords to filter by
+              items:
+                type: string
+            wheelchair:
+              type: string
+              description: Wheelchair accessibility filter
+              enum:
+              - true
+              - false
+              - limited
+              - designated
+            smoking:
+              type: string
+              description: Smoking policy filter
+            fee:
+              type: string
+              description: Fee requirement filter
+              enum:
+              - true
+              - false
+        limit:
+          type: integer
+          description: Maximum number of POIs to return (max 200)
+          maximum: 200
+          default: 200
+        sortby:
+          type: string
+          description: Sort POI results by this attribute
+          enum:
+          - category
+          - distance
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

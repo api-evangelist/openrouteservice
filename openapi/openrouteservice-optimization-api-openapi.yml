@@ -1,0 +1,303 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Optimization API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Optimization
+  description: Solve vehicle routing problems using the VROOM engine
+paths:
+  /optimization:
+    post:
+      tags:
+      - Optimization
+      summary: Vehicle Route Optimization
+      description: Solves vehicle routing problems using the VROOM optimization engine. Supports time windows, capacity constraints, multi-depot scenarios, and mixed fleet routing for logistics planning with up to 3 vehicles and 50 jobs in the standard plan.
+      operationId: getOptimization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OptimizationRequest'
+      responses:
+        '200':
+          description: Optimized route solution
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OptimizationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    OptimizationRequest:
+      type: object
+      required:
+      - vehicles
+      - jobs
+      properties:
+        vehicles:
+          type: array
+          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationVehicle'
+        jobs:
+          type: array
+          description: List of jobs/deliveries to be performed (max 50 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationJob'
+        shipments:
+          type: array
+          description: Shipments requiring pickup and delivery pairs
+          items:
+            $ref: '#/components/schemas/OptimizationShipment'
+        matrices:
+          type: object
+          description: Pre-computed duration/distance matrices
+        options:
+          type: object
+          description: Additional optimization options
+          properties:
+            g:
+              type: boolean
+              description: Return geometry for routes
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    OptimizationResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        summary:
+          type: object
+          properties:
+            cost:
+              type: integer
+            routes:
+              type: integer
+            unassigned:
+              type: integer
+            delivery:
+              type: array
+              items:
+                type: integer
+            pickup:
+              type: array
+              items:
+                type: integer
+            duration:
+              type: number
+            distance:
+              type: integer
+            computing_times:
+              type: object
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              vehicle:
+                type: integer
+              cost:
+                type: integer
+              steps:
+                type: array
+                items:
+                  type: object
+              duration:
+                type: number
+              distance:
+                type: integer
+              geometry:
+                type: string
+        unassigned:
+          type: array
+          items:
+            type: object
+    OptimizationShipment:
+      type: object
+      properties:
+        pickup:
+          $ref: '#/components/schemas/OptimizationJob'
+        delivery:
+          $ref: '#/components/schemas/OptimizationJob'
+    OptimizationJob:
+      type: object
+      required:
+      - id
+      - location
+      properties:
+        id:
+          type: integer
+          description: Unique job identifier
+        description:
+          type: string
+        location:
+          type: array
+          description: Job location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        service:
+          type: integer
+          description: Service time at this location in seconds
+          default: 0
+        amount:
+          type: array
+          description: Resource amounts required for multiple capacity types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Required vehicle skills for this job
+          items:
+            type: integer
+        time_windows:
+          type: array
+          description: Allowed time windows for the job
+          items:
+            type: array
+            items:
+              type: integer
+            minItems: 2
+            maxItems: 2
+        priority:
+          type: integer
+          description: Job priority (higher values = higher priority)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    OptimizationVehicle:
+      type: object
+      required:
+      - id
+      - profile
+      - start
+      properties:
+        id:
+          type: integer
+          description: Unique vehicle identifier
+        profile:
+          type: string
+          description: Routing profile for this vehicle
+          enum:
+          - driving-car
+          - driving-hgv
+          - cycling-regular
+          - cycling-road
+          - foot-walking
+        start:
+          type: array
+          description: Start location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        end:
+          type: array
+          description: End location [longitude, latitude] (optional)
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        capacity:
+          type: array
+          description: Vehicle capacity for multiple resource types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Skills this vehicle has (must match job skill requirements)
+          items:
+            type: integer
+        time_window:
+          type: array
+          description: Operational time window [start_time, end_time] in seconds from epoch
+          items:
+            type: integer
+          minItems: 2
+          maxItems: 2
+        breaks:
+          type: array
+          description: Scheduled breaks for this vehicle
+          items:
+            type: object
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org

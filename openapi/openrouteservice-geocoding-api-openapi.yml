@@ -1,0 +1,449 @@
+openapi: 3.0.3
+info:
+  title: OpenRouteService Directions Geocoding API
+  description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
+  version: v2
+  contact:
+    name: OpenRouteService Support
+    url: https://ask.openrouteservice.org
+    email: support@smartmobility.heigit.org
+  license:
+    name: GNU General Public License v3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
+  x-ors-docs: https://giscience.github.io/openrouteservice/
+servers:
+- url: https://api.openrouteservice.org
+  description: OpenRouteService Public API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Geocoding
+  description: Resolve addresses to coordinates and vice versa using Pelias engine
+paths:
+  /geocode/search:
+    get:
+      tags:
+      - Geocoding
+      summary: Forward Geocoding
+      description: Resolves a text address query to geographic coordinates using the Pelias geocoding engine. Returns matching locations ordered by relevance.
+      operationId: geocodeSearch
+      parameters:
+      - name: text
+        in: query
+        description: The address or place name to search for
+        required: true
+        schema:
+          type: string
+          example: Heidelberg, Germany
+      - name: boundary.country
+        in: query
+        description: Restrict results to a specific country using ISO 3166-1 alpha-2 or alpha-3 code
+        required: false
+        schema:
+          type: string
+          example: DE
+      - name: boundary.rect.min_lon
+        in: query
+        description: Minimum longitude for bounding box restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.rect.min_lat
+        in: query
+        description: Minimum latitude for bounding box restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.rect.max_lon
+        in: query
+        description: Maximum longitude for bounding box restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.rect.max_lat
+        in: query
+        description: Maximum latitude for bounding box restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.circle.lon
+        in: query
+        description: Longitude of circle center for circular boundary restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.circle.lat
+        in: query
+        description: Latitude of circle center for circular boundary restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.circle.radius
+        in: query
+        description: Radius in kilometers for circular boundary restriction
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: focus.point.lon
+        in: query
+        description: Longitude of focus point to bias nearby results higher
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: focus.point.lat
+        in: query
+        description: Latitude of focus point to bias nearby results higher
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: size
+        in: query
+        description: Number of results to return (max 40)
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 40
+      - name: layers
+        in: query
+        description: Filter by Pelias layer types (venue, address, street, neighbourhood, etc.)
+        required: false
+        schema:
+          type: string
+      - name: sources
+        in: query
+        description: Filter by data sources (openstreetmap, openaddresses, whosonfirst, geonames)
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Geocoding results as GeoJSON FeatureCollection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /geocode/reverse:
+    get:
+      tags:
+      - Geocoding
+      summary: Reverse Geocoding
+      description: Resolves geographic coordinates to a human-readable address using the Pelias engine. Returns the nearest address or place for the given coordinates.
+      operationId: geocodeReverse
+      parameters:
+      - name: point.lon
+        in: query
+        description: Longitude of the point to reverse geocode
+        required: true
+        schema:
+          type: number
+          format: double
+          example: 8.681495
+      - name: point.lat
+        in: query
+        description: Latitude of the point to reverse geocode
+        required: true
+        schema:
+          type: number
+          format: double
+          example: 49.41461
+      - name: boundary.circle.radius
+        in: query
+        description: Radius in kilometers to search around the point
+        required: false
+        schema:
+          type: number
+          format: double
+          default: 1
+      - name: size
+        in: query
+        description: Number of results to return
+        required: false
+        schema:
+          type: integer
+          default: 1
+          maximum: 40
+      - name: layers
+        in: query
+        description: Filter by Pelias layer types
+        required: false
+        schema:
+          type: string
+      - name: sources
+        in: query
+        description: Filter by data sources
+        required: false
+        schema:
+          type: string
+      - name: boundary.country
+        in: query
+        description: Restrict results to a specific country
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reverse geocoding results as GeoJSON FeatureCollection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /geocode/autocomplete:
+    get:
+      tags:
+      - Geocoding
+      summary: Geocoding Autocomplete
+      description: Returns address suggestions as the user types, optimized for low-latency typeahead searches. Uses Pelias autocomplete for partial address matching.
+      operationId: geocodeAutocomplete
+      parameters:
+      - name: text
+        in: query
+        description: Partial address text for autocomplete suggestions
+        required: true
+        schema:
+          type: string
+          example: Heidel
+      - name: focus.point.lon
+        in: query
+        description: Longitude of focus point to bias nearby results higher
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: focus.point.lat
+        in: query
+        description: Latitude of focus point to bias nearby results higher
+        required: false
+        schema:
+          type: number
+          format: double
+      - name: boundary.country
+        in: query
+        description: Restrict results to a specific country
+        required: false
+        schema:
+          type: string
+      - name: layers
+        in: query
+        description: Filter by Pelias layer types
+        required: false
+        schema:
+          type: string
+      - name: sources
+        in: query
+        description: Filter by data sources
+        required: false
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of results to return (max 40)
+        required: false
+        schema:
+          type: integer
+          default: 10
+          maximum: 40
+      responses:
+        '200':
+          description: Autocomplete suggestions as GeoJSON FeatureCollection
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    GeocodeFeature:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - Feature
+        geometry:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - Point
+            coordinates:
+              type: array
+              items:
+                type: number
+              minItems: 2
+              maxItems: 2
+        properties:
+          type: object
+          properties:
+            id:
+              type: string
+            gid:
+              type: string
+            layer:
+              type: string
+              description: Pelias layer (venue, address, street, neighbourhood, etc.)
+            source:
+              type: string
+              description: Data source (openstreetmap, openaddresses, etc.)
+            source_id:
+              type: string
+            name:
+              type: string
+            confidence:
+              type: number
+              format: double
+            match_type:
+              type: string
+            accuracy:
+              type: string
+            country:
+              type: string
+            country_gid:
+              type: string
+            country_a:
+              type: string
+            region:
+              type: string
+            region_gid:
+              type: string
+            locality:
+              type: string
+            locality_gid:
+              type: string
+            postalcode:
+              type: string
+            label:
+              type: string
+              description: Full formatted address label
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    GeocodeResponse:
+      type: object
+      properties:
+        geocoding:
+          type: object
+          properties:
+            version:
+              type: string
+            attribution:
+              type: string
+            query:
+              type: object
+            engine:
+              type: object
+              properties:
+                name:
+                  type: string
+                author:
+                  type: string
+                version:
+                  type: string
+            timestamp:
+              type: string
+              format: date-time
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodeFeature'
+        bbox:
+          type: array
+          items:
+            type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key obtained from https://openrouteservice.org
