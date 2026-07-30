@@ -5,7 +5,20 @@ description: OpenRouteService is a free, open-source geospatial API platform bui
   isochrones for reachability analysis, time-distance matrices, geocoding, elevation
   data, points of interest, and vehicle route optimization for logistics and humanitarian
   use cases.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/openrouteservice.png
 url: https://raw.githubusercontent.com/api-evangelist/openrouteservice/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -25,136 +38,227 @@ tags:
   - Logistics
   - Humanitarian
 apis:
-  - aid: openrouteservice:directions
-    name: OpenRouteService Directions API
-    description: Provides turn-by-turn routing directions for multiple transport profiles
-      including driving, cycling, walking, hiking, and wheelchair, supporting up to
-      50 waypoints with avoid areas, alternative routes, and distance/time optimization.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Routing
-      - Directions
-      - Navigation
-      - OpenStreetMap
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
-      - type: OpenAPI
-        url: https://openrouteservice.org/wp-json/ors
-  - aid: openrouteservice:isochrones
-    name: OpenRouteService Isochrones API
-    description: Calculates areas of reachability from given locations within specified
-      time or distance ranges, supporting up to 5 locations and 10 intervals, for
-      travel modes including driving, cycling, and walking.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Isochrones
-      - Reachability
-      - Geospatial
-      - Analysis
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/isochrones/
-  - aid: openrouteservice:matrix
-    name: OpenRouteService Matrix API
-    description: Computes one-to-many, many-to-one, and many-to-many time and distance
-      matrices for logistics optimization, supporting up to 3,500 locations per standard
-      request for route planning and fleet management.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Matrix
-      - Logistics
-      - Distance
-      - Time
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/matrix/
-  - aid: openrouteservice:geocoding
-    name: OpenRouteService Geocoding API
-    description: Resolves addresses to geographic coordinates and vice versa using
-      the Pelias geocoding engine, supporting forward geocoding, reverse geocoding,
-      and autocomplete for address normalization and location search.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Geocoding
-      - Address
-      - Location
-      - Pelias
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/geocoding/
-  - aid: openrouteservice:elevation
-    name: OpenRouteService Elevation API
-    description: Returns elevation data for point or line geometries using SRTM data,
-      supporting up to 2,000 vertices for enriching routes and locations with altitude
-      information.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Elevation
-      - Terrain
-      - Altitude
-      - SRTM
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/elevation/
-  - aid: openrouteservice:optimization
-    name: OpenRouteService Optimization API
-    description: Solves vehicle routing problems using the VROOM engine, optimizing
-      routes for fleets of up to 3 vehicles and 50 routes, supporting time windows,
-      capacity constraints, and multi-depot scenarios for logistics planning.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Optimization
-      - Logistics
-      - Fleet
-      - VROOM
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/optimization/
-  - aid: openrouteservice:pois
-    name: OpenRouteService POI API
-    description: Returns points of interest in the area surrounding a given geometry,
-      supporting search within a 2 km radius for areas up to 50 km2, filtered by
-      category and keyword using OpenStreetMap POI data.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - POI
-      - Points of Interest
-      - OpenStreetMap
-      - Location
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/poi/
-  - aid: openrouteservice:snapping
-    name: OpenRouteService Snapping API
-    description: Snaps arbitrary coordinates to the nearest road network nodes, supporting
-      up to 5,000 locations per request, useful for map matching and correcting GPS
-      coordinates to the road network.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://openrouteservice.org
-    baseURL: https://api.openrouteservice.org
-    tags:
-      - Snapping
-      - Map Matching
-      - Road Network
-      - GPS
-    properties:
-      - type: Documentation
-        url: https://giscience.github.io/openrouteservice/api-reference/endpoints/snapping/
+- aid: openrouteservice:isochrones
+  name: OpenRouteService Isochrones API
+  description: >-
+    Calculates areas of reachability from given locations within specified time or distance ranges, supporting
+    up to 5 locations and 10 intervals, for travel modes including driving, cycling, and walking.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Isochrones
+  - Reachability
+  - Geospatial
+  - Analysis
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/isochrones/
+- aid: openrouteservice:matrix
+  name: OpenRouteService Matrix API
+  description: >-
+    Computes one-to-many, many-to-one, and many-to-many time and distance matrices for logistics optimization,
+    supporting up to 3,500 locations per standard request for route planning and fleet management.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Matrix
+  - Logistics
+  - Distance
+  - Time
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/matrix/
+- aid: openrouteservice:geocoding
+  name: OpenRouteService Geocoding API
+  description: >-
+    Resolves addresses to geographic coordinates and vice versa using the Pelias geocoding engine, supporting
+    forward geocoding, reverse geocoding, and autocomplete for address normalization and location search.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Geocoding
+  - Address
+  - Location
+  - Pelias
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/geocoding/
+- aid: openrouteservice:elevation
+  name: OpenRouteService Elevation API
+  description: >-
+    Returns elevation data for point or line geometries using SRTM data, supporting up to 2,000 vertices
+    for enriching routes and locations with altitude information.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Elevation
+  - Terrain
+  - Altitude
+  - SRTM
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/elevation/
+- aid: openrouteservice:optimization
+  name: OpenRouteService Optimization API
+  description: >-
+    Solves vehicle routing problems using the VROOM engine, optimizing routes for fleets of up to 3 vehicles
+    and 50 routes, supporting time windows, capacity constraints, and multi-depot scenarios for logistics
+    planning.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Optimization
+  - Logistics
+  - Fleet
+  - VROOM
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/optimization/
+- aid: openrouteservice:pois
+  name: OpenRouteService POI API
+  description: >-
+    Returns points of interest in the area surrounding a given geometry, supporting search within a 2
+    km radius for areas up to 50 km2, filtered by category and keyword using OpenStreetMap POI data.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - POI
+  - Points of Interest
+  - OpenStreetMap
+  - Location
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/poi/
+- aid: openrouteservice:snapping
+  name: OpenRouteService Snapping API
+  description: >-
+    Snaps arbitrary coordinates to the nearest road network nodes, supporting up to 5,000 locations per
+    request, useful for map matching and correcting GPS coordinates to the road network.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Snapping
+  - Map Matching
+  - Road Network
+  - GPS
+  properties:
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/snapping/
+- aid: openrouteservice:openrouteservice-directions-api
+  name: OpenRouteService Directions API
+  description: Get routing directions for different modes of transport
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Directions
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-directions-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-elevation-api
+  name: OpenRouteService Elevation API
+  description: Return elevation data for point or line geometries
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Elevation
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-elevation-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-geocoding-api
+  name: OpenRouteService Geocoding API
+  description: Resolve addresses to coordinates and vice versa using Pelias engine
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Geocoding
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-geocoding-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-health-api
+  name: OpenRouteService Health API
+  description: Service health and status endpoints
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-health-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-isochrones-api
+  name: OpenRouteService Isochrones API
+  description: Obtain areas of reachability from given locations
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Isochrones
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-isochrones-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-matrix-api
+  name: OpenRouteService Matrix API
+  description: Obtain one-to-many, many-to-one and many-to-many matrices for time and distance
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Matrix
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-matrix-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-optimization-api
+  name: OpenRouteService Optimization API
+  description: Solve vehicle routing problems using the VROOM engine
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Optimization
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-optimization-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-poi-api
+  name: OpenRouteService POI API
+  description: Return points of interest using OpenStreetMap data
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - POI
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-poi-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
+- aid: openrouteservice:openrouteservice-snapping-api
+  name: OpenRouteService Snapping API
+  description: Snap coordinates to the nearest road network nodes
+  humanURL: https://openrouteservice.org
+  baseURL: https://api.openrouteservice.org
+  tags:
+  - Snapping
+  properties:
+  - type: OpenAPI
+    url: openapi/openrouteservice-snapping-api-openapi.yml
+  - type: Documentation
+    url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
 common:
   - type: AgenticAccess
     url: agentic-access/openrouteservice-agentic-access.yml
