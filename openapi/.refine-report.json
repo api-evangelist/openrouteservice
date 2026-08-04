@@ -1,0 +1,30 @@
+{
+  "provider": "openrouteservice",
+  "sources": [
+    "openrouteservice-directions-api-openapi.yml",
+    "openrouteservice-elevation-api-openapi.yml",
+    "openrouteservice-geocoding-api-openapi.yml",
+    "openrouteservice-health-api-openapi.yml",
+    "openrouteservice-isochrones-api-openapi.yml",
+    "openrouteservice-matrix-api-openapi.yml",
+    "openrouteservice-optimization-api-openapi.yml",
+    "openrouteservice-poi-api-openapi.yml",
+    "openrouteservice-snapping-api-openapi.yml"
+  ],
+  "outputs": [
+    "openrouteservice-directions-api-openapi.yml",
+    "openrouteservice-elevation-api-openapi.yml",
+    "openrouteservice-geocoding-api-openapi.yml",
+    "openrouteservice-health-api-openapi.yml",
+    "openrouteservice-isochrones-api-openapi.yml",
+    "openrouteservice-matrix-api-openapi.yml",
+    "openrouteservice-optimization-api-openapi.yml",
+    "openrouteservice-poi-api-openapi.yml",
+    "openrouteservice-snapping-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
