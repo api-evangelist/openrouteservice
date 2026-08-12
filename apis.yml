@@ -260,6 +260,9 @@ apis:
   - type: Documentation
     url: https://giscience.github.io/openrouteservice/api-reference/endpoints/directions/
 common:
+  - type: License
+    name: GPL-3.0
+    url: https://github.com/GIScience/openrouteservice/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/openrouteservice-agentic-access.yml
   - type: DomainSecurity
