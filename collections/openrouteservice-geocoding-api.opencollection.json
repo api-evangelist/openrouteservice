@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Geocoding API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Forward Geocoding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/geocode/search",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "The address or place name to search for"
+              },
+              {
+                "name": "boundary.country",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a specific country using ISO 3166-1 alpha-2 or alpha-3 code"
+              },
+              {
+                "name": "boundary.rect.min_lon",
+                "value": "",
+                "type": "query",
+                "description": "Minimum longitude for bounding box restriction"
+              },
+              {
+                "name": "boundary.rect.min_lat",
+                "value": "",
+                "type": "query",
+                "description": "Minimum latitude for bounding box restriction"
+              },
+              {
+                "name": "boundary.rect.max_lon",
+                "value": "",
+                "type": "query",
+                "description": "Maximum longitude for bounding box restriction"
+              },
+              {
+                "name": "boundary.rect.max_lat",
+                "value": "",
+                "type": "query",
+                "description": "Maximum latitude for bounding box restriction"
+              },
+              {
+                "name": "boundary.circle.lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of circle center for circular boundary restriction"
+              },
+              {
+                "name": "boundary.circle.lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of circle center for circular boundary restriction"
+              },
+              {
+                "name": "boundary.circle.radius",
+                "value": "",
+                "type": "query",
+                "description": "Radius in kilometers for circular boundary restriction"
+              },
+              {
+                "name": "focus.point.lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of focus point to bias nearby results higher"
+              },
+              {
+                "name": "focus.point.lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of focus point to bias nearby results higher"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (max 40)"
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Pelias layer types (venue, address, street, neighbourhood, etc.)"
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data sources (openstreetmap, openaddresses, whosonfirst, geonames)"
+              }
+            ]
+          },
+          "docs": "Resolves a text address query to geographic coordinates using the Pelias geocoding engine. Returns matching locations ordered by relevance."
+        },
+        {
+          "info": {
+            "name": "Reverse Geocoding",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/geocode/reverse",
+            "params": [
+              {
+                "name": "point.lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of the point to reverse geocode"
+              },
+              {
+                "name": "point.lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of the point to reverse geocode"
+              },
+              {
+                "name": "boundary.circle.radius",
+                "value": "",
+                "type": "query",
+                "description": "Radius in kilometers to search around the point"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return"
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Pelias layer types"
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data sources"
+              },
+              {
+                "name": "boundary.country",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a specific country"
+              }
+            ]
+          },
+          "docs": "Resolves geographic coordinates to a human-readable address using the Pelias engine. Returns the nearest address or place for the given coordinates."
+        },
+        {
+          "info": {
+            "name": "Geocoding Autocomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/geocode/autocomplete",
+            "params": [
+              {
+                "name": "text",
+                "value": "",
+                "type": "query",
+                "description": "Partial address text for autocomplete suggestions"
+              },
+              {
+                "name": "focus.point.lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude of focus point to bias nearby results higher"
+              },
+              {
+                "name": "focus.point.lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude of focus point to bias nearby results higher"
+              },
+              {
+                "name": "boundary.country",
+                "value": "",
+                "type": "query",
+                "description": "Restrict results to a specific country"
+              },
+              {
+                "name": "layers",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Pelias layer types"
+              },
+              {
+                "name": "sources",
+                "value": "",
+                "type": "query",
+                "description": "Filter by data sources"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to return (max 40)"
+              }
+            ]
+          },
+          "docs": "Returns address suggestions as the user types, optimized for low-latency typeahead searches. Uses Pelias autocomplete for partial address matching."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

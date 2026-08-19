@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Matrix API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Matrix",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Matrix Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/v2/matrix/:profile",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Computes one-to-many, many-to-one or many-to-many time/distance matrices for all pairs of the supplied coordinates. The maximum number of locations depends on the subscription plan (up to 3,500 for standard)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

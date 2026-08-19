@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "44838ca1-1aca-493b-a12f-a66f4b10282c",
+      "name": "Isochrones",
+      "description": {
+        "content": "Obtain areas of reachability from given locations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe5758c6-cc7a-4086-bdff-a2ab3cd50465",
+          "name": "Isochrones Service",
+          "request": {
+            "name": "Isochrones Service",
+            "description": {
+              "content": "The Isochrone Service supports time and distance analyses for one single or multiple locations. You may also specify the travel mode and a maximum range value. This service responses with polygon or point geometries, depending on your request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "isochrones",
+                ":profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/geo+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    [\n      \"<double>\",\n      \"<double>\"\n    ],\n    [\n      \"<double>\",\n      \"<double>\"\n    ]\n  ],\n  \"range\": [\n    \"<double>\",\n    \"<double>\"\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b608aea9-32bf-45d9-86f7-321c75bca09a",
+              "name": "Successfully computed isochrones",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/geo+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/geo+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [\n            [\n              1894.6108536272377,\n              3183.3838193888487\n            ],\n            [\n              235.5113949107357,\n              3508.6827320133652\n            ]\n          ],\n          [\n            [\n              6993.9363806799975,\n              8380.26396772674\n            ],\n            [\n              1006.9675976676829,\n              6369.259194661217\n            ]\n          ]\n        ]\n      },\n      \"properties\": {\n        \"group_index\": 3744,\n        \"value\": 8990.143244218752,\n        \"center\": [\n          5753.281438640104,\n          7243.6567484262605\n        ],\n        \"area\": 6498.948364208781,\n        \"reachfactor\": 3050.3132015111255,\n        \"total_pop\": 3994\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": [\n          [\n            [\n              3980.9502235053396,\n              6087.509656797713\n            ],\n            [\n              3852.820494774425,\n              8306.105419899948\n            ]\n          ],\n          [\n            [\n              5705.155027955741,\n              6007.032537256175\n            ],\n            [\n              4799.452165142005,\n              5244.435283816197\n            ]\n          ]\n        ]\n      },\n      \"properties\": {\n        \"group_index\": 5379,\n        \"value\": 8201.392795439804,\n        \"center\": [\n          8545.220718484603,\n          3712.9138979691124\n        ],\n        \"area\": 2618.378801265271,\n        \"reachfactor\": 2979.4180693450103,\n        \"total_pop\": 8961\n      }\n    }\n  ],\n  \"bbox\": [\n    9812.428870602216,\n    1451.483522950633\n  ],\n  \"metadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e800a74f-26db-4ac3-8caa-3ee4df2e91c8",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6413,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1994-02-08T04:14:59.570Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 7263\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9564b10-10cf-4695-810d-3d41c9cf81a3",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6413,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1994-02-08T04:14:59.570Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 7263\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0493dddf-2a85-4aa5-9c27-130bc52078fb",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6413,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1994-02-08T04:14:59.570Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 7263\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e668f601-04e7-492e-8fc4-e4224e70a1d4",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6413,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1994-02-08T04:14:59.570Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 7263\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c25fbca-6e82-4ad7-ae50-37c2efa9d515",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "isochrones",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ]\n  ],\n  \"range\": [\n    300,\n    600\n  ],\n  \"range_type\": \"time\",\n  \"interval\": \"<double>\",\n  \"units\": \"m\",\n  \"area_units\": \"m\",\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersections\": false,\n  \"smoothing\": \"<double>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_polygons\": \"<object>\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6413,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1994-02-08T04:14:59.570Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 7263\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "db37b2dd-8d9e-467c-b998-ab256fc103dd",
+    "name": "OpenRouteService Directions Isochrones API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

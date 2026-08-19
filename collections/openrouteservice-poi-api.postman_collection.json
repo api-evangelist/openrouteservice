@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "f3f4a863-8075-4f2e-af6b-19ba14366983",
+      "name": "POI",
+      "description": {
+        "content": "Return points of interest using OpenStreetMap data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3b222e4-3551-400b-bafe-30bf0a035288",
+          "name": "Points of Interest",
+          "request": {
+            "name": "Points of Interest",
+            "description": {
+              "content": "Returns points of interest in the area surrounding a given geometry. Supports search within a 2 km radius for areas up to 50 km2, filtered by category and keyword using OpenStreetMap POI data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pois"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/geo+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61a323a5-fd09-43e0-91be-8c8c896ee8fc",
+              "name": "Points of interest as GeoJSON FeatureCollection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/geo+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/geo+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          1880.1451075956531,\n          8136.923860045331\n        ]\n      },\n      \"properties\": {\n        \"osm_id\": 1031,\n        \"osm_type\": 1208,\n        \"distance\": 5323.393031422042,\n        \"category_ids\": {},\n        \"category_group_ids\": {}\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          6587.3341361325965,\n          2966.5063932273692\n        ]\n      },\n      \"properties\": {\n        \"osm_id\": 7752,\n        \"osm_type\": 2619,\n        \"distance\": 5662.171581033013,\n        \"category_ids\": {},\n        \"category_group_ids\": {}\n      }\n    }\n  ],\n  \"information\": {\n    \"attribution\": \"string\",\n    \"version\": \"string\",\n    \"timestamp\": \"1956-11-07T17:26:09.743Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be875afb-3506-4da8-b255-bb59aff7ccba",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1260,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1989-04-26T03:46:34.212Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29a98cca-458f-4b4c-9f25-f000615df9e4",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1260,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1989-04-26T03:46:34.212Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3220f58b-1b32-4e2b-848c-9cd935bb0595",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1260,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1989-04-26T03:46:34.212Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2842fe13-f381-440e-a8f4-937da1037cb2",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": \"<string>\",\n  \"geometry\": {\n    \"bbox\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"geojson\": \"<object>\",\n    \"buffer\": \"<double>\"\n  },\n  \"filters\": {\n    \"category_group_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_2\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"category_ids\": {\n      \"key_0\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"key_1\": [\n        \"<integer>\",\n        \"<integer>\"\n      ]\n    },\n    \"name\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"wheelchair\": \"<string>\",\n    \"smoking\": \"<string>\",\n    \"fee\": \"<string>\"\n  },\n  \"limit\": 200,\n  \"sortby\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1260,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1989-04-26T03:46:34.212Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8622\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7dd3ac8c-7f40-4f9b-916e-21dff9010f35",
+    "name": "OpenRouteService Directions POI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

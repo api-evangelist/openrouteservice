@@ -1,0 +1,1033 @@
+{
+  "item": [
+    {
+      "id": "0e26d737-b441-4320-b782-ded6c0892005",
+      "name": "Elevation",
+      "description": {
+        "content": "Return elevation data for point or line geometries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ea2e229-8350-4f8c-b87e-977540e964bb",
+          "name": "Get elevation for a point",
+          "request": {
+            "name": "Get elevation for a point",
+            "description": {
+              "content": "Returns the elevation value for a single geographic point using SRTM elevation data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elevation",
+                "point"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "geometry",
+                  "value": "<string>",
+                  "description": "(Required) Coordinate as longitude,latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "format_in",
+                  "value": "point",
+                  "description": "Input geometry format (point)"
+                },
+                {
+                  "disabled": false,
+                  "key": "format_out",
+                  "value": "geojson",
+                  "description": "Output format (point or geojson)"
+                },
+                {
+                  "disabled": false,
+                  "key": "dataset",
+                  "value": "srtm",
+                  "description": "Elevation dataset to use"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7ba48ba8-3f0f-46c3-ae96-7fda54761c63",
+              "name": "Elevation data for the point",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geometry",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "format_in",
+                      "value": "point"
+                    },
+                    {
+                      "key": "format_out",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "srtm"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"geometry\": {},\n  \"properties\": {\n    \"dataset\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b3ad234-83ba-4a16-975c-ea9579e92b26",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geometry",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "format_in",
+                      "value": "point"
+                    },
+                    {
+                      "key": "format_out",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "srtm"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31b4b720-a97d-46c6-8c9d-96c07260e943",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geometry",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "format_in",
+                      "value": "point"
+                    },
+                    {
+                      "key": "format_out",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "srtm"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86affe75-055c-4ddb-9798-4478c833fec7",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geometry",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "format_in",
+                      "value": "point"
+                    },
+                    {
+                      "key": "format_out",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "srtm"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e0a2e44-667c-43ff-b3b0-74b648d56bfa",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "geometry",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "format_in",
+                      "value": "point"
+                    },
+                    {
+                      "key": "format_out",
+                      "value": "geojson"
+                    },
+                    {
+                      "key": "dataset",
+                      "value": "srtm"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b1d98fc-679c-4d17-8687-d00c1053dfd9",
+          "name": "Get elevation for a point (POST)",
+          "request": {
+            "name": "Get elevation for a point (POST)",
+            "description": {
+              "content": "Returns the elevation value for a single geographic point using SRTM elevation data. POST variant for larger payloads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elevation",
+                "point"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"geometry\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a3e2bd55-5bd0-4f22-a6e5-c9b2a408f247",
+              "name": "Elevation data for the point",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": [\n    8.681495,\n    49.41461\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"geometry\": {},\n  \"properties\": {\n    \"dataset\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0c18784-f335-4985-982e-c8b8b1bdbcc7",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": [\n    8.681495,\n    49.41461\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6c2c7ed-2865-4623-9578-25e3b401c41e",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": [\n    8.681495,\n    49.41461\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fea96424-bda3-41e5-8383-5dd063e82739",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": [\n    8.681495,\n    49.41461\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fec5455-4e38-413e-8dc0-e9c556fdc2ba",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "point"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": [\n    8.681495,\n    49.41461\n  ],\n  \"format_in\": \"point\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00ef531a-c34b-4c2f-9e1e-283f728715b0",
+          "name": "Get elevation for a line geometry",
+          "request": {
+            "name": "Get elevation for a line geometry",
+            "description": {
+              "content": "Returns elevation values for a series of points along a line geometry using SRTM data. Supports up to 2,000 vertices per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elevation",
+                "line"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2e36804f-c283-4019-b75d-72a63a2da349",
+              "name": "Elevation data for the line geometry",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"geometry\": {},\n  \"properties\": {\n    \"dataset\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b464cac0-ae92-4f84-bacb-9e389a61df87",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8ca7c7a-0375-4872-8198-701c0b0b2650",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "311fae26-97af-4906-a306-660b92b7c295",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9726dd3f-fcba-445c-98a4-490730845236",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elevation",
+                    "line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"geometry\": \"<object>\",\n  \"format_in\": \"geojson\",\n  \"format_out\": \"geojson\",\n  \"dataset\": \"srtm\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 7184,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1964-02-11T23:33:46.922Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 1854\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ebd502d2-122e-45b3-8d96-68582ed3b695",
+    "name": "OpenRouteService Directions Elevation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

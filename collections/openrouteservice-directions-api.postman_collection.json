@@ -1,0 +1,1765 @@
+{
+  "item": [
+    {
+      "id": "bd978a88-96cc-4e88-90f4-8e34f09be667",
+      "name": "Directions",
+      "description": {
+        "content": "Get routing directions for different modes of transport",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1c8a8c9-bcd1-4160-b4cd-cad96b0ddca5",
+          "name": "Get basic route (GET)",
+          "request": {
+            "name": "Get basic route (GET)",
+            "description": {
+              "content": "Get a basic route between two points with the profile provided. Returned response is in GeoJSON format. Accepts start and end coordinates as query parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "directions",
+                ":profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<string>",
+                  "description": "(Required) Start coordinate of the route as longitude,latitude"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<string>",
+                  "description": "(Required) Destination coordinate of the route as longitude,latitude"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/geo+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f17e52a3-3036-416e-8ec0-059e2c5966be",
+              "name": "Successfully computed route in GeoJSON format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/geo+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/geo+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"bbox\": [\n    7442.992312991942,\n    9382.223300740385\n  ],\n  \"metadata\": {\n    \"attribution\": \"string\",\n    \"service\": \"string\",\n    \"timestamp\": 5741,\n    \"id\": \"string\",\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1993-05-13T06:21:44.502Z\"\n    },\n    \"query\": {},\n    \"osm_file_md5_hash\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6765d188-31ca-4e16-b9b6-778fed5e0c29",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18dde4a8-852a-4a57-8906-6701ea531432",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b966e0f3-baaf-4009-8167-4e4b42387bab",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "777ca912-f455-4a9f-b75b-b8a739d5ee30",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5d1b80d-7808-4c9d-9b9c-cecd2beb7d76",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "8.681495,49.41461"
+                    },
+                    {
+                      "key": "end",
+                      "value": "8.687872,49.420318"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b24431f7-fc7b-4ab9-b07a-f8e52b2d8bbe",
+          "name": "Get directions (POST JSON)",
+          "request": {
+            "name": "Get directions (POST JSON)",
+            "description": {
+              "content": "Returns a route between two or more locations for a selected profile and its settings as JSON. The response contains the route geometry and additional information like distance, duration, and turn-by-turn instructions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "directions",
+                ":profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": [\n    [\n      \"<double>\",\n      \"<double>\"\n    ],\n    [\n      \"<double>\",\n      \"<double>\"\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98e18b83-57b8-4811-bc4a-c6592e9c718e",
+              "name": "Successfully computed route",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"routes\": [\n    {\n      \"summary\": {\n        \"distance\": 2421.8933573161426,\n        \"duration\": 6922.111818435489,\n        \"ascent\": 3067.7009511699903,\n        \"descent\": 7403.797281659312\n      },\n      \"segments\": [\n        {\n          \"distance\": 21.785623287853273,\n          \"duration\": 6204.005241677884,\n          \"steps\": [\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ascent\": 1655.192364414807,\n          \"descent\": 3052.990483119694,\n          \"avgspeed\": 3163.7023296830434,\n          \"detourfactor\": 5342.874474613463,\n          \"percentage\": 1862.4224616851147\n        },\n        {\n          \"distance\": 7135.436673729255,\n          \"duration\": 3374.345939514778,\n          \"steps\": [\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ascent\": 9186.169082780134,\n          \"descent\": 193.27352308860958,\n          \"avgspeed\": 5246.963651388224,\n          \"detourfactor\": 5915.700386508419,\n          \"percentage\": 4026.9354709639447\n        }\n      ],\n      \"bbox\": [\n        3475.5012887663306,\n        25.7083140525749\n      ],\n      \"geometry\": \"string\",\n      \"way_points\": [\n        3243,\n        8418\n      ],\n      \"extras\": {\n        \"key_0\": {\n          \"values\": [\n            [\n              6240.3938526803195,\n              526.3579662783369\n            ],\n            [\n              2290.4450140609665,\n              3290.215261828732\n            ]\n          ],\n          \"summary\": [\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"key_1\": {\n          \"values\": [\n            [\n              5017.47406755489,\n              6888.757861290927\n            ],\n            [\n              1448.4052629584842,\n              3451.1282977070978\n            ]\n          ],\n          \"summary\": [\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"warnings\": [\n        {\n          \"code\": 55,\n          \"message\": \"string\"\n        },\n        {\n          \"code\": 3171,\n          \"message\": \"string\"\n        }\n      ]\n    },\n    {\n      \"summary\": {\n        \"distance\": 2673.7308557387905,\n        \"duration\": 3662.816442389314,\n        \"ascent\": 5188.550776437362,\n        \"descent\": 634.9884869659805\n      },\n      \"segments\": [\n        {\n          \"distance\": 9625.469697162845,\n          \"duration\": 6613.558608476228,\n          \"steps\": [\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ascent\": 544.1328429492187,\n          \"descent\": 2973.8652304011416,\n          \"avgspeed\": 5174.003752219327,\n          \"detourfactor\": 9875.155482539962,\n          \"percentage\": 9915.835213628916\n        },\n        {\n          \"distance\": 7524.059668152495,\n          \"duration\": 2757.6481391305674,\n          \"steps\": [\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"instruction\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"duration\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"type\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_number\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exit_bearings\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"way_points\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"maneuver\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"ascent\": 3305.532245077648,\n          \"descent\": 953.2018371134876,\n          \"avgspeed\": 3396.905892037092,\n          \"detourfactor\": 9872.82189842491,\n          \"percentage\": 7719.940990583765\n        }\n      ],\n      \"bbox\": [\n        7540.9903372748995,\n        5610.425764452881\n      ],\n      \"geometry\": \"string\",\n      \"way_points\": [\n        8911,\n        1605\n      ],\n      \"extras\": {\n        \"key_0\": {\n          \"values\": [\n            [\n              6439.101546090046,\n              6230.598677529625\n            ],\n            [\n              852.0708821482392,\n              5431.304433471271\n            ]\n          ],\n          \"summary\": [\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"value\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"distance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      },\n      \"warnings\": [\n        {\n          \"code\": 2766,\n          \"message\": \"string\"\n        },\n        {\n          \"code\": 1448,\n          \"message\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"metadata\": {\n    \"attribution\": \"string\",\n    \"service\": \"string\",\n    \"timestamp\": 4967,\n    \"id\": \"string\",\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1946-11-30T04:44:49.813Z\"\n    },\n    \"query\": {},\n    \"osm_file_md5_hash\": \"string\"\n  },\n  \"bbox\": [\n    2180.812313127725,\n    9226.844576727872\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc62cd99-9e27-4b0c-b6ae-3537d8c19787",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13b88067-af42-4330-913f-961d1dc03450",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ebab1ee-753b-4c43-8f9c-ea42f211624e",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9cfb7b1c-5a8c-437c-8da4-e53cd57b9434",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6544fc2f-ce17-45ad-ac19-e8ba48c8258d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcb78646-dcd8-4d8e-a8dd-223b6f6b849c",
+          "name": "Get directions as GeoJSON (POST)",
+          "request": {
+            "name": "Get directions as GeoJSON (POST)",
+            "description": {
+              "content": "Returns a route between two or more locations for a selected profile and its settings as GeoJSON. The response is a FeatureCollection with route geometry.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "directions",
+                ":profile",
+                "geojson"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/geo+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": [\n    [\n      \"<double>\",\n      \"<double>\"\n    ],\n    [\n      \"<double>\",\n      \"<double>\"\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9cc44efd-57db-48f9-b93c-b9277a869ccb",
+              "name": "Successfully computed route in GeoJSON format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/geo+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/geo+json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {}\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {},\n      \"properties\": {}\n    }\n  ],\n  \"bbox\": [\n    8948.196936192493,\n    4760.643254067639\n  ],\n  \"metadata\": {\n    \"attribution\": \"string\",\n    \"service\": \"string\",\n    \"timestamp\": 2252,\n    \"id\": \"string\",\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2007-05-15T08:57:23.853Z\"\n    },\n    \"query\": {},\n    \"osm_file_md5_hash\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0cb933e9-410d-4ded-a2ed-d3e56b618645",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ac816d8-2273-4d09-abb1-ba6ded05d297",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d61343e-5f9e-48ca-a297-a94fb0a2371c",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb1b7d17-a299-4cf2-80b0-03c99082799d",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26146366-b729-4bff-8276-148d53e58143",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "geojson"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e53d93ed-0551-4762-b42e-ab4401055e4d",
+          "name": "Get directions as GPX (POST)",
+          "request": {
+            "name": "Get directions as GPX (POST)",
+            "description": {
+              "content": "Returns a route between two or more locations for a selected profile and its settings as GPX format for GPS device compatibility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "directions",
+                ":profile",
+                "gpx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/gpx+xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coordinates\": [\n    [\n      \"<double>\",\n      \"<double>\"\n    ],\n    [\n      \"<double>\",\n      \"<double>\"\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a014a611-2389-4780-a891-e661533b5cb8",
+              "name": "Successfully computed route in GPX format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/gpx+xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gpx+xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>(string)</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            },
+            {
+              "id": "c0dc99c6-6a1c-4934-89e4-9b5e3efd0e43",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1888d155-b23d-436d-882c-edb24c4fd5d1",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "920d4f34-8fea-43cb-96d6-069a5e288f8e",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7909706-dc7d-4389-9376-cde3f0c8f95c",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a32b4cd-0dfe-43e9-b6da-748436f00209",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "directions",
+                    ":profile",
+                    "gpx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coordinates\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"profile\": \"<string>\",\n  \"preference\": \"recommended\",\n  \"units\": \"m\",\n  \"language\": \"en\",\n  \"geometry\": true,\n  \"geometry_simplify\": false,\n  \"instructions\": true,\n  \"instructions_format\": \"text\",\n  \"roundabout_exits\": false,\n  \"attributes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"extra_info\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"elevation\": false,\n  \"continue_straight\": \"<boolean>\",\n  \"avoid_features\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_borders\": \"<string>\",\n  \"avoid_countries\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"avoid_polygons\": \"<object>\",\n  \"maximum_speed\": \"<double>\",\n  \"alternative_routes\": {\n    \"target_count\": \"<integer>\",\n    \"weight_factor\": \"<double>\",\n    \"share_factor\": \"<double>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 9573,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"1958-10-07T16:02:36.757Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 8526\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "72ecae38-7a35-4063-b410-73dc8777a5ef",
+    "name": "OpenRouteService Directions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

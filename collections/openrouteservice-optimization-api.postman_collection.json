@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "42284b69-aaf8-49ef-a5fb-f7e235c8083e",
+      "name": "Optimization",
+      "description": {
+        "content": "Solve vehicle routing problems using the VROOM engine",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a49f8807-9b8b-495b-9e0e-f802f5daafe5",
+          "name": "Vehicle Route Optimization",
+          "request": {
+            "name": "Vehicle Route Optimization",
+            "description": {
+              "content": "Solves vehicle routing problems using the VROOM optimization engine. Supports time windows, capacity constraints, multi-depot scenarios, and mixed fleet routing for logistics planning with up to 3 vehicles and 50 jobs in the standard plan.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "optimization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d6140c5-cd53-45c1-b3fd-a78ba694afbf",
+              "name": "Optimized route solution",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9666,\n  \"summary\": {\n    \"cost\": 6433,\n    \"routes\": 5043,\n    \"unassigned\": 1496,\n    \"delivery\": [\n      9982,\n      9546\n    ],\n    \"pickup\": [\n      9954,\n      3653\n    ],\n    \"duration\": 8466.551017523754,\n    \"distance\": 7336,\n    \"computing_times\": {}\n  },\n  \"routes\": [\n    {\n      \"vehicle\": 1613,\n      \"cost\": 9228,\n      \"duration\": 6252.275255257341,\n      \"distance\": 6176,\n      \"geometry\": \"string\"\n    },\n    {\n      \"vehicle\": 9610,\n      \"cost\": 4528,\n      \"duration\": 2027.7119866374992,\n      \"distance\": 6582,\n      \"geometry\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "834b9855-31d6-4950-a9f8-753b82ca3f96",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6550,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2021-10-21T13:11:10.378Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 9176\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f9b6bee-a266-46e6-a574-e02d848847aa",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6550,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2021-10-21T13:11:10.378Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 9176\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41a62c25-f0d2-41b2-ba59-bdd68181015e",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6550,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2021-10-21T13:11:10.378Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 9176\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3e46009-5140-4c6b-a2b9-c59b35c5b046",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "optimization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vehicles\": [\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<integer>\",\n      \"profile\": \"<string>\",\n      \"start\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"end\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"capacity\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_window\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"breaks\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ],\n  \"jobs\": [\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"location\": [\n        \"<number>\",\n        \"<number>\"\n      ],\n      \"description\": \"<string>\",\n      \"service\": 0,\n      \"amount\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"skills\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"time_windows\": [\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        [\n          \"<integer>\",\n          \"<integer>\"\n        ]\n      ],\n      \"priority\": \"<integer>\"\n    }\n  ],\n  \"shipments\": [\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    },\n    {\n      \"pickup\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      },\n      \"delivery\": {\n        \"id\": \"<integer>\",\n        \"location\": [\n          \"<number>\",\n          \"<number>\"\n        ],\n        \"description\": \"<string>\",\n        \"service\": 0,\n        \"amount\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"skills\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"time_windows\": [\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          [\n            \"<integer>\",\n            \"<integer>\"\n          ]\n        ],\n        \"priority\": \"<integer>\"\n      }\n    }\n  ],\n  \"matrices\": \"<object>\",\n  \"options\": {\n    \"g\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 6550,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2021-10-21T13:11:10.378Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 9176\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "140bc781-5f74-4d7a-8c72-f794c8caab74",
+    "name": "OpenRouteService Directions Optimization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

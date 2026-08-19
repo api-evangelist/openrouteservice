@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Snapping API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapping",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Snap Coordinates to Road Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/v2/snap/:profile",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Snaps arbitrary coordinates to the nearest road network nodes. Supports up to 5,000 locations per request, useful for map matching and correcting GPS coordinates to the road network."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

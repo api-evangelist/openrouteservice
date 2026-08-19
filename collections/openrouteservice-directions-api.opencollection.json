@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Directions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get basic route (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/v2/directions/:profile",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start coordinate of the route as longitude,latitude"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Destination coordinate of the route as longitude,latitude"
+              }
+            ]
+          },
+          "docs": "Get a basic route between two points with the profile provided. Returned response is in GeoJSON format. Accepts start and end coordinates as query parameters."
+        },
+        {
+          "info": {
+            "name": "Get directions (POST JSON)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/v2/directions/:profile",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a route between two or more locations for a selected profile and its settings as JSON. The response contains the route geometry and additional information like distance, duration, and turn-by-turn instructions."
+        },
+        {
+          "info": {
+            "name": "Get directions as GeoJSON (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/v2/directions/:profile/geojson",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a route between two or more locations for a selected profile and its settings as GeoJSON. The response is a FeatureCollection with route geometry."
+        },
+        {
+          "info": {
+            "name": "Get directions as GPX (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/v2/directions/:profile/gpx",
+            "params": [
+              {
+                "name": "profile",
+                "value": "",
+                "type": "path",
+                "description": "Specifies the transport mode profile for routing"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a route between two or more locations for a selected profile and its settings as GPX format for GPS device compatibility."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

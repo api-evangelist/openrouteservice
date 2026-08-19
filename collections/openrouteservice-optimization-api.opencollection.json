@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Optimization API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Optimization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Vehicle Route Optimization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/optimization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Solves vehicle routing problems using the VROOM optimization engine. Supports time windows, capacity constraints, multi-depot scenarios, and mixed fleet routing for logistics planning with up to 3 vehicles and 50 jobs in the standard plan."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

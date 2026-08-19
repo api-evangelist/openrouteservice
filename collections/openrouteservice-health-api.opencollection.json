@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Health API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/v2/health"
+          },
+          "docs": "Returns the health status of the OpenRouteService API"
+        },
+        {
+          "info": {
+            "name": "Status Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/v2/status"
+          },
+          "docs": "Returns the current status and configuration of the OpenRouteService API including loaded profiles"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

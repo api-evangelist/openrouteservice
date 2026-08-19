@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions Elevation API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Elevation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get elevation for a point",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.openrouteservice.org/elevation/point",
+            "params": [
+              {
+                "name": "geometry",
+                "value": "",
+                "type": "query",
+                "description": "Coordinate as longitude,latitude"
+              },
+              {
+                "name": "format_in",
+                "value": "",
+                "type": "query",
+                "description": "Input geometry format (point)"
+              },
+              {
+                "name": "format_out",
+                "value": "",
+                "type": "query",
+                "description": "Output format (point or geojson)"
+              },
+              {
+                "name": "dataset",
+                "value": "",
+                "type": "query",
+                "description": "Elevation dataset to use"
+              }
+            ]
+          },
+          "docs": "Returns the elevation value for a single geographic point using SRTM elevation data."
+        },
+        {
+          "info": {
+            "name": "Get elevation for a point (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/elevation/point",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the elevation value for a single geographic point using SRTM elevation data. POST variant for larger payloads."
+        },
+        {
+          "info": {
+            "name": "Get elevation for a line geometry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/elevation/line",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns elevation values for a series of points along a line geometry using SRTM data. Supports up to 2,000 vertices per request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

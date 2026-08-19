@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "3a66b647-292d-47cf-aa70-efd9d320bc14",
+      "name": "Matrix",
+      "description": {
+        "content": "Obtain one-to-many, many-to-one and many-to-many matrices for time and distance",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d11b42c4-e6e2-4c47-b0ad-2cb284b7acf3",
+          "name": "Matrix Service",
+          "request": {
+            "name": "Matrix Service",
+            "description": {
+              "content": "Computes one-to-many, many-to-one or many-to-many time/distance matrices for all pairs of the supplied coordinates. The maximum number of locations depends on the subscription plan (up to 3,500 for standard).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "matrix",
+                ":profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profile",
+                  "description": "(Required) Specifies the transport mode profile for routing"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locations\": [\n    [\n      \"<double>\",\n      \"<double>\"\n    ],\n    [\n      \"<double>\",\n      \"<double>\"\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4333ecbc-1daf-4658-aafd-9bf5a3dfed94",
+              "name": "Successfully computed matrix",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"durations\": [\n    [\n      5174.460817812553,\n      7026.068649030673\n    ],\n    [\n      3737.759899760531,\n      2869.0321228816774\n    ]\n  ],\n  \"distances\": [\n    [\n      2096.4665522423443,\n      1811.594369058226\n    ],\n    [\n      8342.20485819942,\n      9133.530186965592\n    ]\n  ],\n  \"sources\": [\n    {\n      \"location\": [\n        9136.047126261068,\n        8781.779494938713\n      ],\n      \"name\": \"string\",\n      \"snapped_distance\": 5084.750668125959\n    },\n    {\n      \"location\": [\n        2086.913891117044,\n        937.2529492096415\n      ],\n      \"name\": \"string\",\n      \"snapped_distance\": 9657.509939095791\n    }\n  ],\n  \"destinations\": [\n    {\n      \"location\": [\n        2846.520600940954,\n        6450.795498160429\n      ],\n      \"name\": \"string\",\n      \"snapped_distance\": 6433.355271747791\n    },\n    {\n      \"location\": [\n        9916.653631874806,\n        3707.9232938616337\n      ],\n      \"name\": \"string\",\n      \"snapped_distance\": 8451.562571073513\n    }\n  ],\n  \"metadata\": {\n    \"attribution\": \"string\",\n    \"service\": \"string\",\n    \"timestamp\": 2223,\n    \"id\": \"string\",\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2013-04-18T02:57:37.963Z\"\n    },\n    \"query\": {},\n    \"osm_file_md5_hash\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32906aa4-6015-470f-9f92-1ab03f30a948",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2006-07-02T00:38:01.535Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 5787\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e89c4a1-9869-4855-a582-e0029b391adb",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2006-07-02T00:38:01.535Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 5787\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463cb3f5-3496-4ff3-88f3-787c2307a4af",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2006-07-02T00:38:01.535Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 5787\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d7a0d9c-0353-4a2c-8ab7-1bf9aa6a7a55",
+              "name": "Not found - route or resource could not be found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2006-07-02T00:38:01.535Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 5787\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1d138da-8001-4633-a46e-7d8f5f8e19e6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "matrix",
+                    ":profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profile",
+                      "description": "(Required) Specifies the transport mode profile for routing"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locations\": [\n    [\n      8.681495,\n      49.41461\n    ],\n    [\n      8.686507,\n      49.41943\n    ],\n    [\n      8.687872,\n      49.420318\n    ]\n  ],\n  \"sources\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"destinations\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"metrics\": [\n    \"duration\"\n  ],\n  \"resolve_locations\": false,\n  \"units\": \"m\",\n  \"id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 1892,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2006-07-02T00:38:01.535Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 5787\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e76a49f1-7c28-4e17-b02c-ac2239b21728",
+    "name": "OpenRouteService Directions Matrix API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}

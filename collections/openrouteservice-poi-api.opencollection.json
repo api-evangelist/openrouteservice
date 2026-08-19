@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "OpenRouteService Directions POI API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "POI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Points of Interest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.openrouteservice.org/pois",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns points of interest in the area surrounding a given geometry. Supports search within a 2 km radius for areas up to 50 km2, filtered by category and keyword using OpenStreetMap POI data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

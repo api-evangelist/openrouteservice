@@ -1,0 +1,1563 @@
+{
+  "item": [
+    {
+      "id": "99c50506-6dc9-4d4e-9aa9-4eeda9e62b6c",
+      "name": "Geocoding",
+      "description": {
+        "content": "Resolve addresses to coordinates and vice versa using Pelias engine",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51d7b805-8a7d-441a-8e17-41a3530f8ed8",
+          "name": "Forward Geocoding",
+          "request": {
+            "name": "Forward Geocoding",
+            "description": {
+              "content": "Resolves a text address query to geographic coordinates using the Pelias geocoding engine. Returns matching locations ordered by relevance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) The address or place name to search for"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.country",
+                  "value": "<string>",
+                  "description": "Restrict results to a specific country using ISO 3166-1 alpha-2 or alpha-3 code"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.rect.min_lon",
+                  "value": "<double>",
+                  "description": "Minimum longitude for bounding box restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.rect.min_lat",
+                  "value": "<double>",
+                  "description": "Minimum latitude for bounding box restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.rect.max_lon",
+                  "value": "<double>",
+                  "description": "Maximum longitude for bounding box restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.rect.max_lat",
+                  "value": "<double>",
+                  "description": "Maximum latitude for bounding box restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.circle.lon",
+                  "value": "<double>",
+                  "description": "Longitude of circle center for circular boundary restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.circle.lat",
+                  "value": "<double>",
+                  "description": "Latitude of circle center for circular boundary restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.circle.radius",
+                  "value": "<double>",
+                  "description": "Radius in kilometers for circular boundary restriction"
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lon",
+                  "value": "<double>",
+                  "description": "Longitude of focus point to bias nearby results higher"
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lat",
+                  "value": "<double>",
+                  "description": "Latitude of focus point to bias nearby results higher"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return (max 40)"
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Filter by Pelias layer types (venue, address, street, neighbourhood, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>",
+                  "description": "Filter by data sources (openstreetmap, openaddresses, whosonfirst, geonames)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67f9a5da-81ba-410b-93fc-14c6b570c906",
+              "name": "Geocoding results as GeoJSON FeatureCollection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidelberg, Germany"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "DE"
+                    },
+                    {
+                      "key": "boundary.rect.min_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.min_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geocoding\": {\n    \"version\": \"string\",\n    \"attribution\": \"string\",\n    \"query\": {},\n    \"engine\": {\n      \"name\": \"string\",\n      \"author\": \"string\",\n      \"version\": \"string\"\n    },\n    \"timestamp\": \"2017-01-13T06:36:34.416Z\"\n  },\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          2785.432019024262,\n          413.14524221103153\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 5882.989261757171,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          20.680822719715273,\n          9158.841104989177\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 6157.931806006724,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    }\n  ],\n  \"bbox\": [\n    6592.802598352651,\n    5856.155883516862\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64a9b77f-0457-4928-a966-d5d0dda47091",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidelberg, Germany"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "DE"
+                    },
+                    {
+                      "key": "boundary.rect.min_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.min_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08153c9e-f3f9-4f04-bc36-6ef347f2254b",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidelberg, Germany"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "DE"
+                    },
+                    {
+                      "key": "boundary.rect.min_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.min_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "225e1e9f-4f13-45c8-9dbe-d7725ad7a86b",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidelberg, Germany"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "DE"
+                    },
+                    {
+                      "key": "boundary.rect.min_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.min_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f091beb-f621-49e0-8ad8-0ee2328ad3fd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidelberg, Germany"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "DE"
+                    },
+                    {
+                      "key": "boundary.rect.min_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.min_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.rect.max_lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0034d22a-a42e-4966-8634-a454c0e3d08e",
+          "name": "Reverse Geocoding",
+          "request": {
+            "name": "Reverse Geocoding",
+            "description": {
+              "content": "Resolves geographic coordinates to a human-readable address using the Pelias engine. Returns the nearest address or place for the given coordinates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "reverse"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "point.lon",
+                  "value": "<double>",
+                  "description": "(Required) Longitude of the point to reverse geocode"
+                },
+                {
+                  "disabled": false,
+                  "key": "point.lat",
+                  "value": "<double>",
+                  "description": "(Required) Latitude of the point to reverse geocode"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.circle.radius",
+                  "value": "1",
+                  "description": "Radius in kilometers to search around the point"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "1",
+                  "description": "Number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Filter by Pelias layer types"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>",
+                  "description": "Filter by data sources"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.country",
+                  "value": "<string>",
+                  "description": "Restrict results to a specific country"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "025db140-0634-4065-bda2-79e74039aebf",
+              "name": "Reverse geocoding results as GeoJSON FeatureCollection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lon",
+                      "value": "8.681495"
+                    },
+                    {
+                      "key": "point.lat",
+                      "value": "49.41461"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geocoding\": {\n    \"version\": \"string\",\n    \"attribution\": \"string\",\n    \"query\": {},\n    \"engine\": {\n      \"name\": \"string\",\n      \"author\": \"string\",\n      \"version\": \"string\"\n    },\n    \"timestamp\": \"2019-07-06T05:45:06.017Z\"\n  },\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          7698.817803765207,\n          9949.420207020534\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 3822.003520761027,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          1410.402596352366,\n          7121.0515251182005\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 1917.3154933643177,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    }\n  ],\n  \"bbox\": [\n    4294.385881070504,\n    6252.071146909112\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1716a1fd-946a-4f6b-be66-05f812b08785",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lon",
+                      "value": "8.681495"
+                    },
+                    {
+                      "key": "point.lat",
+                      "value": "49.41461"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c9c51a1-bd71-4d8b-a914-b17506c43326",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lon",
+                      "value": "8.681495"
+                    },
+                    {
+                      "key": "point.lat",
+                      "value": "49.41461"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0c7316b-b166-48dd-8952-309239b1547b",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lon",
+                      "value": "8.681495"
+                    },
+                    {
+                      "key": "point.lat",
+                      "value": "49.41461"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76ef3785-a567-4c3f-a237-b5b541dd3e8a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "reverse"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "point.lon",
+                      "value": "8.681495"
+                    },
+                    {
+                      "key": "point.lat",
+                      "value": "49.41461"
+                    },
+                    {
+                      "key": "boundary.circle.radius",
+                      "value": "1"
+                    },
+                    {
+                      "key": "size",
+                      "value": "1"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33acd03f-844a-40aa-8042-aaf00b13ec74",
+          "name": "Geocoding Autocomplete",
+          "request": {
+            "name": "Geocoding Autocomplete",
+            "description": {
+              "content": "Returns address suggestions as the user types, optimized for low-latency typeahead searches. Uses Pelias autocomplete for partial address matching.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "geocode",
+                "autocomplete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "text",
+                  "value": "<string>",
+                  "description": "(Required) Partial address text for autocomplete suggestions"
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lon",
+                  "value": "<double>",
+                  "description": "Longitude of focus point to bias nearby results higher"
+                },
+                {
+                  "disabled": false,
+                  "key": "focus.point.lat",
+                  "value": "<double>",
+                  "description": "Latitude of focus point to bias nearby results higher"
+                },
+                {
+                  "disabled": false,
+                  "key": "boundary.country",
+                  "value": "<string>",
+                  "description": "Restrict results to a specific country"
+                },
+                {
+                  "disabled": false,
+                  "key": "layers",
+                  "value": "<string>",
+                  "description": "Filter by Pelias layer types"
+                },
+                {
+                  "disabled": false,
+                  "key": "sources",
+                  "value": "<string>",
+                  "description": "Filter by data sources"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10",
+                  "description": "Number of results to return (max 40)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93f0449d-f489-4c9a-9c6f-edb4109bd997",
+              "name": "Autocomplete suggestions as GeoJSON FeatureCollection",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidel"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"geocoding\": {\n    \"version\": \"string\",\n    \"attribution\": \"string\",\n    \"query\": {},\n    \"engine\": {\n      \"name\": \"string\",\n      \"author\": \"string\",\n      \"version\": \"string\"\n    },\n    \"timestamp\": \"2019-07-06T05:45:06.017Z\"\n  },\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          7698.817803765207,\n          9949.420207020534\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 3822.003520761027,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    },\n    {\n      \"type\": \"Feature\",\n      \"geometry\": {\n        \"type\": \"Point\",\n        \"coordinates\": [\n          1410.402596352366,\n          7121.0515251182005\n        ]\n      },\n      \"properties\": {\n        \"id\": \"string\",\n        \"gid\": \"string\",\n        \"layer\": \"string\",\n        \"source\": \"string\",\n        \"source_id\": \"string\",\n        \"name\": \"string\",\n        \"confidence\": 1917.3154933643177,\n        \"match_type\": \"string\",\n        \"accuracy\": \"string\",\n        \"country\": \"string\",\n        \"country_gid\": \"string\",\n        \"country_a\": \"string\",\n        \"region\": \"string\",\n        \"region_gid\": \"string\",\n        \"locality\": \"string\",\n        \"locality_gid\": \"string\",\n        \"postalcode\": \"string\",\n        \"label\": \"string\"\n      }\n    }\n  ],\n  \"bbox\": [\n    4294.385881070504,\n    6252.071146909112\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16ead03a-1ed3-43e2-bd63-8469f7035435",
+              "name": "Bad request - invalid parameters or request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidel"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2883dbfe-d203-4f73-87bc-7c86efbc9a5c",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidel"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "107e2283-0609-48bc-bd1c-97a6d9296b8f",
+              "name": "Forbidden - API key does not have permission for this operation",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidel"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "764fc11e-9c89-4f2e-9cb2-cc714347c0ae",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "geocode",
+                    "autocomplete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "text",
+                      "value": "Heidel"
+                    },
+                    {
+                      "key": "focus.point.lon",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "focus.point.lat",
+                      "value": "<double>"
+                    },
+                    {
+                      "key": "boundary.country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layers",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sources",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 836,\n    \"message\": \"string\"\n  },\n  \"info\": {\n    \"engine\": {\n      \"version\": \"string\",\n      \"build_date\": \"2001-10-19T11:36:44.208Z\"\n    },\n    \"attribution\": \"string\",\n    \"timestamp\": 2085\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.openrouteservice.org",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e3e0be75-3eeb-4809-9801-75e0e24b3ab3",
+    "name": "OpenRouteService Directions Geocoding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.\n\nContact Support:\n Name: OpenRouteService Support\n Email: support@smartmobility.heigit.org",
+      "type": "text/plain"
+    }
+  }
+}
