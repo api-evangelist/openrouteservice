@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: OpenRouteService Directions Optimization API
+  title: OpenRouteService Optimization API
   description: OpenRouteService is a free, open-source geospatial API platform built on OpenStreetMap data. It provides routing directions for multiple transport modes, isochrones for reachability analysis, time-distance matrices, geocoding, elevation data, points of interest, and vehicle route optimization for logistics and humanitarian use cases.
   version: v2
   contact:
@@ -50,98 +50,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    OptimizationRequest:
-      type: object
-      required:
-      - vehicles
-      - jobs
-      properties:
-        vehicles:
-          type: array
-          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationVehicle'
-        jobs:
-          type: array
-          description: List of jobs/deliveries to be performed (max 50 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationJob'
-        shipments:
-          type: array
-          description: Shipments requiring pickup and delivery pairs
-          items:
-            $ref: '#/components/schemas/OptimizationShipment'
-        matrices:
-          type: object
-          description: Pre-computed duration/distance matrices
-        options:
-          type: object
-          description: Additional optimization options
-          properties:
-            g:
-              type: boolean
-              description: Return geometry for routes
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
-    OptimizationResponse:
-      type: object
-      properties:
-        code:
-          type: integer
-        summary:
-          type: object
-          properties:
-            cost:
-              type: integer
-            routes:
-              type: integer
-            unassigned:
-              type: integer
-            delivery:
-              type: array
-              items:
-                type: integer
-            pickup:
-              type: array
-              items:
-                type: integer
-            duration:
-              type: number
-            distance:
-              type: integer
-            computing_times:
-              type: object
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              vehicle:
-                type: integer
-              cost:
-                type: integer
-              steps:
-                type: array
-                items:
-                  type: object
-              duration:
-                type: number
-              distance:
-                type: integer
-              geometry:
-                type: string
-        unassigned:
-          type: array
-          items:
-            type: object
     OptimizationShipment:
       type: object
       properties:
@@ -149,50 +57,6 @@ components:
           $ref: '#/components/schemas/OptimizationJob'
         delivery:
           $ref: '#/components/schemas/OptimizationJob'
-    OptimizationJob:
-      type: object
-      required:
-      - id
-      - location
-      properties:
-        id:
-          type: integer
-          description: Unique job identifier
-        description:
-          type: string
-        location:
-          type: array
-          description: Job location [longitude, latitude]
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-        service:
-          type: integer
-          description: Service time at this location in seconds
-          default: 0
-        amount:
-          type: array
-          description: Resource amounts required for multiple capacity types
-          items:
-            type: integer
-        skills:
-          type: array
-          description: Required vehicle skills for this job
-          items:
-            type: integer
-        time_windows:
-          type: array
-          description: Allowed time windows for the job
-          items:
-            type: array
-            items:
-              type: integer
-            minItems: 2
-            maxItems: 2
-        priority:
-          type: integer
-          description: Job priority (higher values = higher priority)
     ErrorResponse:
       type: object
       properties:
@@ -215,6 +79,16 @@ components:
             timestamp:
               type: integer
               format: int64
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
     OptimizationVehicle:
       type: object
       required:
@@ -270,9 +144,135 @@ components:
           description: Scheduled breaks for this vehicle
           items:
             type: object
+    OptimizationRequest:
+      type: object
+      required:
+      - vehicles
+      - jobs
+      properties:
+        vehicles:
+          type: array
+          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationVehicle'
+        jobs:
+          type: array
+          description: List of jobs/deliveries to be performed (max 50 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationJob'
+        shipments:
+          type: array
+          description: Shipments requiring pickup and delivery pairs
+          items:
+            $ref: '#/components/schemas/OptimizationShipment'
+        matrices:
+          type: object
+          description: Pre-computed duration/distance matrices
+        options:
+          type: object
+          description: Additional optimization options
+          properties:
+            g:
+              type: boolean
+              description: Return geometry for routes
+    OptimizationResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        summary:
+          type: object
+          properties:
+            cost:
+              type: integer
+            routes:
+              type: integer
+            unassigned:
+              type: integer
+            delivery:
+              type: array
+              items:
+                type: integer
+            pickup:
+              type: array
+              items:
+                type: integer
+            duration:
+              type: number
+            distance:
+              type: integer
+            computing_times:
+              type: object
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              vehicle:
+                type: integer
+              cost:
+                type: integer
+              steps:
+                type: array
+                items:
+                  type: object
+              duration:
+                type: number
+              distance:
+                type: integer
+              geometry:
+                type: string
+        unassigned:
+          type: array
+          items:
+            type: object
+    OptimizationJob:
+      type: object
+      required:
+      - id
+      - location
+      properties:
+        id:
+          type: integer
+          description: Unique job identifier
+        description:
+          type: string
+        location:
+          type: array
+          description: Job location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        service:
+          type: integer
+          description: Service time at this location in seconds
+          default: 0
+        amount:
+          type: array
+          description: Resource amounts required for multiple capacity types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Required vehicle skills for this job
+          items:
+            type: integer
+        time_windows:
+          type: array
+          description: Allowed time windows for the job
+          items:
+            type: array
+            items:
+              type: integer
+            minItems: 2
+            maxItems: 2
+        priority:
+          type: integer
+          description: Job priority (higher values = higher priority)
   responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -283,8 +283,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
