@@ -158,169 +158,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    RouteResponseInfo:
-      type: object
-      properties:
-        attribution:
-          type: string
-          description: Data attribution text
-        service:
-          type: string
-          description: Service name
-        timestamp:
-          type: integer
-          format: int64
-          description: Request timestamp in milliseconds
-        id:
-          type: string
-          description: Request identifier
-        engine:
-          $ref: '#/components/schemas/EngineInfo'
-        query:
-          type: object
-          description: Echo of the request parameters
-        osm_file_md5_hash:
-          type: string
-          description: MD5 hash of the OSM data file used
-    JSONRouteResponse:
-      type: object
-      properties:
-        routes:
-          type: array
-          items:
-            $ref: '#/components/schemas/JSONIndividualRouteResponse'
-        metadata:
-          $ref: '#/components/schemas/RouteResponseInfo'
-        bbox:
-          type: array
-          items:
-            type: number
-          description: Bounding box of the route [minLon, minLat, maxLon, maxLat]
-    JSONSummary:
-      type: object
-      properties:
-        distance:
-          type: number
-          format: double
-          description: Total route distance in meters
-        duration:
-          type: number
-          format: double
-          description: Total route duration in seconds
-        ascent:
-          type: number
-          format: double
-          description: Total ascent in meters
-        descent:
-          type: number
-          format: double
-          description: Total descent in meters
-    JSONSegment:
-      type: object
-      properties:
-        distance:
-          type: number
-          format: double
-          description: Segment distance in meters
-        duration:
-          type: number
-          format: double
-          description: Segment duration in seconds
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/JSONStep'
-        ascent:
-          type: number
-          format: double
-        descent:
-          type: number
-          format: double
-        avgspeed:
-          type: number
-          format: double
-          description: Average speed in km/h
-        detourfactor:
-          type: number
-          format: double
-        percentage:
-          type: number
-          format: double
-    JSONWarning:
-      type: object
-      properties:
-        code:
-          type: integer
-          description: Warning code
-        message:
-          type: string
-          description: Warning message
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
-    JSONIndividualRouteResponse:
-      type: object
-      properties:
-        summary:
-          $ref: '#/components/schemas/JSONSummary'
-        segments:
-          type: array
-          items:
-            $ref: '#/components/schemas/JSONSegment'
-        bbox:
-          type: array
-          items:
-            type: number
-        geometry:
-          type: string
-          description: Encoded polyline geometry (when format is not geojson)
-        way_points:
-          type: array
-          items:
-            type: integer
-          description: Indices of waypoints in the geometry
-        extras:
-          type: object
-          description: Extra information keyed by type
-          additionalProperties:
-            $ref: '#/components/schemas/JSONExtra'
-        warnings:
-          type: array
-          items:
-            $ref: '#/components/schemas/JSONWarning'
-    JSONStepManeuver:
-      type: object
-      properties:
-        location:
-          type: array
-          items:
-            type: number
-          description: Coordinate [longitude, latitude] of the maneuver
-        bearing_before:
-          type: integer
-          description: Bearing before the maneuver (0-359)
-        bearing_after:
-          type: integer
-          description: Bearing after the maneuver (0-359)
     JSONStep:
       type: object
       properties:
@@ -355,16 +192,6 @@ components:
           description: Indices in geometry for this step
         maneuver:
           $ref: '#/components/schemas/JSONStepManeuver'
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
     GeoJSONRouteResponse:
       type: object
       properties:
@@ -391,34 +218,50 @@ components:
             type: number
         metadata:
           $ref: '#/components/schemas/RouteResponseInfo'
-    JSONExtra:
+    JSONRouteResponse:
       type: object
       properties:
-        values:
+        routes:
           type: array
           items:
-            type: array
-            items:
-              type: number
-          description: Extra info values as [start, end, value] tuples
+            $ref: '#/components/schemas/JSONIndividualRouteResponse'
+        metadata:
+          $ref: '#/components/schemas/RouteResponseInfo'
+        bbox:
+          type: array
+          items:
+            type: number
+          description: Bounding box of the route [minLon, minLat, maxLon, maxLat]
+    JSONIndividualRouteResponse:
+      type: object
+      properties:
         summary:
+          $ref: '#/components/schemas/JSONSummary'
+        segments:
           type: array
           items:
-            $ref: '#/components/schemas/JSONExtraSummary'
-    JSONExtraSummary:
-      type: object
-      properties:
-        value:
-          type: number
-          description: The extra info value
-        distance:
-          type: number
-          format: double
-          description: Distance with this value in meters
-        amount:
-          type: number
-          format: double
-          description: Percentage of route with this value
+            $ref: '#/components/schemas/JSONSegment'
+        bbox:
+          type: array
+          items:
+            type: number
+        geometry:
+          type: string
+          description: Encoded polyline geometry (when format is not geojson)
+        way_points:
+          type: array
+          items:
+            type: integer
+          description: Indices of waypoints in the geometry
+        extras:
+          type: object
+          description: Extra information keyed by type
+          additionalProperties:
+            $ref: '#/components/schemas/JSONExtra'
+        warnings:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONWarning'
     DirectionsRequest:
       type: object
       required:
@@ -580,27 +423,184 @@ components:
               type: number
               description: Minimum share factor for alternative route similarity
               format: double
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    JSONSummary:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+          description: Total route distance in meters
+        duration:
+          type: number
+          format: double
+          description: Total route duration in seconds
+        ascent:
+          type: number
+          format: double
+          description: Total ascent in meters
+        descent:
+          type: number
+          format: double
+          description: Total descent in meters
+    JSONExtraSummary:
+      type: object
+      properties:
+        value:
+          type: number
+          description: The extra info value
+        distance:
+          type: number
+          format: double
+          description: Distance with this value in meters
+        amount:
+          type: number
+          format: double
+          description: Percentage of route with this value
+    JSONWarning:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Warning code
+        message:
+          type: string
+          description: Warning message
+    JSONExtra:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+          description: Extra info values as [start, end, value] tuples
+        summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONExtraSummary'
+    JSONSegment:
+      type: object
+      properties:
+        distance:
+          type: number
+          format: double
+          description: Segment distance in meters
+        duration:
+          type: number
+          format: double
+          description: Segment duration in seconds
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/JSONStep'
+        ascent:
+          type: number
+          format: double
+        descent:
+          type: number
+          format: double
+        avgspeed:
+          type: number
+          format: double
+          description: Average speed in km/h
+        detourfactor:
+          type: number
+          format: double
+        percentage:
+          type: number
+          format: double
+    RouteResponseInfo:
+      type: object
+      properties:
+        attribution:
+          type: string
+          description: Data attribution text
+        service:
+          type: string
+          description: Service name
+        timestamp:
+          type: integer
+          format: int64
+          description: Request timestamp in milliseconds
+        id:
+          type: string
+          description: Request identifier
+        engine:
+          $ref: '#/components/schemas/EngineInfo'
+        query:
+          type: object
+          description: Echo of the request parameters
+        osm_file_md5_hash:
+          type: string
+          description: MD5 hash of the OSM data file used
+    JSONStepManeuver:
+      type: object
+      properties:
+        location:
+          type: array
+          items:
+            type: number
+          description: Coordinate [longitude, latitude] of the maneuver
+        bearing_before:
+          type: integer
+          description: Bearing before the maneuver (0-359)
+        bearing_after:
+          type: integer
+          description: Bearing after the maneuver (0-359)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
   responses:
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    NotFound:
+      description: Not found - route or resource could not be found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Not found - route or resource could not be found
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:

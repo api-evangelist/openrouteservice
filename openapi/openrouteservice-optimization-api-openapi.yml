@@ -50,45 +50,101 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    OptimizationShipment:
+    OptimizationJob:
+      type: object
+      required:
+      - id
+      - location
+      properties:
+        id:
+          type: integer
+          description: Unique job identifier
+        description:
+          type: string
+        location:
+          type: array
+          description: Job location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        service:
+          type: integer
+          description: Service time at this location in seconds
+          default: 0
+        amount:
+          type: array
+          description: Resource amounts required for multiple capacity types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Required vehicle skills for this job
+          items:
+            type: integer
+        time_windows:
+          type: array
+          description: Allowed time windows for the job
+          items:
+            type: array
+            items:
+              type: integer
+            minItems: 2
+            maxItems: 2
+        priority:
+          type: integer
+          description: Job priority (higher values = higher priority)
+    OptimizationResponse:
       type: object
       properties:
-        pickup:
-          $ref: '#/components/schemas/OptimizationJob'
-        delivery:
-          $ref: '#/components/schemas/OptimizationJob'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
+        code:
+          type: integer
+        summary:
           type: object
           properties:
-            code:
+            cost:
               type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
+            routes:
               type: integer
-              format: int64
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
+            unassigned:
+              type: integer
+            delivery:
+              type: array
+              items:
+                type: integer
+            pickup:
+              type: array
+              items:
+                type: integer
+            duration:
+              type: number
+            distance:
+              type: integer
+            computing_times:
+              type: object
+        routes:
+          type: array
+          items:
+            type: object
+            properties:
+              vehicle:
+                type: integer
+              cost:
+                type: integer
+              steps:
+                type: array
+                items:
+                  type: object
+              duration:
+                type: number
+              distance:
+                type: integer
+              geometry:
+                type: string
+        unassigned:
+          type: array
+          items:
+            type: object
     OptimizationVehicle:
       type: object
       required:
@@ -144,6 +200,23 @@ components:
           description: Scheduled breaks for this vehicle
           items:
             type: object
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    OptimizationShipment:
+      type: object
+      properties:
+        pickup:
+          $ref: '#/components/schemas/OptimizationJob'
+        delivery:
+          $ref: '#/components/schemas/OptimizationJob'
     OptimizationRequest:
       type: object
       required:
@@ -175,104 +248,31 @@ components:
             g:
               type: boolean
               description: Return geometry for routes
-    OptimizationResponse:
+    ErrorResponse:
       type: object
       properties:
-        code:
-          type: integer
-        summary:
+        error:
           type: object
           properties:
-            cost:
+            code:
               type: integer
-            routes:
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
               type: integer
-            unassigned:
-              type: integer
-            delivery:
-              type: array
-              items:
-                type: integer
-            pickup:
-              type: array
-              items:
-                type: integer
-            duration:
-              type: number
-            distance:
-              type: integer
-            computing_times:
-              type: object
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              vehicle:
-                type: integer
-              cost:
-                type: integer
-              steps:
-                type: array
-                items:
-                  type: object
-              duration:
-                type: number
-              distance:
-                type: integer
-              geometry:
-                type: string
-        unassigned:
-          type: array
-          items:
-            type: object
-    OptimizationJob:
-      type: object
-      required:
-      - id
-      - location
-      properties:
-        id:
-          type: integer
-          description: Unique job identifier
-        description:
-          type: string
-        location:
-          type: array
-          description: Job location [longitude, latitude]
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-        service:
-          type: integer
-          description: Service time at this location in seconds
-          default: 0
-        amount:
-          type: array
-          description: Resource amounts required for multiple capacity types
-          items:
-            type: integer
-        skills:
-          type: array
-          description: Required vehicle skills for this job
-          items:
-            type: integer
-        time_windows:
-          type: array
-          description: Allowed time windows for the job
-          items:
-            type: array
-            items:
-              type: integer
-            minItems: 2
-            maxItems: 2
-        priority:
-          type: integer
-          description: Job priority (higher values = higher priority)
+              format: int64
   responses:
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
@@ -283,8 +283,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:

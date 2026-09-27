@@ -52,71 +52,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    SnappingResponse:
-      type: object
-      properties:
-        locations:
-          type: array
-          description: Snapped locations with road network coordinates
-          items:
-            type: object
-            properties:
-              location:
-                type: array
-                items:
-                  type: number
-                description: Snapped coordinate [longitude, latitude]
-              name:
-                type: string
-                description: Road name at snapped location
-              snapped_distance:
-                type: number
-                format: double
-                description: Distance from original to snapped location in meters
-        metadata:
-          type: object
-          properties:
-            attribution:
-              type: string
-            service:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
     SnappingRequest:
       type: object
       required:
@@ -150,6 +85,96 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
+    SnappingResponse:
+      type: object
+      properties:
+        locations:
+          type: array
+          description: Snapped locations with road network coordinates
+          items:
+            type: object
+            properties:
+              location:
+                type: array
+                items:
+                  type: number
+                description: Snapped coordinate [longitude, latitude]
+              name:
+                type: string
+                description: Road name at snapped location
+              snapped_distance:
+                type: number
+                format: double
+                description: Distance from original to snapped location in meters
+        metadata:
+          type: object
+          properties:
+            attribution:
+              type: string
+            service:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     profile:
       name: profile
@@ -169,31 +194,6 @@ components:
         - foot-hiking
         - wheelchair
         example: driving-car
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

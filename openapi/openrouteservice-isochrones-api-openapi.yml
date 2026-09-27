@@ -60,8 +60,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
@@ -72,8 +72,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -85,38 +85,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
     GeoJSONIsochronesResponse:
       type: object
       properties:
@@ -268,6 +236,38 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
   parameters:
     profile:
       name: profile
