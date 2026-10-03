@@ -291,8 +291,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -303,13 +303,71 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    GeocodeResponse:
+      type: object
+      properties:
+        geocoding:
+          type: object
+          properties:
+            version:
+              type: string
+            attribution:
+              type: string
+            query:
+              type: object
+            engine:
+              type: object
+              properties:
+                name:
+                  type: string
+                author:
+                  type: string
+                version:
+                  type: string
+            timestamp:
+              type: string
+              format: date-time
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeocodeFeature'
+        bbox:
+          type: array
+          items:
+            type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
     GeocodeFeature:
       type: object
       properties:
@@ -383,64 +441,6 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
-    GeocodeResponse:
-      type: object
-      properties:
-        geocoding:
-          type: object
-          properties:
-            version:
-              type: string
-            attribution:
-              type: string
-            query:
-              type: object
-            engine:
-              type: object
-              properties:
-                name:
-                  type: string
-                author:
-                  type: string
-                version:
-                  type: string
-            timestamp:
-              type: string
-              format: date-time
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeocodeFeature'
-        bbox:
-          type: array
-          items:
-            type: number
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

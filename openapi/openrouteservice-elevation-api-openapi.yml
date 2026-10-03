@@ -141,8 +141,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -153,8 +153,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:
@@ -172,16 +172,59 @@ components:
           properties:
             dataset:
               type: string
-    EngineInfo:
+    ErrorResponse:
       type: object
       properties:
-        version:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    ElevationPointRequest:
+      type: object
+      required:
+      - geometry
+      properties:
+        format_in:
           type: string
-          description: ORS engine version
-        build_date:
+          enum:
+          - point
+          default: point
+        format_out:
           type: string
-          format: date-time
-          description: Build date of the ORS engine
+          enum:
+          - point
+          - geojson
+          default: geojson
+        dataset:
+          type: string
+          enum:
+          - srtm
+          default: srtm
+        geometry:
+          type: array
+          description: Coordinate as [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+          example:
+          - 8.681495
+          - 49.41461
     ElevationLineRequest:
       type: object
       required:
@@ -219,59 +262,16 @@ components:
             description: GeoJSON LineString
           - type: string
             description: Encoded polyline string
-    ElevationPointRequest:
-      type: object
-      required:
-      - geometry
-      properties:
-        format_in:
-          type: string
-          enum:
-          - point
-          default: point
-        format_out:
-          type: string
-          enum:
-          - point
-          - geojson
-          default: geojson
-        dataset:
-          type: string
-          enum:
-          - srtm
-          default: srtm
-        geometry:
-          type: array
-          description: Coordinate as [longitude, latitude]
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-          example:
-          - 8.681495
-          - 49.41461
-    ErrorResponse:
+    EngineInfo:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

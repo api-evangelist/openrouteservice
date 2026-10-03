@@ -56,16 +56,6 @@ paths:
           description: Service unavailable
 components:
   schemas:
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
     StatusResponse:
       type: object
       properties:
@@ -99,6 +89,16 @@ components:
           enum:
           - ready
           - not ready
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

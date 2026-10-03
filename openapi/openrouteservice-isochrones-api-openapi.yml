@@ -54,26 +54,8 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    NotFound:
-      description: Not found - route or resource could not be found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
@@ -84,61 +66,44 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - route or resource could not be found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
   schemas:
-    GeoJSONIsochronesResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              geometry:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - Polygon
-                  coordinates:
-                    type: array
-                    items:
-                      type: array
-                      items:
-                        type: array
-                        items:
-                          type: number
-              properties:
-                type: object
-                properties:
-                  group_index:
-                    type: integer
-                  value:
-                    type: number
-                  center:
-                    type: array
-                    items:
-                      type: number
-                  area:
-                    type: number
-                  reachfactor:
-                    type: number
-                  total_pop:
-                    type: integer
-        bbox:
-          type: array
-          items:
-            type: number
-        metadata:
-          type: object
     IsochronesRequest:
       type: object
       required:
@@ -236,16 +201,60 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
-    EngineInfo:
+    GeoJSONIsochronesResponse:
       type: object
       properties:
-        version:
+        type:
           type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Polygon
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: array
+                        items:
+                          type: number
+              properties:
+                type: object
+                properties:
+                  group_index:
+                    type: integer
+                  value:
+                    type: number
+                  center:
+                    type: array
+                    items:
+                      type: number
+                  area:
+                    type: number
+                  reachfactor:
+                    type: number
+                  total_pop:
+                    type: integer
+        bbox:
+          type: array
+          items:
+            type: number
+        metadata:
+          type: object
     ErrorResponse:
       type: object
       properties:
@@ -268,25 +277,16 @@ components:
             timestamp:
               type: integer
               format: int64
-  parameters:
-    profile:
-      name: profile
-      in: path
-      description: Specifies the transport mode profile for routing
-      required: true
-      schema:
-        type: string
-        enum:
-        - driving-car
-        - driving-hgv
-        - cycling-regular
-        - cycling-road
-        - cycling-mountain
-        - cycling-electric
-        - foot-walking
-        - foot-hiking
-        - wheelchair
-        example: driving-car
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

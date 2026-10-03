@@ -54,14 +54,20 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    NotFound:
-      description: Not found - route or resource could not be found
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Not found - route or resource could not be found
       content:
         application/json:
           schema:
@@ -78,13 +84,54 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    JSONMatrixResponse:
+      type: object
+      properties:
+        durations:
+          type: array
+          description: 2D array of travel durations in seconds
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+        distances:
+          type: array
+          description: 2D array of travel distances in meters
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatrixLocation'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/MatrixLocation'
+        metadata:
+          $ref: '#/components/schemas/MatrixResponseInfo'
+    MatrixResponseInfo:
+      type: object
+      properties:
+        attribution:
+          type: string
+        service:
+          type: string
+        timestamp:
+          type: integer
+          format: int64
+        id:
+          type: string
+        engine:
+          $ref: '#/components/schemas/EngineInfo'
+        query:
+          type: object
+        osm_file_md5_hash:
+          type: string
     MatrixRequest:
       type: object
       required:
@@ -142,24 +189,6 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
-    MatrixResponseInfo:
-      type: object
-      properties:
-        attribution:
-          type: string
-        service:
-          type: string
-        timestamp:
-          type: integer
-          format: int64
-        id:
-          type: string
-        engine:
-          $ref: '#/components/schemas/EngineInfo'
-        query:
-          type: object
-        osm_file_md5_hash:
-          type: string
     MatrixLocation:
       type: object
       properties:
@@ -175,45 +204,6 @@ components:
           type: number
           format: double
           description: Distance from original to snapped location in meters
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
-    JSONMatrixResponse:
-      type: object
-      properties:
-        durations:
-          type: array
-          description: 2D array of travel durations in seconds
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-        distances:
-          type: array
-          description: 2D array of travel distances in meters
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatrixLocation'
-        destinations:
-          type: array
-          items:
-            $ref: '#/components/schemas/MatrixLocation'
-        metadata:
-          $ref: '#/components/schemas/MatrixResponseInfo'
     ErrorResponse:
       type: object
       properties:
@@ -236,6 +226,16 @@ components:
             timestamp:
               type: integer
               format: int64
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   parameters:
     profile:
       name: profile

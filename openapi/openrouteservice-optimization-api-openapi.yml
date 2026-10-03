@@ -49,51 +49,32 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    OptimizationJob:
-      type: object
-      required:
-      - id
-      - location
-      properties:
-        id:
-          type: integer
-          description: Unique job identifier
-        description:
-          type: string
-        location:
-          type: array
-          description: Job location [longitude, latitude]
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-        service:
-          type: integer
-          description: Service time at this location in seconds
-          default: 0
-        amount:
-          type: array
-          description: Resource amounts required for multiple capacity types
-          items:
-            type: integer
-        skills:
-          type: array
-          description: Required vehicle skills for this job
-          items:
-            type: integer
-        time_windows:
-          type: array
-          description: Allowed time windows for the job
-          items:
-            type: array
-            items:
-              type: integer
-            minItems: 2
-            maxItems: 2
-        priority:
-          type: integer
-          description: Job priority (higher values = higher priority)
     OptimizationResponse:
       type: object
       properties:
@@ -145,6 +126,81 @@ components:
           type: array
           items:
             type: object
+    OptimizationRequest:
+      type: object
+      required:
+      - vehicles
+      - jobs
+      properties:
+        vehicles:
+          type: array
+          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationVehicle'
+        jobs:
+          type: array
+          description: List of jobs/deliveries to be performed (max 50 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationJob'
+        shipments:
+          type: array
+          description: Shipments requiring pickup and delivery pairs
+          items:
+            $ref: '#/components/schemas/OptimizationShipment'
+        matrices:
+          type: object
+          description: Pre-computed duration/distance matrices
+        options:
+          type: object
+          description: Additional optimization options
+          properties:
+            g:
+              type: boolean
+              description: Return geometry for routes
+    OptimizationJob:
+      type: object
+      required:
+      - id
+      - location
+      properties:
+        id:
+          type: integer
+          description: Unique job identifier
+        description:
+          type: string
+        location:
+          type: array
+          description: Job location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        service:
+          type: integer
+          description: Service time at this location in seconds
+          default: 0
+        amount:
+          type: array
+          description: Resource amounts required for multiple capacity types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Required vehicle skills for this job
+          items:
+            type: integer
+        time_windows:
+          type: array
+          description: Allowed time windows for the job
+          items:
+            type: array
+            items:
+              type: integer
+            minItems: 2
+            maxItems: 2
+        priority:
+          type: integer
+          description: Job priority (higher values = higher priority)
     OptimizationVehicle:
       type: object
       required:
@@ -200,54 +256,6 @@ components:
           description: Scheduled breaks for this vehicle
           items:
             type: object
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
-    OptimizationShipment:
-      type: object
-      properties:
-        pickup:
-          $ref: '#/components/schemas/OptimizationJob'
-        delivery:
-          $ref: '#/components/schemas/OptimizationJob'
-    OptimizationRequest:
-      type: object
-      required:
-      - vehicles
-      - jobs
-      properties:
-        vehicles:
-          type: array
-          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationVehicle'
-        jobs:
-          type: array
-          description: List of jobs/deliveries to be performed (max 50 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationJob'
-        shipments:
-          type: array
-          description: Shipments requiring pickup and delivery pairs
-          items:
-            $ref: '#/components/schemas/OptimizationShipment'
-        matrices:
-          type: object
-          description: Pre-computed duration/distance matrices
-        options:
-          type: object
-          description: Additional optimization options
-          properties:
-            g:
-              type: boolean
-              description: Return geometry for routes
     ErrorResponse:
       type: object
       properties:
@@ -270,31 +278,23 @@ components:
             timestamp:
               type: integer
               format: int64
-  responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    OptimizationShipment:
+      type: object
+      properties:
+        pickup:
+          $ref: '#/components/schemas/OptimizationJob'
+        delivery:
+          $ref: '#/components/schemas/OptimizationJob'
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

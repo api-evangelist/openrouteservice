@@ -51,40 +51,51 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
   schemas:
-    SnappingRequest:
-      type: object
-      required:
-      - locations
-      properties:
-        locations:
-          type: array
-          description: Array of coordinates as [longitude, latitude] pairs to snap to the road network. Maximum 5,000 locations per request.
-          maxItems: 5000
-          items:
-            type: array
-            items:
-              type: number
-              format: double
-            minItems: 2
-            maxItems: 2
-          example:
-          - - 8.681495
-            - 49.41461
-          - - 8.686507
-            - 49.41943
-        maximum_search_radius:
-          type: number
-          description: Maximum search radius in meters to find a road network node
-          format: double
-          default: 350
-        return_metadata:
-          type: boolean
-          description: Include metadata about snapping results
-          default: false
-        id:
-          type: string
-          description: Arbitrary identifier for tracking requests
     SnappingResponse:
       type: object
       properties:
@@ -118,16 +129,39 @@ components:
               format: int64
             engine:
               $ref: '#/components/schemas/EngineInfo'
-    EngineInfo:
+    SnappingRequest:
       type: object
+      required:
+      - locations
       properties:
-        version:
+        locations:
+          type: array
+          description: Array of coordinates as [longitude, latitude] pairs to snap to the road network. Maximum 5,000 locations per request.
+          maxItems: 5000
+          items:
+            type: array
+            items:
+              type: number
+              format: double
+            minItems: 2
+            maxItems: 2
+          example:
+          - - 8.681495
+            - 49.41461
+          - - 8.686507
+            - 49.41943
+        maximum_search_radius:
+          type: number
+          description: Maximum search radius in meters to find a road network node
+          format: double
+          default: 350
+        return_metadata:
+          type: boolean
+          description: Include metadata about snapping results
+          default: false
+        id:
           type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
+          description: Arbitrary identifier for tracking requests
     ErrorResponse:
       type: object
       properties:
@@ -150,50 +184,16 @@ components:
             timestamp:
               type: integer
               format: int64
-  responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    profile:
-      name: profile
-      in: path
-      description: Specifies the transport mode profile for routing
-      required: true
-      schema:
-        type: string
-        enum:
-        - driving-car
-        - driving-hgv
-        - cycling-regular
-        - cycling-road
-        - cycling-mountain
-        - cycling-electric
-        - foot-walking
-        - foot-hiking
-        - wheelchair
-        example: driving-car
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
