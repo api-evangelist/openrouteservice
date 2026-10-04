@@ -54,14 +54,14 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
@@ -78,32 +78,89 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    profile:
-      name: profile
-      in: path
-      description: Specifies the transport mode profile for routing
-      required: true
-      schema:
-        type: string
-        enum:
-        - driving-car
-        - driving-hgv
-        - cycling-regular
-        - cycling-road
-        - cycling-mountain
-        - cycling-electric
-        - foot-walking
-        - foot-hiking
-        - wheelchair
-        example: driving-car
   schemas:
+    GeoJSONIsochronesResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Polygon
+                  coordinates:
+                    type: array
+                    items:
+                      type: array
+                      items:
+                        type: array
+                        items:
+                          type: number
+              properties:
+                type: object
+                properties:
+                  group_index:
+                    type: integer
+                  value:
+                    type: number
+                  center:
+                    type: array
+                    items:
+                      type: number
+                  area:
+                    type: number
+                  reachfactor:
+                    type: number
+                  total_pop:
+                    type: integer
+        bbox:
+          type: array
+          items:
+            type: number
+        metadata:
+          type: object
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
     IsochronesRequest:
       type: object
       required:
@@ -201,82 +258,6 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
-    GeoJSONIsochronesResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              geometry:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - Polygon
-                  coordinates:
-                    type: array
-                    items:
-                      type: array
-                      items:
-                        type: array
-                        items:
-                          type: number
-              properties:
-                type: object
-                properties:
-                  group_index:
-                    type: integer
-                  value:
-                    type: number
-                  center:
-                    type: array
-                    items:
-                      type: number
-                  area:
-                    type: number
-                  reachfactor:
-                    type: number
-                  total_pop:
-                    type: integer
-        bbox:
-          type: array
-          items:
-            type: number
-        metadata:
-          type: object
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
     EngineInfo:
       type: object
       properties:
@@ -287,6 +268,25 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

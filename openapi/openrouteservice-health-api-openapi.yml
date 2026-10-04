@@ -80,15 +80,6 @@ components:
           description: List of available services
           items:
             type: string
-    HealthResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Health status
-          enum:
-          - ready
-          - not ready
     EngineInfo:
       type: object
       properties:
@@ -99,6 +90,15 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status
+          enum:
+          - ready
+          - not ready
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -51,50 +51,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    profile:
-      name: profile
-      in: path
-      description: Specifies the transport mode profile for routing
-      required: true
-      schema:
-        type: string
-        enum:
-        - driving-car
-        - driving-hgv
-        - cycling-regular
-        - cycling-road
-        - cycling-mountain
-        - cycling-electric
-        - foot-walking
-        - foot-hiking
-        - wheelchair
-        example: driving-car
   schemas:
     SnappingResponse:
       type: object
@@ -194,6 +150,50 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
+  responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

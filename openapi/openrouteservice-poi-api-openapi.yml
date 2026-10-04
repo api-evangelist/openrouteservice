@@ -50,6 +50,12 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - API key does not have permission for this operation
       content:
@@ -68,13 +74,79 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    POIResponse:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - FeatureCollection
+        features:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Feature
+              geometry:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - Point
+                  coordinates:
+                    type: array
+                    items:
+                      type: number
+              properties:
+                type: object
+                properties:
+                  osm_id:
+                    type: integer
+                  osm_type:
+                    type: integer
+                  distance:
+                    type: number
+                  category_ids:
+                    type: object
+                  category_group_ids:
+                    type: object
+        information:
+          type: object
+          properties:
+            attribution:
+              type: string
+            version:
+              type: string
+            timestamp:
+              type: string
+              format: date-time
     POIRequest:
       type: object
       required:
@@ -159,78 +231,6 @@ components:
           enum:
           - category
           - distance
-    POIResponse:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - FeatureCollection
-        features:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Feature
-              geometry:
-                type: object
-                properties:
-                  type:
-                    type: string
-                    enum:
-                    - Point
-                  coordinates:
-                    type: array
-                    items:
-                      type: number
-              properties:
-                type: object
-                properties:
-                  osm_id:
-                    type: integer
-                  osm_type:
-                    type: integer
-                  distance:
-                    type: number
-                  category_ids:
-                    type: object
-                  category_group_ids:
-                    type: object
-        information:
-          type: object
-          properties:
-            attribution:
-              type: string
-            version:
-              type: string
-            timestamp:
-              type: string
-              format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
     EngineInfo:
       type: object
       properties:

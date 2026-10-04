@@ -50,14 +50,14 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
       content:
         application/json:
           schema:
@@ -68,8 +68,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -126,37 +126,6 @@ components:
           type: array
           items:
             type: object
-    OptimizationRequest:
-      type: object
-      required:
-      - vehicles
-      - jobs
-      properties:
-        vehicles:
-          type: array
-          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationVehicle'
-        jobs:
-          type: array
-          description: List of jobs/deliveries to be performed (max 50 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationJob'
-        shipments:
-          type: array
-          description: Shipments requiring pickup and delivery pairs
-          items:
-            $ref: '#/components/schemas/OptimizationShipment'
-        matrices:
-          type: object
-          description: Pre-computed duration/distance matrices
-        options:
-          type: object
-          description: Additional optimization options
-          properties:
-            g:
-              type: boolean
-              description: Return geometry for routes
     OptimizationJob:
       type: object
       required:
@@ -201,6 +170,59 @@ components:
         priority:
           type: integer
           description: Job priority (higher values = higher priority)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
+              type: string
+            timestamp:
+              type: integer
+              format: int64
+    OptimizationRequest:
+      type: object
+      required:
+      - vehicles
+      - jobs
+      properties:
+        vehicles:
+          type: array
+          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationVehicle'
+        jobs:
+          type: array
+          description: List of jobs/deliveries to be performed (max 50 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationJob'
+        shipments:
+          type: array
+          description: Shipments requiring pickup and delivery pairs
+          items:
+            $ref: '#/components/schemas/OptimizationShipment'
+        matrices:
+          type: object
+          description: Pre-computed duration/distance matrices
+        options:
+          type: object
+          description: Additional optimization options
+          properties:
+            g:
+              type: boolean
+              description: Return geometry for routes
     OptimizationVehicle:
       type: object
       required:
@@ -256,28 +278,6 @@ components:
           description: Scheduled breaks for this vehicle
           items:
             type: object
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
-            attribution:
-              type: string
-            timestamp:
-              type: integer
-              format: int64
     OptimizationShipment:
       type: object
       properties:
