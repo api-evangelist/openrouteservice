@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-06-13 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-06-13'
 name: OpenRouteService Plans and Pricing
 description: OpenRouteService offers a tiered access model ranging from a free public
   API plan for developers and small projects, a standard paid plan for production
@@ -155,3 +160,34 @@ plans:
       - Open source LGPL-3.0 license
       - Self-managed OSM data updates
     url: https://giscience.github.io/openrouteservice/installation/
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Free Plan
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Standard Plan
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Collaborative Plan
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Self-Hosted Plan
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
