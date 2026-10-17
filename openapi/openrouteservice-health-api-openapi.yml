@@ -56,6 +56,15 @@ paths:
           description: Service unavailable
 components:
   schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Health status
+          enum:
+          - ready
+          - not ready
     StatusResponse:
       type: object
       properties:
@@ -90,15 +99,6 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
-    HealthResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Health status
-          enum:
-          - ready
-          - not ready
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

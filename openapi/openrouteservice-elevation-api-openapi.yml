@@ -135,37 +135,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    ElevationPointRequest:
-      type: object
-      required:
-      - geometry
-      properties:
-        format_in:
-          type: string
-          enum:
-          - point
-          default: point
-        format_out:
-          type: string
-          enum:
-          - point
-          - geojson
-          default: geojson
-        dataset:
-          type: string
-          enum:
-          - srtm
-          default: srtm
-        geometry:
-          type: array
-          description: Coordinate as [longitude, latitude]
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-          example:
-          - 8.681495
-          - 49.41461
     ElevationLineRequest:
       type: object
       required:
@@ -225,16 +194,6 @@ components:
             timestamp:
               type: integer
               format: int64
-    EngineInfo:
-      type: object
-      properties:
-        version:
-          type: string
-          description: ORS engine version
-        build_date:
-          type: string
-          format: date-time
-          description: Build date of the ORS engine
     ElevationResponse:
       type: object
       properties:
@@ -247,7 +206,54 @@ components:
           properties:
             dataset:
               type: string
+    ElevationPointRequest:
+      type: object
+      required:
+      - geometry
+      properties:
+        format_in:
+          type: string
+          enum:
+          - point
+          default: point
+        format_out:
+          type: string
+          enum:
+          - point
+          - geojson
+          default: geojson
+        dataset:
+          type: string
+          enum:
+          - srtm
+          default: srtm
+        geometry:
+          type: array
+          description: Coordinate as [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+          example:
+          - 8.681495
+          - 49.41461
+    EngineInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: ORS engine version
+        build_date:
+          type: string
+          format: date-time
+          description: Build date of the ORS engine
   responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Unauthorized - missing or invalid API key
       content:
@@ -256,12 +262,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Forbidden:
       description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:

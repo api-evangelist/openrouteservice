@@ -49,83 +49,93 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    OptimizationResponse:
+    OptimizationVehicle:
       type: object
+      required:
+      - id
+      - profile
+      - start
       properties:
-        code:
+        id:
           type: integer
-        summary:
+          description: Unique vehicle identifier
+        profile:
+          type: string
+          description: Routing profile for this vehicle
+          enum:
+          - driving-car
+          - driving-hgv
+          - cycling-regular
+          - cycling-road
+          - foot-walking
+        start:
+          type: array
+          description: Start location [longitude, latitude]
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        end:
+          type: array
+          description: End location [longitude, latitude] (optional)
+          items:
+            type: number
+          minItems: 2
+          maxItems: 2
+        capacity:
+          type: array
+          description: Vehicle capacity for multiple resource types
+          items:
+            type: integer
+        skills:
+          type: array
+          description: Skills this vehicle has (must match job skill requirements)
+          items:
+            type: integer
+        time_window:
+          type: array
+          description: Operational time window [start_time, end_time] in seconds from epoch
+          items:
+            type: integer
+          minItems: 2
+          maxItems: 2
+        breaks:
+          type: array
+          description: Scheduled breaks for this vehicle
+          items:
+            type: object
+    OptimizationRequest:
+      type: object
+      required:
+      - vehicles
+      - jobs
+      properties:
+        vehicles:
+          type: array
+          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationVehicle'
+        jobs:
+          type: array
+          description: List of jobs/deliveries to be performed (max 50 in standard plan)
+          items:
+            $ref: '#/components/schemas/OptimizationJob'
+        shipments:
+          type: array
+          description: Shipments requiring pickup and delivery pairs
+          items:
+            $ref: '#/components/schemas/OptimizationShipment'
+        matrices:
           type: object
+          description: Pre-computed duration/distance matrices
+        options:
+          type: object
+          description: Additional optimization options
           properties:
-            cost:
-              type: integer
-            routes:
-              type: integer
-            unassigned:
-              type: integer
-            delivery:
-              type: array
-              items:
-                type: integer
-            pickup:
-              type: array
-              items:
-                type: integer
-            duration:
-              type: number
-            distance:
-              type: integer
-            computing_times:
-              type: object
-        routes:
-          type: array
-          items:
-            type: object
-            properties:
-              vehicle:
-                type: integer
-              cost:
-                type: integer
-              steps:
-                type: array
-                items:
-                  type: object
-              duration:
-                type: number
-              distance:
-                type: integer
-              geometry:
-                type: string
-        unassigned:
-          type: array
-          items:
-            type: object
+            g:
+              type: boolean
+              description: Return geometry for routes
     OptimizationJob:
       type: object
       required:
@@ -192,90 +202,55 @@ components:
             timestamp:
               type: integer
               format: int64
-    OptimizationRequest:
+    OptimizationResponse:
       type: object
-      required:
-      - vehicles
-      - jobs
       properties:
-        vehicles:
-          type: array
-          description: Fleet of vehicles to optimize routes for (max 3 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationVehicle'
-        jobs:
-          type: array
-          description: List of jobs/deliveries to be performed (max 50 in standard plan)
-          items:
-            $ref: '#/components/schemas/OptimizationJob'
-        shipments:
-          type: array
-          description: Shipments requiring pickup and delivery pairs
-          items:
-            $ref: '#/components/schemas/OptimizationShipment'
-        matrices:
-          type: object
-          description: Pre-computed duration/distance matrices
-        options:
-          type: object
-          description: Additional optimization options
-          properties:
-            g:
-              type: boolean
-              description: Return geometry for routes
-    OptimizationVehicle:
-      type: object
-      required:
-      - id
-      - profile
-      - start
-      properties:
-        id:
+        code:
           type: integer
-          description: Unique vehicle identifier
-        profile:
-          type: string
-          description: Routing profile for this vehicle
-          enum:
-          - driving-car
-          - driving-hgv
-          - cycling-regular
-          - cycling-road
-          - foot-walking
-        start:
+        summary:
+          type: object
+          properties:
+            cost:
+              type: integer
+            routes:
+              type: integer
+            unassigned:
+              type: integer
+            delivery:
+              type: array
+              items:
+                type: integer
+            pickup:
+              type: array
+              items:
+                type: integer
+            duration:
+              type: number
+            distance:
+              type: integer
+            computing_times:
+              type: object
+        routes:
           type: array
-          description: Start location [longitude, latitude]
           items:
-            type: number
-          minItems: 2
-          maxItems: 2
-        end:
+            type: object
+            properties:
+              vehicle:
+                type: integer
+              cost:
+                type: integer
+              steps:
+                type: array
+                items:
+                  type: object
+              duration:
+                type: number
+              distance:
+                type: integer
+              geometry:
+                type: string
+        unassigned:
           type: array
-          description: End location [longitude, latitude] (optional)
-          items:
-            type: number
-          minItems: 2
-          maxItems: 2
-        capacity:
-          type: array
-          description: Vehicle capacity for multiple resource types
-          items:
-            type: integer
-        skills:
-          type: array
-          description: Skills this vehicle has (must match job skill requirements)
-          items:
-            type: integer
-        time_window:
-          type: array
-          description: Operational time window [start_time, end_time] in seconds from epoch
-          items:
-            type: integer
-          minItems: 2
-          maxItems: 2
-        breaks:
-          type: array
-          description: Scheduled breaks for this vehicle
           items:
             type: object
     OptimizationShipment:
@@ -295,6 +270,31 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

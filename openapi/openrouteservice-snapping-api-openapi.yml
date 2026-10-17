@@ -51,40 +51,73 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  parameters:
+    profile:
+      name: profile
+      in: path
+      description: Specifies the transport mode profile for routing
+      required: true
+      schema:
+        type: string
+        enum:
+        - driving-car
+        - driving-hgv
+        - cycling-regular
+        - cycling-road
+        - cycling-mountain
+        - cycling-electric
+        - foot-walking
+        - foot-hiking
+        - wheelchair
+        example: driving-car
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Unauthorized - missing or invalid API key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: Forbidden - API key does not have permission for this operation
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    SnappingResponse:
+    ErrorResponse:
       type: object
       properties:
-        locations:
-          type: array
-          description: Snapped locations with road network coordinates
-          items:
-            type: object
-            properties:
-              location:
-                type: array
-                items:
-                  type: number
-                description: Snapped coordinate [longitude, latitude]
-              name:
-                type: string
-                description: Road name at snapped location
-              snapped_distance:
-                type: number
-                format: double
-                description: Distance from original to snapped location in meters
-        metadata:
+        error:
           type: object
           properties:
-            attribution:
+            code:
+              type: integer
+              description: Error code
+            message:
               type: string
-            service:
+              description: Human-readable error message
+        info:
+          type: object
+          properties:
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
+            attribution:
               type: string
             timestamp:
               type: integer
               format: int64
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
     SnappingRequest:
       type: object
       required:
@@ -118,28 +151,39 @@ components:
         id:
           type: string
           description: Arbitrary identifier for tracking requests
-    ErrorResponse:
+    SnappingResponse:
       type: object
       properties:
-        error:
+        locations:
+          type: array
+          description: Snapped locations with road network coordinates
+          items:
+            type: object
+            properties:
+              location:
+                type: array
+                items:
+                  type: number
+                description: Snapped coordinate [longitude, latitude]
+              name:
+                type: string
+                description: Road name at snapped location
+              snapped_distance:
+                type: number
+                format: double
+                description: Distance from original to snapped location in meters
+        metadata:
           type: object
           properties:
-            code:
-              type: integer
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-        info:
-          type: object
-          properties:
-            engine:
-              $ref: '#/components/schemas/EngineInfo'
             attribution:
+              type: string
+            service:
               type: string
             timestamp:
               type: integer
               format: int64
+            engine:
+              $ref: '#/components/schemas/EngineInfo'
     EngineInfo:
       type: object
       properties:
@@ -150,50 +194,6 @@ components:
           type: string
           format: date-time
           description: Build date of the ORS engine
-  responses:
-    Unauthorized:
-      description: Unauthorized - missing or invalid API key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Forbidden:
-      description: Forbidden - API key does not have permission for this operation
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    profile:
-      name: profile
-      in: path
-      description: Specifies the transport mode profile for routing
-      required: true
-      schema:
-        type: string
-        enum:
-        - driving-car
-        - driving-hgv
-        - cycling-regular
-        - cycling-road
-        - cycling-mountain
-        - cycling-electric
-        - foot-walking
-        - foot-hiking
-        - wheelchair
-        example: driving-car
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
